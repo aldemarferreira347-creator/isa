@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ── Bloqueo de fecha ──
+    const now = new Date();
+    const targetDate = new Date(now.getFullYear(), 8, 21); // 21 de septiembre (mes 8 en JS)
+    
+    if (now < targetDate) {
+        document.body.innerHTML = `
+            <div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #0a0a0a; color: #fff; font-family: 'Poppins', sans-serif; text-align: center; padding: 20px; box-sizing: border-box;">
+                <h1 style="font-size: 2.5rem; color: #f5c518; margin-bottom: 1rem;">🌻 Aún no es el momento 🌻</h1>
+                <p style="font-size: 1.2rem; color: #ccc; max-width: 600px; margin-bottom: 2rem; line-height: 1.6;">
+                    Esta sección estará disponible a partir del <strong>21 de septiembre</strong>.<br>
+                    ¡Falta poco para que puedas ver tu sorpresa!
+                </p>
+                <a href="index.html" style="display: inline-block; padding: 12px 24px; background: #f5c518; color: #0a0a0a; text-decoration: none; border-radius: 8px; font-weight: 600;">⬅ Volver al Menú</a>
+            </div>
+        `;
+        return;
+    }
+
     // ── Carnations ──
     const carnationSVG = (delay) => {
         const el = document.createElementNS('http://www.w3.org/2000/svg', 'svg');

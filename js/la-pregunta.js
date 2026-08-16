@@ -15,6 +15,62 @@
             }
         });
 
+        // ── MODAL DE LA CARTA ──────────────────────────────────────────────
+        // Abre el modal temático al tocar el cuadro de pixel art.
+        // A la vez le dice al pixel art que abra la carta sobre el escritorio.
+        let _cartaAbierta = false;
+
+        function abrirCartaModal() {
+            if (_cartaAbierta) return;
+            _cartaAbierta = true;
+
+            const modal = document.getElementById('cartaModal');
+            if (!modal) return;
+
+            // Efecto de luz dorada + sonido (reutiliza lo ya existente)
+            playEnvelopeSound();
+            flashGoldLight();
+            spawnGoldParticles();
+
+            // El pixel art abre la carta del escritorio
+            if (window.PixelPregunta) window.PixelPregunta.abrir();
+
+            // Muestra el modal
+            modal.removeAttribute('aria-hidden');
+            modal.classList.add('abierto');
+            document.body.style.overflow = 'hidden';
+
+            // Scroll al tope del contenido
+            const scroll = modal.querySelector('.carta-modal-scroll');
+            if (scroll) scroll.scrollTop = 0;
+        }
+
+        function cerrarCartaModal() {
+            const modal = document.getElementById('cartaModal');
+            if (!modal) return;
+            modal.classList.remove('abierto');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        // Cierra el modal y revela la tarjeta de la pregunta debajo
+        function irAPregunta() {
+            cerrarCartaModal();
+            const qWrap = document.getElementById('dclQuestion');
+            if (qWrap) {
+                qWrap.style.display = 'block';
+                // Scroll suave hacia la pregunta
+                setTimeout(() => {
+                    qWrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 380);
+            }
+        }
+
+        // Cerrar el modal con Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') cerrarCartaModal();
+        });
+
         // ── Audio context (lazy) ──
         let _audioCtx = null;
         function getAudio() {
@@ -74,10 +130,16 @@
         }
 
         function spawnGoldParticles() {
-            const wrap = document.querySelector('.dcl-envelope-wrap');
-            const rect = wrap.getBoundingClientRect();
-            const cx = rect.left + rect.width / 2;
-            const cy = rect.top + 80;
+            // Usa el marco de pixel art como centro de las partículas
+            // (el sobre original ya no existe en el DOM)
+            const wrap = document.getElementById('pixelMarco') || document.querySelector('.pixel-marco');
+            let cx = window.innerWidth / 2;
+            let cy = 260;
+            if (wrap) {
+                const rect = wrap.getBoundingClientRect();
+                cx = rect.left + rect.width / 2;
+                cy = rect.top + rect.height * 0.6;
+            }
             const emojis = ['✨', '💛', '⭐', '🌟', '💫', '✦'];
             for (let i = 0; i < 38; i++) {
                 setTimeout(() => {
@@ -125,14 +187,16 @@
                 }, 220);
             });
 
-            // Glow ring on envelope
-            const env = document.getElementById('dclEnvelope');
-            env.style.transition = 'box-shadow 0.2s ease';
-            env.style.boxShadow = '0 0 80px rgba(245,197,24,0.7), 0 0 160px rgba(245,197,24,0.3)';
-            setTimeout(() => {
-                env.style.boxShadow = '';
-                env.style.transition = '';
-            }, 1400);
+            // Glow ring on pixel art frame (envelope removed, now the pixel marco)
+            const env = document.getElementById('pixelMarco');
+            if (env) {
+                env.style.transition = 'box-shadow 0.2s ease';
+                env.style.boxShadow = '0 0 80px rgba(245,197,24,0.7), 0 0 160px rgba(245,197,24,0.3)';
+                setTimeout(() => {
+                    env.style.boxShadow = '';
+                    env.style.transition = '';
+                }, 1400);
+            }
         }
 
         // ── Open envelope ──

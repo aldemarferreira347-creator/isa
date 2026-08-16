@@ -422,3 +422,339 @@
         transition-duration: .01ms;
     }
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   8 · CARTA PIXEL — INTERACCIÓN DEL CUADRO
+   El marco del pixel art se convierte en botón de apertura. Se
+   añade cursor, halo dorado en hover y un rebote sutil al entrar.
+   ══════════════════════════════════════════════════════════════════════ */
+.pixel-marco--clic {
+    cursor: pointer;
+    transition: box-shadow .25s ease, transform .25s ease;
+    outline: none;
+}
+.pixel-marco--clic:hover,
+.pixel-marco--clic:focus-visible {
+    box-shadow:
+        0 1px 0 0 rgba(255,233,166,.12) inset,
+        0 0 54px -8px rgba(245,197,24,.55),
+        0 0 22px -4px rgba(255,155,74,.35),
+        0 28px 64px -28px rgba(0,0,0,.95);
+    transform: translateY(-2px) scale(1.012);
+}
+.pixel-marco--clic:active {
+    transform: translateY(0) scale(.998);
+    transition-duration: .08s;
+}
+
+/* El pie de texto pulsa para llamar la atención */
+.pixel-pie--clic {
+    cursor: pointer;
+    color: rgba(245,197,24,.82);
+    animation: piePulso 3.2s ease-in-out infinite;
+    transition: color .2s;
+}
+.pixel-pie--clic:hover { color: rgba(245,197,24,1); }
+
+@keyframes piePulso {
+    0%, 100% { opacity: .72; }
+    50%       { opacity: 1;   }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   9 · CARTA MODAL — LA CARTA COMO MODAL TEMÁTICO
+   Estilo completamente alineado con la escena de pixel art:
+   fondo oscuro de madera, papel parchment, borde dorado y
+   cabecera con vela. Nada tiene que ver con un sobre genérico.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Contenedor del modal — ocupa toda la pantalla, centrado */
+.carta-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 8000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 3vw, 24px);
+    box-sizing: border-box;
+    /* Oculto por defecto */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .35s ease;
+}
+
+.carta-modal.abierto {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Fondo oscuro semi-transparente */
+.carta-modal-fondo {
+    position: absolute;
+    inset: 0;
+    background: rgba(4, 2, 0, .86);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    cursor: pointer;
+}
+
+/* Caja principal — papel con borde de madera quemada y oro */
+.carta-modal-caja {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 680px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    background:
+        repeating-linear-gradient(0deg, rgba(255,233,166,.018) 0 1px, transparent 1px 3px),
+        repeating-linear-gradient(90deg, rgba(255,233,166,.013) 0 1px, transparent 1px 4px),
+        linear-gradient(170deg, #1e1106, #0e0802);
+    border: 1px solid rgba(245,197,24,.28);
+    border-radius: 6px;
+    box-shadow:
+        0 1px 0 0 rgba(255,233,166,.10) inset,
+        0 0 80px -16px rgba(245,197,24,.38),
+        0 0 160px -40px rgba(255,155,74,.18),
+        0 40px 100px -36px rgba(0,0,0,.98);
+    transform: translateY(24px) scale(.97);
+    transition: transform .4s cubic-bezier(.34,1.22,.5,1);
+    overflow: hidden;
+}
+
+.carta-modal.abierto .carta-modal-caja {
+    transform: translateY(0) scale(1);
+}
+
+/* Cabecera — barra de madera con vela y nombre */
+.carta-modal-cabecera {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 2.5vw, 18px);
+    padding: clamp(12px, 3vw, 18px) clamp(16px, 4vw, 28px);
+    background:
+        linear-gradient(180deg, rgba(90,56,24,.55), rgba(40,24,8,.72));
+    border-bottom: 1px solid rgba(245,197,24,.18);
+    flex-shrink: 0;
+}
+
+/* Vela en la cabecera */
+.carta-modal-vela {
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.carta-modal-llama {
+    font-size: clamp(1.4rem, 4vw, 1.9rem);
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(245,197,24,.7)) drop-shadow(0 0 24px rgba(255,155,74,.4));
+    animation: llamaTitilar 2.4s ease-in-out infinite;
+}
+
+@keyframes llamaTitilar {
+    0%,100% { filter: drop-shadow(0 0 10px rgba(245,197,24,.7)) drop-shadow(0 0 24px rgba(255,155,74,.4)); }
+    33%     { filter: drop-shadow(0 0 16px rgba(245,197,24,.9)) drop-shadow(0 0 36px rgba(255,155,74,.6)); }
+    66%     { filter: drop-shadow(0 0 8px  rgba(245,197,24,.5)) drop-shadow(0 0 18px rgba(255,155,74,.3)); }
+}
+
+/* Meta: fecha y nombre */
+.carta-modal-meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.carta-modal-fecha {
+    font-family: ui-monospace, 'Courier New', monospace;
+    font-size: clamp(.58rem, 1.6vw, .68rem);
+    letter-spacing: .30em;
+    text-transform: uppercase;
+    color: rgba(245,197,24,.62);
+    margin-bottom: 3px;
+}
+
+.carta-modal-nombre {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(.92rem, 2.8vw, 1.18rem);
+    color: color-mix(in srgb, #f5c518 75%, #fff);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Botón cerrar */
+.carta-modal-cerrar {
+    flex-shrink: 0;
+    background: rgba(245,197,24,.09);
+    border: 1px solid rgba(245,197,24,.22);
+    border-radius: 50%;
+    width: clamp(32px, 7vw, 40px);
+    height: clamp(32px, 7vw, 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(245,197,24,.75);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background .2s, color .2s, transform .15s;
+}
+.carta-modal-cerrar:hover {
+    background: rgba(245,197,24,.18);
+    color: #f5c518;
+    transform: rotate(90deg);
+}
+
+/* Área de scroll del papel */
+.carta-modal-scroll {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    flex: 1;
+    min-height: 0;
+    /* Scrollbar fina dorada */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(245,197,24,.28) transparent;
+}
+.carta-modal-scroll::-webkit-scrollbar { width: 5px; }
+.carta-modal-scroll::-webkit-scrollbar-thumb {
+    background: rgba(245,197,24,.28);
+    border-radius: 3px;
+}
+
+/* El papel propiamente dicho */
+.carta-modal-papel {
+    padding: clamp(28px, 6vw, 52px) clamp(20px, 5.5vw, 50px) clamp(32px, 7vw, 60px);
+}
+
+/* Párrafo — mismo tratamiento tipográfico que .dcl-p */
+.carta-modal-p {
+    max-width: 62ch;
+    margin: 0 auto clamp(16px, 3.2vw, 24px);
+    font-size: clamp(.98rem, 2.5vw, 1.06rem);
+    line-height: 1.94;
+    color: rgba(246,234,212,.88);
+    text-wrap: pretty;
+}
+
+/* Capitular en el primer párrafo */
+.carta-modal-papel .carta-modal-p:first-of-type::first-letter {
+    float: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.1em;
+    line-height: .82;
+    padding: .06em .12em 0 0;
+    color: #f5c518;
+    text-shadow: 0 0 20px rgba(245,197,24,.35);
+}
+
+.carta-modal-p em {
+    color: color-mix(in srgb, #f5c518 82%, #fff);
+    font-style: italic;
+}
+
+/* Divisor — igual que .dcl-divider */
+.carta-modal-div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 62ch;
+    margin: clamp(24px, 5vw, 40px) auto;
+}
+.carta-modal-div span {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245,197,24,.34), transparent);
+}
+.carta-modal-div i {
+    font-style: normal;
+    filter: drop-shadow(0 0 10px rgba(245,197,24,.5));
+}
+
+/* Propuesta */
+.carta-modal-propuesta {
+    max-width: 62ch;
+    margin: clamp(26px, 5.5vw, 42px) auto;
+    padding: clamp(20px, 4.5vw, 32px) clamp(16px, 3.5vw, 30px);
+    background: linear-gradient(160deg, rgba(245,197,24,.07), rgba(245,197,24,.015));
+    border: 1px solid rgba(245,197,24,.22);
+    border-radius: 10px;
+    position: relative;
+}
+.carta-modal-propuesta::before {
+    content: '“';
+    position: absolute;
+    top: -.18em; left: .12em;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 9vw, 4.8rem);
+    line-height: 1;
+    color: rgba(245,197,24,.13);
+    pointer-events: none;
+}
+.carta-modal-propuesta-titulo {
+    font-family: ui-monospace, 'Courier New', monospace;
+    font-size: clamp(.62rem, 1.8vw, .72rem);
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: rgba(245,197,24,.82);
+    text-align: center;
+    margin-bottom: clamp(12px, 2.5vw, 18px);
+    position: relative;
+}
+
+/* Firma */
+.carta-modal-firma {
+    max-width: 62ch;
+    margin: clamp(30px, 6vw, 48px) auto 0;
+    padding-top: clamp(18px, 3.5vw, 28px);
+    border-top: 1px solid rgba(245,197,24,.13);
+    text-align: right;
+}
+.carta-modal-firma-nombre {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.9vw, 1.22rem);
+    color: color-mix(in srgb, #f5c518 84%, #fff);
+}
+
+/* Pie con botón de ir a la pregunta */
+.carta-modal-pie {
+    text-align: center;
+    margin-top: clamp(32px, 7vw, 56px);
+    padding-top: clamp(20px, 4vw, 30px);
+    border-top: 1px solid rgba(245,197,24,.10);
+}
+.carta-modal-btn-pregunta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: clamp(13px, 3.2vw, 17px) clamp(26px, 6vw, 40px);
+    background: linear-gradient(135deg, rgba(245,197,24,.18), rgba(255,155,74,.12));
+    border: 1px solid rgba(245,197,24,.38);
+    border-radius: 50px;
+    color: color-mix(in srgb, #f5c518 88%, #fff);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(.98rem, 2.6vw, 1.10rem);
+    cursor: pointer;
+    transition: background .22s, box-shadow .22s, transform .15s;
+    box-shadow: 0 0 30px -10px rgba(245,197,24,.30);
+}
+.carta-modal-btn-pregunta:hover {
+    background: linear-gradient(135deg, rgba(245,197,24,.30), rgba(255,155,74,.20));
+    box-shadow: 0 0 50px -8px rgba(245,197,24,.55);
+    transform: translateY(-2px);
+}
+.carta-modal-btn-pregunta:active { transform: translateY(0); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .carta-modal,
+    .carta-modal-caja { transition-duration: .01ms; }
+    .carta-modal-llama,
+    .pixel-pie--clic   { animation: none; }
+    .pixel-marco--clic { transition: none; }
+}
+
