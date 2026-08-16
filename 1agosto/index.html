@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#6C4A78">
+  <title>Jardín de Recuerdos 🌻</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌻</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ═══════ Biblioteca de flores vectoriales (símbolos SVG reutilizables) ═══════ -->
+  <svg id="defs-flores" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="f-girasol" viewBox="0 0 64 64">
+        <path d="M32 62 C32 50 31 42 32 30" stroke="#5E8C5A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M32 48 C26 45 21 46 18 51 C24 53 29 51 32 48 Z" fill="#6FA06B"/>
+        <path d="M32 42 C38 39 43 40 46 45 C40 47 35 45 32 42 Z" fill="#6FA06B"/>
+        <g transform="translate(32 19)">
+          <ellipse rx="4.2" ry="10" cy="-9" fill="#F6C244"/>
+          <ellipse rx="4.2" ry="10" cy="-9" fill="#F6C244" transform="rotate(30)"/>
+          <ellipse rx="4.2" ry="10" cy="-9" fill="#F6C244" transform="rotate(60)"/>
+          <ellipse rx="4.2" ry="10" cy="-9" fill="#EFB52E" transform="rotate(90)"/>
+          <ellipse rx="4.2" ry="10" cy="-9" fill="#F6C244" transform="rotate(120)"/>
+          <ellipse rx="4.2" ry="10" cy="-9" fill="#F6C244" transform="rotate(150)"/>
+          <ellipse rx="4.2" ry="10" cy="-9" fill="#EFB52E" transform="rotate(180)"/>
+          <ellipse rx="4.2" ry="10" cy="-9" fill="#F6C244" transform="rotate(210)"/>
+          <ellipse rx="4.2" ry="10" cy="-9" fill="#F6C244" transform="rotate(240)"/>
+          <ellipse rx="4.2" ry="10" cy="-9" fill="#EFB52E" transform="rotate(270)"/>
+          <ellipse rx="4.2" ry="10" cy="-9" fill="#F6C244" transform="rotate(300)"/>
+          <ellipse rx="4.2" ry="10" cy="-9" fill="#F6C244" transform="rotate(330)"/>
+          <circle r="7.6" fill="#7A4A21"/>
+          <circle r="4.2" fill="#5C3717"/>
+          <circle r="1.6" cx="-2" cy="-2" fill="#8A5A2E"/>
+        </g>
+      </symbol>
+
+      <symbol id="f-rosa" viewBox="0 0 64 64">
+        <path d="M32 62 C32 50 32 42 32 32" stroke="#5E8C5A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M32 50 C26 47 21 48 18 53 C24 55 29 53 32 50 Z" fill="#6FA06B"/>
+        <path d="M32 44 C38 41 43 42 46 47 C40 49 35 47 32 44 Z" fill="#6FA06B"/>
+        <g transform="translate(32 20)">
+          <circle r="6.5" cx="0" cy="-8.5" fill="#E2688C"/>
+          <circle r="6.5" cx="8" cy="-2.6" fill="#E2688C"/>
+          <circle r="6.5" cx="5" cy="6.9" fill="#DA5C80"/>
+          <circle r="6.5" cx="-5" cy="6.9" fill="#DA5C80"/>
+          <circle r="6.5" cx="-8" cy="-2.6" fill="#E2688C"/>
+          <circle r="8.2" fill="#CE4A70"/>
+          <circle r="5" fill="#B83860"/>
+          <path d="M-4 -1 A4 4 0 0 1 4 -1 A3 3 0 0 1 -2 2" stroke="#8F2547" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        </g>
+      </symbol>
+
+      <symbol id="f-margarita" viewBox="0 0 64 64">
+        <path d="M32 62 C32 50 32 42 32 30" stroke="#5E8C5A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M32 46 C26 43 21 44 18 49 C24 51 29 49 32 46 Z" fill="#6FA06B"/>
+        <g transform="translate(32 19)">
+          <ellipse rx="3.8" ry="9.5" cy="-8" fill="#FFF7EC"/>
+          <ellipse rx="3.8" ry="9.5" cy="-8" fill="#FFF1DE" transform="rotate(36)"/>
+          <ellipse rx="3.8" ry="9.5" cy="-8" fill="#FFF7EC" transform="rotate(72)"/>
+          <ellipse rx="3.8" ry="9.5" cy="-8" fill="#FFF1DE" transform="rotate(108)"/>
+          <ellipse rx="3.8" ry="9.5" cy="-8" fill="#FFF7EC" transform="rotate(144)"/>
+          <ellipse rx="3.8" ry="9.5" cy="-8" fill="#FFF1DE" transform="rotate(180)"/>
+          <ellipse rx="3.8" ry="9.5" cy="-8" fill="#FFF7EC" transform="rotate(216)"/>
+          <ellipse rx="3.8" ry="9.5" cy="-8" fill="#FFF1DE" transform="rotate(252)"/>
+          <ellipse rx="3.8" ry="9.5" cy="-8" fill="#FFF7EC" transform="rotate(288)"/>
+          <ellipse rx="3.8" ry="9.5" cy="-8" fill="#FFF1DE" transform="rotate(324)"/>
+          <circle r="5.6" fill="#F2B93B"/>
+          <circle r="2.6" fill="#D99B22"/>
+        </g>
+      </symbol>
+
+      <symbol id="f-tulipan" viewBox="0 0 64 64">
+        <path d="M32 62 C32 52 32 44 32 32" stroke="#5E8C5A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M32 52 C25 49 20 50 16 56 C23 58 29 55 32 52 Z" fill="#6FA06B"/>
+        <path d="M32 46 C39 43 44 44 48 50 C41 52 35 49 32 46 Z" fill="#6FA06B"/>
+        <g transform="translate(32 21)">
+          <path d="M-9.5 -2 C-10 -12 -3 -14 0 -8 C3 -14 10 -12 9.5 -2 L8 6 C6 11 -6 11 -8 6 Z" fill="#EE7FA0"/>
+          <path d="M-4.5 -6 C-3 -12 3 -12 4.5 -6 L3.4 7 L-3.4 7 Z" fill="#F7A6BE"/>
+        </g>
+      </symbol>
+
+      <symbol id="f-marchita" viewBox="0 0 64 64">
+        <path d="M32 62 C32 52 33 44 30 38 C28 33 24 31 20 31" stroke="#8B8578" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M32 52 C27 50 23 51 20 55 C25 56 29 54 32 52 Z" fill="#8F9384"/>
+        <g transform="translate(18 33) rotate(215)">
+          <path d="M0 -9 C6 -3 6 4 0 8 C-6 4 -6 -3 0 -9 Z" fill="#A89A93"/>
+          <path d="M0 -6 C3 -2 3 3 0 6" stroke="#8B7D76" stroke-width="1.4" fill="none"/>
+        </g>
+      </symbol>
+
+      <symbol id="f-hierba" viewBox="0 0 64 64">
+        <g stroke="#4F7942" stroke-width="3.4" fill="none" stroke-linecap="round">
+          <path d="M32 62 C30 50 25 44 19 39"/>
+          <path d="M32 62 C32 48 32 40 32 32"/>
+          <path d="M32 62 C34 50 39 44 45 39"/>
+          <path d="M32 62 C29 55 24 52 17 52"/>
+          <path d="M32 62 C35 55 40 52 47 52"/>
+        </g>
+        <g stroke="#6B9455" stroke-width="2.4" fill="none" stroke-linecap="round">
+          <path d="M32 62 C31 52 28 47 24 43"/>
+          <path d="M32 62 C33 52 36 47 40 43"/>
+        </g>
+        <g class="raiz-hierba" stroke="#B08968" stroke-width="1.8" fill="none" stroke-linecap="round">
+          <path d="M32 62 C31 66 28 68 25 69"/>
+          <path d="M32 62 C33 67 36 69 39 70"/>
+          <path d="M32 62 C32 67 32 69 32 71"/>
+        </g>
+      </symbol>
+
+      <!-- ── Herramientas del jardín ── -->
+      <radialGradient id="gradRegadera" cx="34%" cy="22%" r="88%">
+        <stop offset="0%" stop-color="#D6EDF8"/>
+        <stop offset="52%" stop-color="#8CC5DF"/>
+        <stop offset="100%" stop-color="#5390B2"/>
+      </radialGradient>
+      <linearGradient id="gradCubo" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#A9BECC"/>
+        <stop offset="48%" stop-color="#7E97AA"/>
+        <stop offset="100%" stop-color="#5D7487"/>
+      </linearGradient>
+      <linearGradient id="gradGuante" x1="0.2" y1="0" x2="0.8" y2="1">
+        <stop offset="0%" stop-color="#F7BCCC"/>
+        <stop offset="100%" stop-color="#E58BA8"/>
+      </linearGradient>
+
+      <symbol id="f-regadera" viewBox="0 0 64 64">
+        <!-- caño -->
+        <path d="M29 34 C23 33 17 30 12 24" stroke="#4E87A8" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M29 34 C23 33 17 30 12 24" stroke="#B4DBEC" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <!-- boquilla dorada -->
+        <path d="M15.9 20.8 L12.3 13.3 L1.5 22.3 L8.2 27.2 Z" fill="#E0A93C"/>
+        <path d="M12.3 13.3 L1.5 22.3" stroke="#B8862A" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M14.4 17.5 L4.6 25.6" stroke="rgba(255,255,255,0.35)" stroke-width="1.6" stroke-linecap="round"/>
+        <!-- asa -->
+        <path d="M35 21 C41 7 56 9 53 25" stroke="#E0A93C" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <!-- cuerpo -->
+        <path d="M24 25 L55 25 L51 51 C50 56 29 56 28 51 Z" fill="url(#gradRegadera)"/>
+        <!-- collar -->
+        <rect x="21" y="18" width="37" height="9" rx="4.5" fill="#E0A93C"/>
+        <rect x="21" y="18" width="37" height="3.4" rx="1.7" fill="#F2C86E"/>
+        <!-- brillo -->
+        <path d="M32 30 C31 37 32 45 34 51" stroke="rgba(255,255,255,0.55)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- florecita grabada -->
+        <g transform="translate(45 39)" opacity="0.75">
+          <circle r="2.4" cy="-4" fill="#FFF7EC"/>
+          <circle r="2.4" cx="3.8" cy="-1.2" fill="#FFF7EC"/>
+          <circle r="2.4" cx="2.4" cy="3.2" fill="#FFF7EC"/>
+          <circle r="2.4" cx="-2.4" cy="3.2" fill="#FFF7EC"/>
+          <circle r="2.4" cx="-3.8" cy="-1.2" fill="#FFF7EC"/>
+          <circle r="2" fill="#F2B93B"/>
+        </g>
+      </symbol>
+
+      <symbol id="f-guante" viewBox="0 0 64 64">
+        <!-- dedos -->
+        <rect x="19.5" y="13" width="8.5" height="21" rx="4.25" fill="url(#gradGuante)"/>
+        <rect x="28.5" y="8"  width="8.5" height="26" rx="4.25" fill="url(#gradGuante)"/>
+        <rect x="37.5" y="12" width="8.5" height="22" rx="4.25" fill="url(#gradGuante)"/>
+        <rect x="45.5" y="19" width="8"   height="16" rx="4"    fill="#E58BA8"/>
+        <!-- palma -->
+        <path d="M18 27 L48 27 C52.5 27 55 30.5 55 35 L55 43 C55 49 49 53 41 53 L28 53 C21 53 16.5 48 16.5 42 Z" fill="url(#gradGuante)"/>
+        <!-- pulgar -->
+        <path d="M18 33 C9 32 5 39 8.5 44.5 C11 48.5 17 48 19.5 44 Z" fill="#E58BA8"/>
+        <!-- costuras -->
+        <g stroke="rgba(255,255,255,0.6)" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="2.6 2.6" fill="none">
+          <path d="M23.5 30 L23.5 44"/>
+          <path d="M32.5 26 L32.5 44"/>
+          <path d="M41.5 30 L41.5 44"/>
+        </g>
+        <!-- puño con detalle floral -->
+        <rect x="15.5" y="48" width="41" height="13" rx="6" fill="#FFF7EC"/>
+        <rect x="15.5" y="48" width="41" height="13" rx="6" fill="none" stroke="rgba(224,169,60,0.8)" stroke-width="1.3"/>
+        <g fill="#E58BA8">
+          <circle cx="25" cy="54.5" r="2.1"/>
+          <circle cx="36" cy="54.5" r="2.1"/>
+          <circle cx="47" cy="54.5" r="2.1"/>
+        </g>
+      </symbol>
+
+      <symbol id="f-cubo" viewBox="0 0 64 64">
+        <path d="M13 27 C15 8 49 8 51 27" stroke="#6E8494" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+        <path d="M10 25 L54 25 L48 58 C47 60.5 17 60.5 16 58 Z" fill="url(#gradCubo)"/>
+        <path d="M14 38 L50 38" stroke="rgba(255,255,255,0.32)" stroke-width="2.6"/>
+        <path d="M15.5 48 L48.5 48" stroke="rgba(30,45,58,0.16)" stroke-width="2.6"/>
+        <rect x="6.5" y="19" width="51" height="9" rx="4.5" fill="#8FA6B8"/>
+        <rect x="6.5" y="19" width="51" height="3.2" rx="1.6" fill="#AFC3D2"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ═══════ Capas de ambiente (colinas + luciérnagas y pétalos) ═══════ -->
+  <div id="colinas" aria-hidden="true">
+    <svg viewBox="0 0 1440 240" preserveAspectRatio="none">
+      <path d="M0 140 C240 80 420 180 720 140 C1020 100 1200 180 1440 120 L1440 240 L0 240 Z" fill="rgba(96,138,92,0.38)"/>
+      <path d="M0 190 C300 140 560 220 860 180 C1160 140 1300 210 1440 180 L1440 240 L0 240 Z" fill="rgba(58,96,66,0.5)"/>
+    </svg>
+  </div>
+  <canvas id="ambiente" aria-hidden="true"></canvas>
+
+  <button id="btn-audio" aria-label="Activar o pausar sonido" title="Sonido">🔇</button>
+
+  <main id="app">
+
+    <!-- ══════════ 1 · BIENVENIDA ══════════ -->
+    <section id="pantalla-inicio" class="pantalla activa">
+      <div class="escena-inicio">
+        <p class="eyebrow entrada-1">Primero de Agosto</p>
+        <h1 id="titulo-inicio" class="titulo-heroe entrada-2"></h1>
+        <div class="divisor entrada-3" aria-hidden="true">
+          <span class="divisor-linea"></span>
+          <svg class="divisor-flor"><use href="#f-rosa"/></svg>
+          <span class="divisor-linea"></span>
+        </div>
+        <p id="subtitulo-inicio" class="texto-heroe entrada-3"></p>
+        <button id="btn-iniciar" class="btn btn-principal entrada-4"></button>
+        <p class="pista entrada-4">Sube el volumen y déjate llevar ✦</p>
+      </div>
+    </section>
+
+    <!-- ══════════ 2 · TU JARDÍN ══════════ -->
+    <section id="pantalla-jardin" class="pantalla">
+      <header class="jardin-cabecera vidrio">
+        <h2 id="jardin-titulo"></h2>
+        <p id="jardin-instruccion" class="texto-suave"></p>
+        <p id="jardin-progreso"></p>
+      </header>
+      <div id="jardin-zona">
+        <div class="sol-jardin" aria-hidden="true"></div>
+        <div id="jardin-plantas"></div>
+
+        <!-- Cubo de malas hierbas (destino del arrastre) -->
+        <div id="cubo" class="herramienta-fija oculto" aria-label="Cubo para botar las hierbas">
+          <svg><use href="#f-cubo"/></svg>
+          <span id="cubo-cuenta">0</span>
+        </div>
+
+        <!-- Regadera arrastrable (fase 1) -->
+        <div id="regadera" class="herramienta oculto" role="button" tabindex="0"
+             aria-label="Regadera: arrástrala sobre las flores marchitas para regarlas">
+          <svg><use href="#f-regadera"/></svg>
+        </div>
+
+        <!-- Guante arrastrable (fase 2) -->
+        <div id="guante" class="herramienta oculto" role="button" tabindex="0"
+             aria-label="Guante: arrástralo hasta una hierba para arrancarla y llévala al cubo">
+          <svg><use href="#f-guante"/></svg>
+        </div>
+      </div>
+      <button id="btn-cosechar" class="btn btn-principal oculto"></button>
+    </section>
+
+    <!-- ══════════ 3 · COSECHANDO EL RAMO ══════════ -->
+    <section id="pantalla-juego" class="pantalla">
+      <header id="hud">
+        <div id="hud-vidas" class="vidrio-chip" aria-label="Vidas"></div>
+        <div id="hud-contador" class="vidrio-chip" aria-label="Flores cosechadas"></div>
+      </header>
+
+      <div id="ramo-barra" aria-label="Tu ramo"></div>
+
+      <div id="canvas-wrap">
+        <canvas id="lienzo"></canvas>
+
+        <div id="overlay-instrucciones" class="overlay">
+          <div class="tarjeta tarjeta-mini">
+            <h2>Cosechando el Ramo</h2>
+            <p id="texto-instrucciones" class="texto-suave"></p>
+            <p class="texto-suave nota-control"><strong>Móvil:</strong> arrastra el dedo · <strong>PC:</strong> flechas ◀ ▶</p>
+            <button id="btn-jugar" class="btn btn-principal">¡A cosechar!</button>
+          </div>
+        </div>
+
+        <div id="overlay-derrota" class="overlay oculto">
+          <div class="tarjeta tarjeta-mini">
+            <svg class="icono-overlay"><use href="#f-marchita"/></svg>
+            <p id="texto-derrota"></p>
+            <button id="btn-reintentar" class="btn btn-principal">Intentar de nuevo</button>
+          </div>
+        </div>
+
+        <div id="overlay-victoria" class="overlay oculto">
+          <div class="tarjeta tarjeta-mini">
+            <svg class="icono-overlay"><use href="#f-girasol"/></svg>
+            <p>¡Ramo completo! Ahora... veamos cuánto sabes de nosotros 😏</p>
+          </div>
+        </div>
+
+        <div id="aviso-flotante" class="oculto"></div>
+      </div>
+
+      <div id="controles-tactiles">
+        <button id="btn-izq" class="btn-control" aria-label="Mover a la izquierda">◀</button>
+        <button id="btn-der" class="btn-control" aria-label="Mover a la derecha">▶</button>
+      </div>
+    </section>
+
+    <!-- ══════════ 4 · NUESTRA HISTORIA ══════════ -->
+    <section id="pantalla-trivia" class="pantalla">
+      <div class="tarjeta tarjeta-trivia">
+        <p class="eyebrow">Nuestra Historia</p>
+        <div id="trivia-progreso" aria-label="Progreso de la trivia"></div>
+        <h2 id="trivia-pregunta"></h2>
+        <div id="trivia-opciones"></div>
+        <p id="trivia-feedback" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- ══════════ 5 · LA FLOR DORADA ══════════ -->
+    <section id="pantalla-final" class="pantalla">
+      <canvas id="petalos" aria-hidden="true"></canvas>
+      <div class="contenido-final">
+
+        <h1 id="titulo-final" class="titulo-heroe"></h1>
+
+        <div id="flor-dorada" aria-label="La Flor Dorada">
+          <div class="halo" aria-hidden="true"></div>
+          <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="petaloOro" cx="50%" cy="30%" r="80%">
+                <stop offset="0%" stop-color="#FFF3B0"/>
+                <stop offset="55%" stop-color="#FFD700"/>
+                <stop offset="100%" stop-color="#DDA600"/>
+              </radialGradient>
+              <radialGradient id="petaloOro2" cx="50%" cy="30%" r="80%">
+                <stop offset="0%" stop-color="#FFF9D6"/>
+                <stop offset="100%" stop-color="#FFC93D"/>
+              </radialGradient>
+              <radialGradient id="centroOro" cx="50%" cy="40%" r="70%">
+                <stop offset="0%" stop-color="#C8951B"/>
+                <stop offset="100%" stop-color="#7E5A06"/>
+              </radialGradient>
+            </defs>
+            <g id="rayos" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round" opacity="0.5">
+              <line x1="110" y1="14" x2="110" y2="30"/>
+              <line x1="158" y1="27" x2="150" y2="41"/>
+              <line x1="193" y1="62" x2="179" y2="70"/>
+              <line x1="206" y1="110" x2="190" y2="110"/>
+              <line x1="193" y1="158" x2="179" y2="150"/>
+              <line x1="158" y1="193" x2="150" y2="179"/>
+              <line x1="110" y1="206" x2="110" y2="190"/>
+              <line x1="62" y1="193" x2="70" y2="179"/>
+              <line x1="27" y1="158" x2="41" y2="150"/>
+              <line x1="14" y1="110" x2="30" y2="110"/>
+              <line x1="27" y1="62" x2="41" y2="70"/>
+              <line x1="62" y1="27" x2="70" y2="41"/>
+            </g>
+            <g id="petalos-svg">
+              <ellipse cx="110" cy="58" rx="24" ry="46" fill="url(#petaloOro)" transform="rotate(0 110 110)"/>
+              <ellipse cx="110" cy="58" rx="24" ry="46" fill="url(#petaloOro)" transform="rotate(45 110 110)"/>
+              <ellipse cx="110" cy="58" rx="24" ry="46" fill="url(#petaloOro)" transform="rotate(90 110 110)"/>
+              <ellipse cx="110" cy="58" rx="24" ry="46" fill="url(#petaloOro)" transform="rotate(135 110 110)"/>
+              <ellipse cx="110" cy="58" rx="24" ry="46" fill="url(#petaloOro)" transform="rotate(180 110 110)"/>
+              <ellipse cx="110" cy="58" rx="24" ry="46" fill="url(#petaloOro)" transform="rotate(225 110 110)"/>
+              <ellipse cx="110" cy="58" rx="24" ry="46" fill="url(#petaloOro)" transform="rotate(270 110 110)"/>
+              <ellipse cx="110" cy="58" rx="24" ry="46" fill="url(#petaloOro)" transform="rotate(315 110 110)"/>
+            </g>
+            <g id="petalos-svg-2">
+              <ellipse cx="110" cy="74" rx="16" ry="32" fill="url(#petaloOro2)" transform="rotate(22.5 110 110)"/>
+              <ellipse cx="110" cy="74" rx="16" ry="32" fill="url(#petaloOro2)" transform="rotate(67.5 110 110)"/>
+              <ellipse cx="110" cy="74" rx="16" ry="32" fill="url(#petaloOro2)" transform="rotate(112.5 110 110)"/>
+              <ellipse cx="110" cy="74" rx="16" ry="32" fill="url(#petaloOro2)" transform="rotate(157.5 110 110)"/>
+              <ellipse cx="110" cy="74" rx="16" ry="32" fill="url(#petaloOro2)" transform="rotate(202.5 110 110)"/>
+              <ellipse cx="110" cy="74" rx="16" ry="32" fill="url(#petaloOro2)" transform="rotate(247.5 110 110)"/>
+              <ellipse cx="110" cy="74" rx="16" ry="32" fill="url(#petaloOro2)" transform="rotate(292.5 110 110)"/>
+              <ellipse cx="110" cy="74" rx="16" ry="32" fill="url(#petaloOro2)" transform="rotate(337.5 110 110)"/>
+            </g>
+            <circle cx="110" cy="110" r="27" fill="url(#centroOro)"/>
+            <circle cx="102" cy="101" r="6" fill="#FFF3B0" opacity="0.7"/>
+            <circle cx="118" cy="116" r="3" fill="#FFE28A" opacity="0.5"/>
+          </svg>
+        </div>
+
+        <p id="subtitulo-final" class="texto-heroe"></p>
+
+        <div id="foto-final" class="oculto">
+          <img id="foto-img" alt="Nosotros 💕">
+        </div>
+
+        <div id="cupon">
+          <div class="cupon-borde">
+            <p class="cupon-eyebrow">Cupón de regalo</p>
+            <h2 id="cupon-titulo"></h2>
+            <p id="cupon-detalle"></p>
+            <div class="cupon-linea" aria-hidden="true">
+              <span></span><svg class="mini-flor"><use href="#f-rosa"/></svg><span></span>
+            </div>
+            <p id="cupon-nota"></p>
+            <p id="cupon-firma"></p>
+          </div>
+        </div>
+        <button id="btn-guardar-cupon" class="btn btn-principal">Guardar cupón y respuestas 💾</button>
+        <p style="text-align: center; margin-top: 15px; font-size: 1.1em; font-weight: 500; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.4);">No olvides enviármelo mi amor ❤️</p>
+
+        <details id="carta">
+          <summary id="carta-titulo"></summary>
+
+          <!-- ═══════ Ilustración: atardecer en la playa ═══════ -->
+          <svg id="playa" viewBox="52 8 296 226" xmlns="http://www.w3.org/2000/svg"
+               role="img" aria-label="Ilustración: ella y él abrazados en traje de baño, viendo el atardecer en la playa">
+            <defs>
+              <linearGradient id="playaCielo" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#3F2258"/>
+                <stop offset="22%"  stop-color="#7B3D6E"/>
+                <stop offset="48%"  stop-color="#C55F63"/>
+                <stop offset="72%"  stop-color="#F09659"/>
+                <stop offset="100%" stop-color="#FFDA94"/>
+              </linearGradient>
+              <linearGradient id="playaMar" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#EDA76A"/>
+                <stop offset="26%"  stop-color="#A25F73"/>
+                <stop offset="100%" stop-color="#402C55"/>
+              </linearGradient>
+              <linearGradient id="playaArena" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#D8A87C"/>
+                <stop offset="45%"  stop-color="#B4835F"/>
+                <stop offset="100%" stop-color="#7C5942"/>
+              </linearGradient>
+              <radialGradient id="playaSol" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"   stop-color="#FFF8DE"/>
+                <stop offset="52%"  stop-color="#FFD470"/>
+                <stop offset="100%" stop-color="#FF9C46"/>
+              </radialGradient>
+              <radialGradient id="playaHalo" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"   stop-color="#FFD678" stop-opacity="0.7"/>
+                <stop offset="55%"  stop-color="#FFB06E" stop-opacity="0.26"/>
+                <stop offset="100%" stop-color="#FFB06E" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="playaReflejo" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#43281F" stop-opacity="0.24"/>
+                <stop offset="100%" stop-color="#43281F" stop-opacity="0"/>
+              </linearGradient>
+              <!-- piel: el borde izquierdo recibe la luz del sol -->
+              <linearGradient id="pielElla" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%"   stop-color="#D08B54"/>
+                <stop offset="42%"  stop-color="#A96B3C"/>
+                <stop offset="100%" stop-color="#89522C"/>
+              </linearGradient>
+              <linearGradient id="pielEl" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%"   stop-color="#F7CCA4"/>
+                <stop offset="42%"  stop-color="#E3AC80"/>
+                <stop offset="100%" stop-color="#C08A62"/>
+              </linearGradient>
+            </defs>
+
+            <!-- ── cielo ── -->
+            <rect x="0" y="0" width="400" height="152" fill="url(#playaCielo)"/>
+            <g fill="#FFF3D8">
+              <circle cx="42" cy="18" r="1.3" opacity="0.75"/>
+              <circle cx="96" cy="30" r="1" opacity="0.55"/>
+              <circle cx="168" cy="14" r="1.2" opacity="0.65"/>
+              <circle cx="286" cy="22" r="1" opacity="0.5"/>
+              <circle cx="352" cy="12" r="1.3" opacity="0.7"/>
+            </g>
+            <g>
+              <ellipse cx="330" cy="32" rx="46" ry="6"  fill="#C97B92" opacity="0.38"/>
+              <ellipse cx="86"  cy="50" rx="54" ry="7"  fill="#EE9CA6" opacity="0.4"/>
+              <ellipse cx="300" cy="68" rx="68" ry="8"  fill="#F7B888" opacity="0.36"/>
+              <ellipse cx="150" cy="92" rx="82" ry="7"  fill="#FFC79A" opacity="0.32"/>
+              <ellipse cx="356" cy="106" rx="50" ry="6" fill="#FFD5A8" opacity="0.3"/>
+            </g>
+
+            <!-- ── sol ── -->
+            <circle id="playa-halo" cx="118" cy="148" r="78" fill="url(#playaHalo)"/>
+            <circle cx="118" cy="148" r="30" fill="url(#playaSol)"/>
+
+            <!-- ── aves ── -->
+            <g stroke="#4E2A47" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.7">
+              <path d="M232 60 q5.5 -4.5 11 0 q5.5 -4.5 11 0"/>
+              <path d="M262 46 q4 -3.5 8 0 q4 -3.5 8 0"/>
+              <path d="M204 78 q3.5 -3 7 0 q3.5 -3 7 0"/>
+            </g>
+
+            <!-- ── mar ── -->
+            <rect x="0" y="150" width="400" height="48" fill="url(#playaMar)"/>
+            <g fill="#FFD470">
+              <rect x="96"  y="155" width="44" height="4"   rx="2" opacity="0.72"/>
+              <rect x="101" y="163" width="34" height="3.6" rx="1.8" opacity="0.6"/>
+              <rect x="105" y="171" width="26" height="3.4" rx="1.7" opacity="0.5"/>
+              <rect x="109" y="179" width="18" height="3"   rx="1.5" opacity="0.42"/>
+              <rect x="112" y="187" width="12" height="2.6" rx="1.3" opacity="0.34"/>
+            </g>
+            <g stroke="#FFE0B0" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.3">
+              <path d="M18 161 q10 -2.5 20 0"/>
+              <path d="M196 158 q12 -3 24 0"/>
+              <path d="M320 166 q11 -2.5 22 0"/>
+              <path d="M56 178 q13 -3 26 0"/>
+              <path d="M304 182 q12 -3 24 0"/>
+              <path d="M148 190 q10 -2.5 20 0"/>
+            </g>
+
+            <!-- ── arena y espuma ── -->
+            <path d="M0 197 C70 191 122 201 190 197 C258 192 330 202 400 195 L400 250 L0 250 Z" fill="url(#playaArena)"/>
+            <path d="M0 196 C70 190 122 200 190 196 C258 191 330 201 400 194 L400 199 C330 206 258 196 190 201 C122 205 70 196 0 201 Z"
+                  fill="#FFF2E2" opacity="0.72"/>
+            <ellipse cx="130" cy="228" rx="120" ry="16" fill="#FFD9A0" opacity="0.16"/>
+
+            <!-- ── reflejos y sombras en la arena mojada ── -->
+            <g>
+              <ellipse cx="232" cy="218" rx="19" ry="3.6" fill="#4A2E22" opacity="0.32"/>
+              <ellipse cx="266" cy="218" rx="22" ry="4"   fill="#4A2E22" opacity="0.32"/>
+              <path d="M223 217 L241 217 C240 226 238 232 232 236 C226 232 224 226 223 217 Z" fill="url(#playaReflejo)"/>
+              <path d="M254 217 L278 217 C277 227 274 234 266 239 C258 234 255 227 254 217 Z" fill="url(#playaReflejo)"/>
+            </g>
+
+            <!-- ═══════ ELLA · trigueña, de pelo crespo ═══════ -->
+            <g>
+              <!-- piernas -->
+              <g stroke="#A96B3C" stroke-width="9" stroke-linecap="round" fill="none">
+                <path d="M228 179 C227 194 226 206 226 216"/>
+                <path d="M237 179 C238 194 238 206 238 216"/>
+              </g>
+              <!-- cuello y torso (hombros con caída suave) -->
+              <rect x="228.5" y="137" width="7" height="11" rx="3.5" fill="#95602F"/>
+              <path d="M219 151 C220 146 223 144.5 227.5 144.5 L236.5 144.5 C241 144.5 244 146 245 151
+                       C246.5 159 241.5 164 241 171 C241 177 241.5 179 242 183 L222 183
+                       C222.5 179 223 177 223 171 C222.5 164 217.5 159 219 151 Z" fill="url(#pielElla)"/>
+              <!-- traje de baño -->
+              <path d="M219.5 149 C226 155.5 238 155.5 244.5 149 L245 157 C238.5 162.5 225.5 162.5 219 157 Z" fill="#E85C7A"/>
+              <g stroke="#E85C7A" stroke-width="2" fill="none" stroke-linecap="round">
+                <path d="M223 150 L226 145"/>
+                <path d="M241 150 L238 145"/>
+              </g>
+              <path d="M222 174 L242 174 C242 182 238 186.5 232 186.5 C226 186.5 222 182 222 174 Z" fill="#E85C7A"/>
+              <path d="M222 174 L242 174 L241.6 177 L222.4 177 Z" fill="#F58CA2"/>
+              <!-- brazo que cuelga -->
+              <path d="M221 151 C217 160 216 168 216.5 176" stroke="#A96B3C" stroke-width="6.4"
+                    stroke-linecap="round" fill="none"/>
+              <!-- cabeza y pelo crespo (de espaldas al atardecer) -->
+              <circle cx="232" cy="130" r="10.5" fill="url(#pielElla)"/>
+              <g fill="#2E1A12">
+                <circle cx="232" cy="128" r="9.4"/>
+                <circle cx="232" cy="119.5" r="8"/>
+                <circle cx="223" cy="123.5" r="7.6"/>
+                <circle cx="241" cy="123.5" r="7.6"/>
+                <circle cx="219.6" cy="131.5" r="7.1"/>
+                <circle cx="244.4" cy="131.5" r="7.1"/>
+                <circle cx="232" cy="136.5" r="7.6"/>
+                <circle cx="221.6" cy="139" r="6.4"/>
+                <circle cx="242.4" cy="139" r="6.4"/>
+                <circle cx="225.6" cy="144.5" r="5.4"/>
+                <circle cx="238.4" cy="144.5" r="5.4"/>
+              </g>
+              <g fill="#5A3524" opacity="0.55">
+                <circle cx="226" cy="122" r="2.6"/>
+                <circle cx="221.5" cy="129" r="2.2"/>
+                <circle cx="234" cy="118" r="2.4"/>
+                <circle cx="224" cy="137" r="2"/>
+              </g>
+            </g>
+
+            <!-- ═══════ ÉL · más claro, de pelo liso, una cabeza más alto ═══════ -->
+            <g>
+              <!-- piernas -->
+              <g stroke="#E3AC80" stroke-width="10.5" stroke-linecap="round" fill="none">
+                <path d="M259 175 C258 192 257 206 257.5 216"/>
+                <path d="M273 175 C274 192 275 206 274.5 216"/>
+              </g>
+              <!-- cuello y torso (hombros anchos, con caída suave) -->
+              <rect x="262" y="118" width="8" height="13" rx="4" fill="#CE9469"/>
+              <path d="M249 134 C250 129 254 127 259.5 127 L272.5 127 C278 127 282 129 283 134
+                       C284.5 144 278.5 152 278 161 C278 169 278.5 172 279 178 L253 178
+                       C253.5 172 254 169 254 161 C253.5 152 247.5 144 249 134 Z" fill="url(#pielEl)"/>
+              <!-- pantaloneta -->
+              <rect x="252.5" y="170" width="27" height="4.6" rx="2.3" fill="#3E8DA1"/>
+              <path d="M252.5 174 L279.5 174 L278.5 193 L268.5 193 L266 181 L263.5 193 L253.5 193 Z" fill="#2E6E82"/>
+              <!-- brazo que cuelga -->
+              <path d="M282 133 C286 143 288 153 287.5 162" stroke="#E3AC80" stroke-width="7.4"
+                    stroke-linecap="round" fill="none"/>
+              <!-- cabeza y pelo liso -->
+              <circle cx="266" cy="110" r="11.5" fill="url(#pielEl)"/>
+              <path d="M254.5 111 C254.5 98.5 277.5 98.5 277.5 111 L277.5 116.5
+                       C277.5 121 272.5 122.5 266 122.5 C259.5 122.5 254.5 121 254.5 116.5 Z" fill="#241A14"/>
+              <!-- filo de luz del sol por el lado izquierdo -->
+              <path d="M255.2 115 C255 106.5 258 101.5 262 100" stroke="#FFC98A" stroke-width="1.3"
+                    fill="none" opacity="0.28" stroke-linecap="round"/>
+            </g>
+
+            <!-- ── el abrazo ── -->
+            <!-- brazo de ella rodeando la cintura de él -->
+            <path d="M242 152 C250 158 257 165 262.5 171" stroke="#A96B3C" stroke-width="5.8"
+                  stroke-linecap="round" fill="none"/>
+            <circle cx="264" cy="172" r="3.4" fill="#A96B3C"/>
+            <!-- su antebrazo asoma sobre el hombro de ella (el resto va detrás) -->
+            <path d="M235 152.5 C230 153 225 153.5 221.5 154.5" stroke="#E3AC80" stroke-width="6"
+                  stroke-linecap="round" fill="none"/>
+            <circle cx="219.5" cy="155" r="3.8" fill="#F0BE93"/>
+
+          </svg>
+
+          <p id="carta-texto"></p>
+        </details>
+
+        <div class="botonera-final">
+          <button id="btn-rejugar" class="btn btn-secundario">Volver a jugar</button>
+          <a href="../index.html" id="btn-volver-menu" class="btn btn-secundario">Volver al menú</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <audio id="musica" loop preload="auto" src="assets/musica.mp3"></audio>
+
+  <script src="js/config.js"></script>
+  <script src="js/sfx.js"></script>
+  <script src="js/ambiente.js"></script>
+  <script src="js/flores.js"></script>
+  <script src="js/jardin.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/trivia.js"></script>
+  <script src="js/final.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
