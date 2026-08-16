@@ -91,6 +91,40 @@ body {
     border: 0;
 }
 
+.back-btn {
+    position: fixed;
+    top: max(14px, env(safe-area-inset-top));
+    left: 14px;
+    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: rgba(245, 235, 222, .88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--borde);
+    box-shadow: var(--sombra);
+    color: var(--tinta);
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-size: clamp(.8rem, 2.2vw, .9rem);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .18s var(--ent), background .18s ease;
+}
+
+.back-btn:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(214, 142, 40, .25);
+}
+
+.back-btn:active {
+    transform: scale(.96);
+}
+
 /* ══════════════════════════════════════════════════════════════════════
    HUD — título y fecha del capítulo
    ══════════════════════════════════════════════════════════════════════ */

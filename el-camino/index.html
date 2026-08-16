@@ -3,6 +3,12 @@
 
 <head>
     <meta charset="UTF-8" />
+    <script>
+        // Asegurar que rutas como /el-camino tengan barra final /el-camino/ para que los recursos relativos no den 404
+        if (!window.location.pathname.endsWith('/') && !window.location.pathname.endsWith('.html')) {
+            window.location.replace(window.location.pathname + '/' + window.location.search + window.location.hash);
+        }
+    </script>
     <!-- minimum-scale=1 evita el zoom accidental al tocar dos veces,
          que rompe el control táctil. user-scalable=no lo confirma.
          viewport-fit=cover permite que el canvas llegue hasta los bordes
@@ -25,6 +31,7 @@
 </head>
 
 <body>
+    <a href="../index.html" class="back-btn" id="btn-volver-menu">⬅ Volver al Menú</a>
     <canvas id="juego" aria-hidden="true"></canvas>
 
     <!-- Botón de pantalla completa: aparece durante el juego, permite

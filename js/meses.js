@@ -63,7 +63,7 @@ const MESES = [
         color: '#ffd75e',
         titulo: 'El Camino a Ti',
         desc: 'Cuatro capítulos caminados. El prado florece porque tú pasas por ahí.',
-        href: 'el-camino/index.html'
+        href: 'el-camino/'
     },
 
     /* ── De aquí en adelante, todavía cerrados ──────────────────────
