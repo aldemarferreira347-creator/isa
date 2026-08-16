@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08070f" />
+    <title>24 Horas — Mes 10 ◐</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+    <link rel="stylesheet" href="css/horas.css">
+</head>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     MES 10 · 10 de febrero de 2027 — 24 Horas
+
+     LOS TEXTOS
+     Están en js/horas.js, en el array HORAS. No hacen falta las 24 —
+     hasta con seis o siete micro-momentos ya se siente un día completo.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<body class="tema-horas">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="hr-hero">
+        <span class="hr-ceja reveal-up">Mes 10 · 10 de febrero de 2027</span>
+        <h1 class="hr-titulo reveal-up">24 Horas</h1>
+        <p class="hr-sub reveal-up">
+            No es un día señalado. Es un martes cualquiera, hora por hora
+            — porque lo que sostiene esto no son las fechas grandes, es
+            todo lo demás.
+        </p>
+    </section>
+
+    <section class="hr-envoltorio" aria-label="Rueda de 24 horas">
+        <div class="hr-rueda" id="hrRueda">
+            <div class="hr-anillo" id="hrAnillo"></div>
+            <span class="hr-aguja" aria-hidden="true"></span>
+            <div class="hr-centro" aria-hidden="true">🕐</div>
+        </div>
+        <p class="hr-ayuda" id="hrAyuda">Gira la rueda o toca una hora directamente.</p>
+        <div class="hr-tarjeta" id="hrTarjeta" hidden>
+            <p class="hr-tarjeta-hora" id="hrTarjetaHora"></p>
+            <p class="hr-tarjeta-texto" id="hrTarjetaTexto"></p>
+        </div>
+        <p class="hr-digito" id="hrDigito" hidden>Para La Bóveda — mes 10: <strong>6</strong></p>
+    </section>
+
+    <footer>
+        <p>Mes a mes, un poco más cerca.</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/horas.js"></script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,600 @@
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE.CSS — adaptación fluida para todas las páginas
+   style.css nació de un index monolítico de escritorio: 2707 líneas
+   con sólo 4 media queries. Aquí se corrige sin tocar el original.
+   Cargar SIEMPRE de último: style.css → fx.css → responsive.css
+   ══════════════════════════════════════════════════════ */
+
+/* ── Escalas fluidas reutilizables ──
+   clamp(mínimo-móvil, fluido-viewport, máximo-escritorio) */
+:root {
+    --pad-section-y: clamp(38px, 8vw, 80px);
+    --pad-section-x: clamp(14px, 4vw, 24px);
+    --pad-card: clamp(22px, 5.5vw, 50px);
+    --radius-card: clamp(16px, 4vw, 30px);
+    --gap-grid: clamp(14px, 3.5vw, 32px);
+}
+
+/* ── Base ── */
+html {
+    /* Evita que iOS agrande el texto al girar el teléfono */
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Mientras la bienvenida está abierta, la página de atrás no se mueve.
+   home.js añade padding-right igual al ancho de la barra que desaparece,
+   para que el contenido no salte 15px al bloquear ni al soltar.
+   (scrollbar-gutter: stable haría lo mismo, pero reserva el carril siempre
+   y descentraba el overlay fijo respecto al área visible.) */
+body.fx-sin-scroll {
+    overflow: hidden;
+}
+
+body {
+    /* Nada debe provocar scroll horizontal en ningún ancho */
+    overflow-x: hidden;
+}
+
+img,
+canvas,
+video {
+    max-width: 100%;
+}
+
+/* ── Respeta el notch / barra inferior del iPhone ── */
+.back-btn {
+    top: max(14px, env(safe-area-inset-top));
+    left: max(14px, env(safe-area-inset-left));
+    padding: clamp(9px, 2.4vw, 10px) clamp(15px, 4vw, 20px);
+    font-size: clamp(.8rem, 2.6vw, .9rem);
+}
+
+.music-btn {
+    bottom: max(18px, env(safe-area-inset-bottom));
+    right: max(18px, env(safe-area-inset-right));
+}
+
+/* ══ SECCIONES GENERALES ══ */
+.hero {
+    padding: clamp(64px, 12vh, 96px) var(--pad-section-x) var(--pad-section-y);
+}
+
+.gallery-section,
+.quest-section,
+.winner-section,
+.timer-section,
+.canvas-container,
+.promise-section,
+.heart-section,
+.flower-gift-section,
+.isa-section,
+.bn-section,
+.dcl-section,
+.closing {
+    padding-left: var(--pad-section-x);
+    padding-right: var(--pad-section-x);
+    padding-top: var(--pad-section-y);
+    padding-bottom: var(--pad-section-y);
+}
+
+/* ══ TARJETAS CONTENEDORAS ══ */
+.timer-box,
+.quest-box,
+.winner-box,
+.promise-card,
+.isa-box,
+.heart-box,
+.gift-box,
+.bn-poem-inner,
+.bn-letter,
+.dcl-paper,
+.dcl-question-card,
+.welcome-box {
+    padding: var(--pad-card);
+    border-radius: var(--radius-card);
+}
+
+/* ══ MENÚ PRINCIPAL (index) ══ */
+.main-nav {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+    gap: var(--gap-grid);
+    margin-top: clamp(28px, 6vw, 40px);
+}
+
+.nav-card {
+    padding: clamp(20px, 5vw, 30px) clamp(14px, 4vw, 20px);
+    border-radius: clamp(14px, 3.5vw, 20px);
+    gap: clamp(8px, 2vw, 12px);
+}
+
+.nav-icon {
+    font-size: clamp(2.1rem, 8vw, 3rem);
+}
+
+.nav-title {
+    font-size: clamp(1.05rem, 3.6vw, 1.3rem);
+}
+
+.nav-desc {
+    font-size: clamp(.78rem, 2.6vw, .85rem);
+}
+
+/* ══ GALERÍA (romántico) ══ */
+.cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+    gap: var(--gap-grid);
+}
+
+.card-caption {
+    padding: clamp(15px, 4vw, 22px);
+}
+
+.card-overlay {
+    padding: clamp(18px, 5vw, 28px) clamp(16px, 4.5vw, 24px);
+}
+
+/* En pantallas táctiles el hover no existe: el overlay se muestra siempre */
+@media (hover: none) {
+
+    .card-overlay,
+    .photo-card .overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(10, 4, 28, .92) 0%, rgba(10, 4, 28, .1) 62%, transparent 100%);
+    }
+
+    .card:hover .card-img-wrap img {
+        transform: none;
+    }
+}
+
+/* ══ CONTADORES ══ */
+#contador,
+#contador2 {
+    gap: clamp(8px, 2.5vw, 15px);
+}
+
+.time-block {
+    min-width: clamp(66px, 20vw, 100px);
+    padding: clamp(12px, 3.5vw, 20px) clamp(8px, 2.5vw, 15px);
+    border-radius: clamp(12px, 3.5vw, 20px);
+}
+
+.time-val {
+    font-size: clamp(1.35rem, 6.2vw, 2.2rem);
+    margin-bottom: clamp(5px, 1.6vw, 10px);
+}
+
+.time-label {
+    font-size: clamp(.6rem, 2.1vw, .8rem);
+    letter-spacing: clamp(1px, .4vw, 2px);
+}
+
+/* En 4 columnas los 4 bloques caben; debajo de 380px pasan a 2×2 */
+@media (max-width: 380px) {
+
+    #contador,
+    #contador2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .time-block {
+        min-width: 0;
+    }
+}
+
+/* ══ CARTAS (promesa / navidad) ══
+   Sólo decoración y medidas — el texto nunca se toca. */
+.promise-seal {
+    width: clamp(58px, 15vw, 72px);
+    height: clamp(58px, 15vw, 72px);
+    font-size: clamp(1.6rem, 5.5vw, 2.1rem);
+    margin-bottom: clamp(20px, 5vw, 30px);
+}
+
+.promise-eyebrow {
+    font-size: clamp(.66rem, 2.3vw, .78rem);
+    letter-spacing: clamp(2px, 1vw, 4px);
+}
+
+.promise-divider span {
+    width: clamp(38px, 14vw, 80px);
+}
+
+.promise-final {
+    padding: clamp(16px, 4.5vw, 22px) clamp(16px, 4.5vw, 28px);
+    margin-top: clamp(22px, 5vw, 32px);
+    border-radius: clamp(12px, 3.5vw, 18px);
+}
+
+/* Los corazones flotantes se salen de la tarjeta en pantallas chicas */
+@media (max-width: 560px) {
+    .promise-float-heart {
+        font-size: 1rem !important;
+        opacity: .35;
+    }
+
+    .pf1,
+    .pf2 {
+        top: 6px;
+    }
+
+    .pf3,
+    .pf4 {
+        bottom: 8px;
+    }
+
+    .pf1 {
+        left: 8px;
+    }
+
+    .pf2 {
+        right: 8px;
+    }
+
+    .pf3 {
+        left: 12px;
+    }
+
+    .pf4 {
+        right: 10px;
+    }
+}
+
+/* ══ DEDICATORIA — adornos de la caja ganadora ══
+   flower-2 y heart-2 cuelgan fuera del marco (right: -25px) y a 360px
+   asoman por el borde de la página. Se meten hacia adentro y se achican. */
+.winner-dec-flower,
+.winner-dec-heart {
+    font-size: clamp(1.3rem, 5.5vw, 2.2rem);
+}
+
+@media (max-width: 620px) {
+
+    .winner-dec-flower,
+    .winner-dec-heart {
+        font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+        opacity: .8;
+    }
+
+    .flower-1,
+    .flower-2,
+    .flower-3,
+    .heart-1,
+    .heart-2,
+    .heart-3 {
+        left: auto;
+        right: auto;
+    }
+
+    .flower-1 {
+        left: 4px;
+    }
+
+    .flower-2 {
+        right: 4px;
+        bottom: -6px;
+    }
+
+    .flower-3 {
+        left: 8px;
+    }
+
+    .heart-1 {
+        right: 6px;
+    }
+
+    .heart-2 {
+        left: 6px;
+    }
+
+    .heart-3 {
+        right: 10px;
+    }
+}
+
+/* ══ BUENAS NOCHES ══ */
+.bn-title {
+    font-size: clamp(1.8rem, 8vw, 3rem);
+}
+
+.bn-eyebrow {
+    font-size: clamp(.68rem, 2.4vw, .8rem);
+    letter-spacing: clamp(2px, 1vw, 4px);
+}
+
+.bn-sub {
+    font-size: clamp(.88rem, 3vw, 1.05rem);
+}
+
+.bn-card-text,
+.bn-poem-text,
+.bn-letter-body {
+    font-size: clamp(.94rem, 3.1vw, 1.08rem);
+}
+
+.bn-moon {
+    width: clamp(58px, 16vw, 90px);
+    height: clamp(58px, 16vw, 90px);
+}
+
+.bn-card-emoji {
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+}
+
+.bn-poem-deco,
+.bn-closing-heart {
+    font-size: clamp(1.4rem, 5.5vw, 2rem);
+}
+
+/* Los adornos flotantes estorban en móvil */
+@media (max-width: 520px) {
+    .bn-deco {
+        display: none;
+    }
+}
+
+/* ══ LA PREGUNTA / SOBRE ══ */
+.dcl-title {
+    font-size: clamp(1.7rem, 7.5vw, 2.8rem);
+}
+
+.dcl-env-body {
+    padding: clamp(44px, 12vw, 60px) clamp(18px, 5vw, 30px) clamp(24px, 6vw, 36px);
+}
+
+.dcl-env-flap {
+    height: clamp(52px, 15vw, 80px);
+}
+
+.dcl-seal {
+    width: clamp(42px, 12vw, 52px);
+    height: clamp(42px, 12vw, 52px);
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+}
+
+.dcl-letter-inner {
+    padding: clamp(20px, 5.5vw, 32px) clamp(16px, 4.5vw, 28px) clamp(18px, 5vw, 28px);
+}
+
+.dcl-proposal {
+    padding: clamp(16px, 4.5vw, 24px) clamp(14px, 4vw, 22px);
+}
+
+.dcl-btns {
+    flex-wrap: wrap;
+    gap: clamp(10px, 3vw, 18px);
+}
+
+/* ══ BOTONES — objetivo táctil mínimo 44px (guía de accesibilidad) ══ */
+.quest-btn,
+.isa-btn,
+.hbtn,
+.gift-btn,
+.present-btn,
+.dcl-btn,
+.modal-close,
+.btn-entrar {
+    min-height: 44px;
+    padding: clamp(11px, 3vw, 14px) clamp(20px, 5.5vw, 32px);
+    font-size: clamp(.86rem, 3vw, 1rem);
+}
+
+.quest-btns,
+.isa-btns,
+.heart-btns,
+.gift-btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(10px, 3vw, 16px);
+}
+
+/* ══ CORAZÓN ASCII ══
+   Es <pre>: se desborda sí o sí. Se escala con el ancho real. */
+.heart-art {
+    font-size: clamp(3.4px, 1.5vw, 8px);
+    line-height: 1.05;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+/* ══ FLORES AMARILLAS — canvas ══ */
+.canvas-container canvas,
+#sunflowerCanvas {
+    width: min(100%, 600px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+}
+
+/* style.css le ponía background:#000 y un borde: sobre el morado de la
+   página eso era un ladrillo negro con esquinas redondeadas. Se sustituye
+   por un halo suave que funde el girasol con el fondo de la sección. */
+#sunflowerCanvas {
+    background:
+        radial-gradient(ellipse 62% 58% at 50% 46%,
+            rgba(255, 209, 26, .10) 0%,
+            rgba(120, 80, 0, .05) 45%,
+            transparent 72%);
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.canvas-title {
+    font-size: clamp(1.1rem, 4.5vw, 1.8rem);
+    padding: 0 clamp(6px, 2vw, 12px);
+}
+
+.carnations-row {
+    height: clamp(70px, 18vw, 110px);
+    flex-wrap: nowrap;
+}
+
+.carnation-svg {
+    width: clamp(38px, 11vw, 70px);
+    height: clamp(70px, 18vw, 110px);
+}
+
+/* ══ MODAL DE FLORES ══ */
+.flower-modal canvas {
+    width: 100%;
+    height: auto;
+}
+
+.modal-close {
+    bottom: max(20px, env(safe-area-inset-bottom));
+}
+
+/* ══ OVERLAY DE BIENVENIDA (index) ══
+   Pantalla de entrada: quieta y centrada de verdad. Nada de flotar. */
+.welcome-overlay {
+    /* Centrado real contra el viewport, no contra la altura del documento.
+       dvh evita el salto por la barra de direcciones en móvil. */
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: clamp(16px, 4vw, 24px);
+}
+
+.welcome-box {
+    width: min(92vw, 440px);
+    /* La animación original citaba `float`, un @keyframes que no existe en
+       ninguna hoja: era ruido inerte. Se deja sólo la entrada suave. */
+    animation: fadeDown .8s ease-out both;
+}
+
+/* El destello de arriba rebotaba en bucle: era lo único que se movía aquí */
+.welcome-emoji {
+    animation: none;
+}
+
+.welcome-emoji {
+    font-size: clamp(2.4rem, 9vw, 3.4rem);
+}
+
+.welcome-box h1 {
+    font-size: clamp(1.5rem, 6.5vw, 2.4rem);
+}
+
+.welcome-sub {
+    font-size: clamp(.84rem, 3vw, 1rem);
+}
+
+/* ══ CONTADOR DE VISITAS ══ */
+.visit-card {
+    padding: clamp(20px, 5vw, 30px) clamp(14px, 4vw, 20px);
+}
+
+.visit-number {
+    font-size: clamp(1.9rem, 8vw, 2.8rem);
+}
+
+/* ══ PIE ══ */
+footer {
+    padding: clamp(24px, 6vw, 40px) var(--pad-section-x);
+    font-size: clamp(.78rem, 2.6vw, .9rem);
+}
+
+/* ══ TABLET ══ */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .main-nav {
+        max-width: 720px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card.featured {
+        grid-column: span 2;
+    }
+}
+
+/* ══ MÓVIL ══ */
+@media (max-width: 600px) {
+
+    /* Una sola columna: las tarjetas necesitan ancho para respirar */
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card.featured {
+        grid-column: span 1;
+    }
+
+    .card.featured .card-img-wrap {
+        aspect-ratio: 4 / 3;
+    }
+
+    /* El botón volver ocupa menos y no tapa el contenido */
+    .back-btn {
+        font-size: .78rem;
+        padding: 8px 14px;
+    }
+
+    /* Menos pétalos en pantallas chicas: rinden mejor */
+    .petal.fx-depth-far {
+        display: none;
+    }
+
+    /* Los degradados gigantes de las tarjetas se recortan */
+    .promise-card::before,
+    .promise-card::after {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+/* ══ MÓVIL ESTRECHO ══ */
+@media (max-width: 380px) {
+    .nav-icon {
+        font-size: 2rem;
+    }
+
+    .music-btn {
+        width: 46px;
+        height: 46px;
+    }
+
+    .music-btn.is-playing {
+        width: 82px;
+    }
+}
+
+/* ══ HORIZONTAL EN MÓVIL ══
+   Pantalla muy baja: el hero a pantalla completa deja el contenido inalcanzable. */
+@media (max-height: 480px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding-top: 70px;
+        padding-bottom: 40px;
+    }
+
+    .welcome-box {
+        padding: 22px 26px;
+    }
+
+    .welcome-emoji {
+        font-size: 1.8rem;
+        margin-bottom: 6px;
+    }
+
+    .bn-section,
+    .dcl-section {
+        padding-top: 56px;
+    }
+}
+
+/* ══ PANTALLAS MUY ANCHAS ══
+   Evita que el texto se estire hasta volverse ilegible. */
+@media (min-width: 1600px) {
+    .gallery-section {
+        max-width: 1400px;
+    }
+
+    .main-nav {
+        max-width: 1000px;
+    }
+}

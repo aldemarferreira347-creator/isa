@@ -1,0 +1,319 @@
+/* ══════════════════════════════════════════════════════════════════════
+   CONSTELACION.CSS — el cielo del mes 6.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.cst-hero {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(84px, 16vw, 130px) clamp(20px, 6vw, 28px) clamp(20px, 5vw, 32px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--e2);
+}
+
+.cst-ceja {
+    font-size: var(--t-ceja);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+}
+
+.cst-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--t-h1);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -.012em;
+    text-wrap: balance;
+    background: linear-gradient(112deg,
+            var(--p-realce) 0%,
+            color-mix(in srgb, var(--p-realce) 55%, #fff) 40%,
+            var(--p-realce-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 18px color-mix(in srgb, var(--p-halo) 60%, transparent));
+}
+
+.cst-sub {
+    font-size: var(--t-cuerpo);
+    line-height: 1.75;
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+    max-width: 46ch;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   EL CIELO
+   ══════════════════════════════════════════════════════════════════════ */
+.cst-envoltorio {
+    position: relative;
+    z-index: 1;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 5vw, 28px) clamp(24px, 5vw, 40px);
+}
+
+.cst-cielo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 900 / 600;
+    border-radius: var(--p-radio);
+    border: 1px solid var(--p-borde);
+    background: radial-gradient(ellipse 90% 70% at 50% 30%,
+            color-mix(in srgb, var(--p-nube-1) 55%, transparent) 0%,
+            transparent 70%),
+        color-mix(in srgb, var(--p-fondo) 92%, #000);
+    overflow: hidden;
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 8%, transparent) inset,
+        0 18px 46px -18px var(--p-sombra);
+}
+
+.cst-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cst-polvo {
+    fill: var(--p-tinta);
+    opacity: .5;
+}
+
+.cst-polvo--titila {
+    animation: cst-titilar 5s ease-in-out infinite;
+}
+
+@keyframes cst-titilar {
+
+    0%,
+    100% {
+        opacity: .2;
+    }
+
+    50% {
+        opacity: .85;
+    }
+}
+
+/* ── Líneas: se dibujan con stroke-dashoffset, como si la tinta corriera
+      de una estrella a la siguiente en el momento en que se conectan. ── */
+.cst-linea {
+    stroke: var(--p-realce);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    fill: none;
+    opacity: 0;
+    stroke-dasharray: 240;
+    stroke-dashoffset: 240;
+    transition: stroke-dashoffset .7s var(--ent), opacity .3s var(--calma);
+}
+
+.cst-linea--on {
+    opacity: .85;
+    stroke-dashoffset: 0;
+}
+
+.cst-estrella-visual {
+    fill: var(--p-tinta);
+    opacity: .55;
+    transition: fill .4s var(--calma), opacity .4s var(--calma), r .4s var(--sal);
+}
+
+.cst-estrella-visual--on {
+    fill: var(--p-realce-2);
+    opacity: 1;
+    r: 5;
+    filter: drop-shadow(0 0 6px var(--p-halo));
+}
+
+.cst-figura--hecha .cst-linea {
+    stroke: var(--p-realce-2);
+}
+
+/* Restaurar de una visita anterior: nada de animación de trazo, ya está */
+.cst-figura--instantanea .cst-linea {
+    transition: none;
+}
+
+/* ── Botones invisibles sobre cada estrella: 44px de área táctil real
+      aunque el punto visible mida unos pocos px. ── */
+.cst-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.cst-boton {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.cst-boton--on,
+.cst-boton--hecha {
+    cursor: default;
+}
+
+.cst-boton:focus-visible {
+    outline: 2px solid var(--p-realce);
+    outline-offset: 2px;
+}
+
+/* Toque a una estrella que no es la siguiente de la fila: un pulso breve
+   en vez de nada, para que se note que se registró el toque. */
+.cst-boton--toca::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    background: var(--p-tinta-2);
+    animation: cst-pulso .4s var(--calma);
+}
+
+@keyframes cst-pulso {
+    from {
+        opacity: .5;
+        transform: scale(.4);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(2.2);
+    }
+}
+
+.cst-ayuda {
+    text-align: center;
+    font-size: var(--t-menudo);
+    color: var(--p-tinta-2);
+    margin-top: var(--e3);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   CONTADOR Y REGISTRO DE RECUERDOS
+   ══════════════════════════════════════════════════════════════════════ */
+.cst-contador {
+    text-align: center;
+    margin-top: var(--e2);
+    font-size: var(--t-menudo);
+    letter-spacing: .06em;
+    color: var(--p-tinta-2);
+}
+
+.cst-registro {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 6vw, 28px) clamp(56px, 11vw, 100px);
+}
+
+.cst-registro-titulo {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: var(--t-h3);
+    color: var(--p-tinta);
+    margin-bottom: var(--e3);
+}
+
+.cst-registro-lista {
+    display: flex;
+    flex-direction: column;
+    gap: var(--e2);
+}
+
+.cst-recuerdo {
+    padding: var(--e3);
+    border-radius: calc(var(--p-radio) - 6px);
+    border: 1px solid var(--p-borde);
+    background: color-mix(in srgb, var(--p-fondo) 45%, transparent);
+    animation: cst-entra .55s var(--sal);
+}
+
+@keyframes cst-entra {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.cst-recuerdo-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: color-mix(in srgb, var(--p-realce) 80%, #fff);
+    margin-bottom: 4px;
+}
+
+.cst-recuerdo-texto {
+    font-size: .9rem;
+    line-height: 1.55;
+    color: var(--p-tinta-2);
+}
+
+.cst-recuerdo-texto--vacio {
+    font-style: italic;
+    opacity: .7;
+}
+
+.cst-cierre {
+    margin-top: var(--e4);
+    padding-top: var(--e4);
+    border-top: 1px solid var(--p-borde);
+    text-align: center;
+    font-size: var(--t-cuerpo);
+    line-height: 1.7;
+    color: var(--p-tinta-2);
+}
+
+.cst-cierre em {
+    display: block;
+    margin-top: 6px;
+}
+
+.cst-digito {
+    margin-top: var(--e3);
+    padding-top: var(--e2);
+    border-top: 1px dashed var(--p-borde);
+    font-size: .78rem;
+    letter-spacing: .04em;
+}
+
+.cst-digito strong {
+    color: var(--p-realce);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .cst-polvo--titila,
+    .cst-recuerdo,
+    .cst-boton--toca::after {
+        animation: none;
+    }
+
+    .cst-linea {
+        transition-duration: .01ms;
+    }
+}

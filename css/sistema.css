@@ -1,0 +1,1371 @@
+/* ══════════════════════════════════════════════════════════════════════
+   SISTEMA.CSS — la capa que unifica y a la vez separa todo el regalo.
+
+   El problema que resuelve: hasta ahora cada página compartía el MISMO
+   vestido. Un solo `--dark`, un solo `--glass`, un solo `--border`, el
+   mismo botón de volver, el mismo pie gris. `temas.css` sólo cambiaba
+   dos variables de acento, así que las nueve páginas se veían como
+   nueve copias de la misma con otro emoji.
+
+   Aquí cada tema recibe una PALETA COMPLETA — fondo, tinta, superficie,
+   borde, sombra, halo, radio, sello — y todos los componentes comunes
+   se reconstruyen consumiendo esos tokens. Un solo componente escrito
+   una vez, ocho atmósferas distintas al pintarlo.
+
+   Carga la ÚLTIMA. No toca ni una palabra del contenido: sólo su ropa.
+   ══════════════════════════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   1 · NÚCLEO — escalas y curvas compartidas
+   ══════════════════════════════════════════════════════════════════════ */
+:root {
+    /* Tipografía fluida: un solo salto entre móvil y escritorio, sin
+       media queries repartidas por seis archivos. */
+    --t-display: clamp(2.4rem, 7.2vw, 5.2rem);
+    --t-h1: clamp(2rem, 5.6vw, 3.6rem);
+    --t-h2: clamp(1.5rem, 4.2vw, 2.5rem);
+    --t-h3: clamp(1.2rem, 3.2vw, 1.6rem);
+    --t-cuerpo: clamp(1rem, 2.5vw, 1.09rem);
+    --t-menudo: clamp(.82rem, 2vw, .9rem);
+    --t-ceja: clamp(.66rem, 1.8vw, .78rem);
+
+    /* Ritmo vertical */
+    --e1: 6px;
+    --e2: 12px;
+    --e3: 20px;
+    --e4: 32px;
+    --e5: 48px;
+    --e6: 72px;
+    --e7: 104px;
+
+    /* Curvas. `--sal` sale con un pelo de rebote; `--ent` frena suave. */
+    --ent: cubic-bezier(.22, 1, .36, 1);
+    --sal: cubic-bezier(.16, 1.12, .3, 1);
+    --calma: cubic-bezier(.4, 0, .2, 1);
+
+    /* Valores por defecto: si una página no declara tema, hereda esto
+       y nada se rompe. */
+    --p-fondo: #0b0713;
+    --p-nube-1: rgba(120, 70, 10, .40);
+    --p-nube-2: rgba(140, 30, 90, .24);
+    --p-tinta: #f4eee4;
+    --p-tinta-2: #b3a795;
+    --p-realce: #ffe044;
+    --p-realce-2: #ff6fae;
+    --p-vidrio: rgba(255, 255, 255, .05);
+    --p-vidrio-alto: rgba(255, 255, 255, .085);
+    --p-borde: rgba(255, 255, 255, .12);
+    --p-borde-vivo: rgba(255, 224, 68, .42);
+    --p-sombra: rgba(0, 0, 0, .55);
+    --p-halo: rgba(255, 224, 68, .34);
+    --p-radio: 22px;
+    --p-grano: .045;
+    --p-sello: '✦';
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   2 · LAS OCHO ATMÓSFERAS
+   Cada bloque es la identidad completa de una página. Cambiar una línea
+   de aquí repinta esa página entera y no toca a ninguna otra.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── Menú · 8 de marzo — oro cálido sobre brasa ── */
+.tema-inicio {
+    --p-fondo: #0d0a06;
+    --p-nube-1: rgba(126, 74, 8, .50);
+    --p-nube-2: rgba(158, 28, 88, .26);
+    --p-tinta: #f7ecd8;
+    --p-tinta-2: #bfae95;
+    --p-realce: #ffd75e;
+    --p-realce-2: #ff6fae;
+    --p-vidrio: rgba(255, 224, 150, .055);
+    --p-vidrio-alto: rgba(255, 224, 150, .10);
+    --p-borde: rgba(255, 210, 120, .17);
+    --p-borde-vivo: rgba(255, 215, 94, .55);
+    --p-sombra: rgba(30, 12, 0, .6);
+    --p-halo: rgba(255, 190, 60, .38);
+    --p-radio: 22px;
+    --p-sello: '✦';
+}
+
+/* ── Buenas noches — medianoche azul y lila ── */
+.tema-noche {
+    --p-fondo: #05060f;
+    --p-nube-1: rgba(38, 44, 122, .55);
+    --p-nube-2: rgba(96, 70, 180, .30);
+    --p-tinta: #e9e7f7;
+    --p-tinta-2: #9b97bd;
+    --p-realce: #c9b8ff;
+    --p-realce-2: #7fd4ff;
+    --p-vidrio: rgba(150, 140, 255, .06);
+    --p-vidrio-alto: rgba(150, 140, 255, .11);
+    --p-borde: rgba(170, 160, 255, .16);
+    --p-borde-vivo: rgba(201, 184, 255, .5);
+    --p-sombra: rgba(2, 3, 14, .7);
+    --p-halo: rgba(150, 130, 255, .34);
+    --p-radio: 26px;
+    --p-grano: .05;
+    --p-sello: '☾';
+}
+
+/* ── Carta de promesa — rosa hondo y oro viejo ── */
+.tema-promesa {
+    --p-fondo: #0c0409;
+    --p-nube-1: rgba(152, 20, 72, .44);
+    --p-nube-2: rgba(190, 112, 30, .22);
+    --p-tinta: #fbe9ef;
+    --p-tinta-2: #c096aa;
+    --p-realce: #ffcf7a;
+    --p-realce-2: #ff5f93;
+    --p-vidrio: rgba(255, 150, 190, .055);
+    --p-vidrio-alto: rgba(255, 150, 190, .10);
+    --p-borde: rgba(255, 160, 190, .17);
+    --p-borde-vivo: rgba(255, 207, 122, .5);
+    --p-sombra: rgba(28, 2, 12, .62);
+    --p-halo: rgba(244, 63, 138, .36);
+    --p-radio: 24px;
+    --p-sello: '❦';
+}
+
+/* ── Romántico — ciruela y rosa suave ── */
+.tema-romantico {
+    --p-fondo: #0b0610;
+    --p-nube-1: rgba(150, 45, 110, .42);
+    --p-nube-2: rgba(92, 40, 162, .26);
+    --p-tinta: #fbeaf3;
+    --p-tinta-2: #bd9fb4;
+    --p-realce: #ffb3d1;
+    --p-realce-2: #ffd98a;
+    --p-vidrio: rgba(255, 170, 210, .055);
+    --p-vidrio-alto: rgba(255, 170, 210, .10);
+    --p-borde: rgba(255, 175, 210, .16);
+    --p-borde-vivo: rgba(255, 179, 209, .5);
+    --p-sombra: rgba(20, 3, 22, .6);
+    --p-halo: rgba(255, 150, 195, .34);
+    --p-radio: 28px;
+    --p-sello: '❤';
+}
+
+/* ── Dedicatoria — oro radiante sobre violeta ── */
+.tema-dedicatoria {
+    --p-fondo: #0a0714;
+    --p-nube-1: rgba(182, 140, 20, .34);
+    --p-nube-2: rgba(122, 60, 190, .32);
+    --p-tinta: #f8f2e2;
+    --p-tinta-2: #b9ad9c;
+    --p-realce: #ffe044;
+    --p-realce-2: #c08bff;
+    --p-vidrio: rgba(230, 200, 255, .055);
+    --p-vidrio-alto: rgba(230, 200, 255, .10);
+    --p-borde: rgba(255, 224, 68, .18);
+    --p-borde-vivo: rgba(255, 224, 68, .55);
+    --p-sombra: rgba(12, 4, 28, .6);
+    --p-halo: rgba(255, 224, 68, .4);
+    --p-radio: 24px;
+    --p-sello: '✧';
+}
+
+/* ── Flores amarillas — campo de girasoles a contraluz ── */
+.tema-girasol {
+    --p-fondo: #0a0703;
+    --p-nube-1: rgba(202, 140, 10, .42);
+    --p-nube-2: rgba(72, 92, 20, .30);
+    --p-tinta: #fdf3d8;
+    --p-tinta-2: #bfaa7c;
+    --p-realce: #ffd11a;
+    --p-realce-2: #ffe9a3;
+    --p-vidrio: rgba(255, 220, 120, .06);
+    --p-vidrio-alto: rgba(255, 220, 120, .11);
+    --p-borde: rgba(255, 209, 26, .18);
+    --p-borde-vivo: rgba(255, 209, 26, .55);
+    --p-sombra: rgba(26, 14, 0, .6);
+    --p-halo: rgba(255, 209, 26, .42);
+    --p-radio: 20px;
+    --p-sello: '❀';
+}
+
+/* ── La pregunta — luz de vela, íntima y contenida.
+      Radio más corto a propósito: esta página no debe sentirse blanda. ── */
+.tema-pregunta {
+    --p-fondo: #080502;
+    --p-nube-1: rgba(190, 110, 15, .36);
+    --p-nube-2: rgba(122, 40, 10, .26);
+    --p-tinta: #f6ead4;
+    --p-tinta-2: #b09876;
+    --p-realce: #f5c518;
+    --p-realce-2: #ff9b4a;
+    --p-vidrio: rgba(255, 200, 110, .05);
+    --p-vidrio-alto: rgba(255, 200, 110, .09);
+    --p-borde: rgba(245, 197, 24, .16);
+    --p-borde-vivo: rgba(245, 197, 24, .5);
+    --p-sombra: rgba(18, 8, 0, .68);
+    --p-halo: rgba(245, 197, 24, .38);
+    --p-radio: 15px;
+    --p-grano: .055;
+    --p-sello: '✧';
+}
+
+/* ── Navidad — pino, brasa y dorado ── */
+.tema-navidad {
+    --p-fondo: #03100a;
+    --p-nube-1: rgba(20, 112, 50, .44);
+    --p-nube-2: rgba(152, 26, 30, .30);
+    --p-tinta: #eaf7ec;
+    --p-tinta-2: #9ab6a3;
+    --p-realce: #fff176;
+    --p-realce-2: #ff5252;
+    --p-vidrio: rgba(180, 255, 200, .05);
+    --p-vidrio-alto: rgba(180, 255, 200, .09);
+    --p-borde: rgba(140, 230, 160, .16);
+    --p-borde-vivo: rgba(255, 241, 118, .5);
+    --p-sombra: rgba(0, 14, 6, .66);
+    --p-halo: rgba(105, 219, 124, .38);
+    --p-radio: 26px;
+    --p-sello: '❄';
+}
+
+/* ── Mes 2 · Lo que se abraza — ámbar tibio y lavanda en polvo.
+      La única paleta del regalo que no busca contraste: un peluche y un
+      frasco de perfume no brillan, abrigan. Por eso el radio es el más
+      grande de las nueve y el grano el más alto: todo tiene que sentirse
+      blando y un poco empolvado. ── */
+.tema-mes2 {
+    --p-fondo: #100a08;
+    --p-nube-1: rgba(176, 106, 48, .40);
+    --p-nube-2: rgba(128, 96, 160, .24);
+    --p-tinta: #f8ece0;
+    --p-tinta-2: #c1a892;
+    --p-realce: #ffb27a;
+    --p-realce-2: #d8b8f0;
+    --p-vidrio: rgba(255, 206, 165, .055);
+    --p-vidrio-alto: rgba(255, 206, 165, .10);
+    --p-borde: rgba(255, 190, 145, .16);
+    --p-borde-vivo: rgba(255, 178, 122, .5);
+    --p-sombra: rgba(28, 14, 6, .62);
+    --p-halo: rgba(255, 178, 122, .34);
+    --p-radio: 30px;
+    --p-grano: .06;
+    --p-sello: '✿';
+}
+
+/* ── Mes 5 · La Radio de Nosotros — estática fría, dial de cobre cálido.
+      Único tema del regalo pensado alrededor de un contraste, no de una
+      familia de color: la espera (gris azulado, frío) contra el hallazgo
+      (cobre, cálido). Todo lo demás del regalo brilla igual todo el
+      tiempo; aquí el brillo se GANA girando el dial. ── */
+.tema-radio {
+    --p-fondo: #120a09;
+    --p-nube-1: rgba(255, 140, 90, .34);
+    --p-nube-2: rgba(110, 130, 150, .26);
+    --p-tinta: #f7ece2;
+    --p-tinta-2: #b8a89c;
+    --p-realce: #ff8fb1;
+    --p-realce-2: #ffb15e;
+    --p-vidrio: rgba(255, 178, 140, .055);
+    --p-vidrio-alto: rgba(255, 178, 140, .10);
+    --p-borde: rgba(255, 170, 140, .16);
+    --p-borde-vivo: rgba(255, 143, 177, .5);
+    --p-sombra: rgba(20, 8, 6, .62);
+    --p-halo: rgba(255, 143, 177, .36);
+    --p-radio: 20px;
+    --p-grano: .05;
+    --p-sello: '♪';
+}
+
+/* ── Mes 6 · Constelación — cielo profundo, oro de estrella.
+      El más limpio de los doce: nada de grano — un cielo no está sucio,
+      está vacío hasta que ella une los puntos. ── */
+.tema-constelacion {
+    --p-fondo: #05060f;
+    --p-nube-1: rgba(70, 90, 200, .40);
+    --p-nube-2: rgba(255, 220, 140, .14);
+    --p-tinta: #ecebf9;
+    --p-tinta-2: #9a9bc4;
+    --p-realce: #9db8ff;
+    --p-realce-2: #ffe27a;
+    --p-vidrio: rgba(160, 180, 255, .055);
+    --p-vidrio-alto: rgba(160, 180, 255, .10);
+    --p-borde: rgba(170, 190, 255, .16);
+    --p-borde-vivo: rgba(157, 184, 255, .5);
+    --p-sombra: rgba(2, 3, 14, .68);
+    --p-halo: rgba(157, 184, 255, .36);
+    --p-radio: 26px;
+    --p-grano: .025;
+    --p-sello: '✶';
+}
+
+/* ── Mes 7 · Receta para Dos — terracota de encimera, verde de hierba fresca. ── */
+.tema-receta {
+    --p-fondo: #160b06;
+    --p-nube-1: rgba(210, 120, 50, .40);
+    --p-nube-2: rgba(140, 180, 90, .20);
+    --p-tinta: #faeee0;
+    --p-tinta-2: #c1a68e;
+    --p-realce: #ffa552;
+    --p-realce-2: #b8d98a;
+    --p-vidrio: rgba(255, 180, 120, .055);
+    --p-vidrio-alto: rgba(255, 180, 120, .10);
+    --p-borde: rgba(255, 175, 110, .17);
+    --p-borde-vivo: rgba(255, 165, 82, .5);
+    --p-sombra: rgba(24, 10, 4, .62);
+    --p-halo: rgba(255, 165, 82, .36);
+    --p-radio: 20px;
+    --p-grano: .05;
+    --p-sello: '❋';
+}
+
+/* ── Mes 8 · El Mapa — tinta de bosque, papel viejo con sol encima. ── */
+.tema-mapa {
+    --p-fondo: #060f0c;
+    --p-nube-1: rgba(60, 170, 130, .34);
+    --p-nube-2: rgba(230, 190, 120, .22);
+    --p-tinta: #eaf6ef;
+    --p-tinta-2: #9dbcae;
+    --p-realce: #7fe0b8;
+    --p-realce-2: #e8c27a;
+    --p-vidrio: rgba(140, 230, 195, .055);
+    --p-vidrio-alto: rgba(140, 230, 195, .10);
+    --p-borde: rgba(140, 220, 190, .16);
+    --p-borde-vivo: rgba(127, 224, 184, .5);
+    --p-sombra: rgba(2, 12, 8, .64);
+    --p-halo: rgba(127, 224, 184, .34);
+    --p-radio: 18px;
+    --p-grano: .055;
+    --p-sello: '⌖';
+}
+
+/* ── Mes 9 · Cápsula del Tiempo — tinta y papel viejo, sellado.
+      El radio más corto de las nueve páginas de armazón común después de
+      «la pregunta»: esto se cierra con un sello, no con un abrazo. ── */
+.tema-capsula {
+    --p-fondo: #0a0806;
+    --p-nube-1: rgba(200, 170, 120, .26);
+    --p-nube-2: rgba(150, 90, 70, .22);
+    --p-tinta: #f2ecdd;
+    --p-tinta-2: #b7a98e;
+    --p-realce: #e8e2d4;
+    --p-realce-2: #c9a882;
+    --p-vidrio: rgba(230, 210, 180, .06);
+    --p-vidrio-alto: rgba(230, 210, 180, .105);
+    --p-borde: rgba(220, 200, 165, .18);
+    --p-borde-vivo: rgba(232, 226, 212, .5);
+    --p-sombra: rgba(10, 6, 2, .62);
+    --p-halo: rgba(201, 168, 130, .34);
+    --p-radio: 14px;
+    --p-grano: .06;
+    --p-sello: '✉';
+}
+
+/* ── Mes 10 · 24 Horas — el único tema partido en dos: alba rosa a un
+      lado, noche índigo al otro. Un día entero cabe en una paleta. ── */
+.tema-horas {
+    --p-fondo: #08070f;
+    --p-nube-1: rgba(255, 122, 156, .34);
+    --p-nube-2: rgba(111, 127, 217, .34);
+    --p-tinta: #f1eef9;
+    --p-tinta-2: #a29fc0;
+    --p-realce: #ff7a9c;
+    --p-realce-2: #6f7fd9;
+    --p-vidrio: rgba(160, 150, 255, .055);
+    --p-vidrio-alto: rgba(160, 150, 255, .10);
+    --p-borde: rgba(180, 170, 255, .16);
+    --p-borde-vivo: rgba(255, 122, 156, .5);
+    --p-sombra: rgba(3, 2, 14, .66);
+    --p-halo: rgba(255, 122, 156, .32);
+    --p-radio: 24px;
+    --p-grano: .045;
+    --p-sello: '◐';
+}
+
+/* ── Mes 11 · Diccionario Privado — ciruela profundo, papel crema.
+      El más editorial: menos brillo, más libro. ── */
+.tema-diccionario {
+    --p-fondo: #0a0612;
+    --p-nube-1: rgba(150, 100, 220, .30);
+    --p-nube-2: rgba(230, 210, 160, .16);
+    --p-tinta: #f2ecf9;
+    --p-tinta-2: #ac9fc4;
+    --p-realce: #c0a0ff;
+    --p-realce-2: #f0e4c0;
+    --p-vidrio: rgba(190, 160, 255, .055);
+    --p-vidrio-alto: rgba(190, 160, 255, .10);
+    --p-borde: rgba(200, 175, 255, .16);
+    --p-borde-vivo: rgba(192, 160, 255, .5);
+    --p-sombra: rgba(6, 3, 14, .64);
+    --p-halo: rgba(192, 160, 255, .34);
+    --p-radio: 16px;
+    --p-grano: .05;
+    --p-sello: '§';
+}
+
+/* ── Mes 12 · La Bóveda — el más oscuro y el menos redondeado de los
+      doce a propósito: esto no es una carta, es un mecanismo. ── */
+.tema-boveda {
+    --p-fondo: #050403;
+    --p-nube-1: rgba(255, 209, 26, .22);
+    --p-nube-2: rgba(184, 115, 51, .24);
+    --p-tinta: #f7f0dc;
+    --p-tinta-2: #b3a480;
+    --p-realce: #ffd11a;
+    --p-realce-2: #b87333;
+    --p-vidrio: rgba(255, 209, 26, .05);
+    --p-vidrio-alto: rgba(255, 209, 26, .09);
+    --p-borde: rgba(255, 209, 26, .16);
+    --p-borde-vivo: rgba(255, 209, 26, .5);
+    --p-sombra: rgba(0, 0, 0, .74);
+    --p-halo: rgba(255, 209, 26, .32);
+    --p-radio: 12px;
+    --p-grano: .045;
+    --p-sello: '⚿';
+}
+
+/* ── Las tres páginas de mundo propio ──────────────────────────────────
+   `carta-cumpleanos`, `un-mes` y `momentos` no usan el armazón común:
+   dibujan su universo en su propio lienzo. Reciben SÓLO los tokens, para
+   que sus botones, focos y textos hablen el mismo idioma que el resto,
+   pero no la atmósfera de fondo — ahí ya hay una, y mejor.
+   Por eso no aparecen en el guardián `:is()` de la sección 3.        */
+
+/* Cumpleaños · galería — oro de vela sobre negro cálido */
+.tema-cumple {
+    --p-fondo: #050300;
+    --p-tinta: #ffe9a6;
+    --p-tinta-2: #c9a35a;
+    --p-realce: #ffd34d;
+    --p-realce-2: #e7b23c;
+    --p-vidrio: rgba(255, 211, 77, .055);
+    --p-vidrio-alto: rgba(255, 211, 77, .10);
+    --p-borde: rgba(255, 211, 77, .18);
+    --p-borde-vivo: rgba(255, 211, 77, .55);
+    --p-sombra: rgba(20, 10, 0, .7);
+    --p-halo: rgba(255, 211, 77, .45);
+    --p-radio: 18px;
+    --p-sello: '✦';
+}
+
+/* Carta de cumpleaños · corazón 3D — igual, negro puro */
+.tema-carta {
+    --p-fondo: #000;
+    --p-tinta: #ffe9a6;
+    --p-tinta-2: rgba(255, 210, 120, .6);
+    --p-realce: #ffd75e;
+    --p-realce-2: #ff6fae;
+    --p-borde: rgba(255, 215, 94, .2);
+    --p-borde-vivo: rgba(255, 215, 94, .6);
+    --p-halo: rgba(255, 190, 60, .42);
+    --p-radio: 16px;
+    --p-grano: 0;
+}
+
+/* Cada tema alimenta también a la capa fx (aurora, cursor, ondas,
+   barra de lectura) para que TODO case sin declararlo dos veces. */
+[class*='tema-'] {
+    --fx-accent: var(--p-realce);
+    --fx-accent-2: var(--p-nube-2);
+    --fx-glow: var(--p-halo);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   3 · EL LIENZO DE LA PÁGINA
+   Fondo vivo + grano de película + viñeta. Tres capas fijas que no
+   interceptan el ratón y no participan del flujo.
+   ══════════════════════════════════════════════════════════════════════ */
+body {
+    background: var(--p-fondo);
+    color: var(--p-tinta);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* GUARDIÁN: de aquí en adelante, sólo las ocho páginas del armazón común.
+   `momentos-cumpleanos` ya usa su propio `footer::before`, y `un-mes` y
+   `carta-cumpleanos` viven dentro de un canvas a pantalla completa:
+   inyectarles capas fijas de fondo las taparía o rompería su apilado. */
+
+/* Atmósfera: dos nubes de color muy difusas, ancladas al viewport para
+   que no se «despeguen» al hacer scroll. */
+:is(.tema-inicio, .tema-noche, .tema-promesa, .tema-romantico,
+    .tema-dedicatoria, .tema-girasol, .tema-pregunta, .tema-navidad, .tema-mes2,
+    .tema-radio, .tema-constelacion, .tema-receta, .tema-mapa, .tema-capsula,
+    .tema-horas, .tema-diccionario, .tema-boveda)::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 70% 55% at 18% 12%, var(--p-nube-1) 0%, transparent 62%),
+        radial-gradient(ellipse 62% 50% at 84% 82%, var(--p-nube-2) 0%, transparent 60%),
+        radial-gradient(ellipse 100% 70% at 50% 50%, transparent 42%, var(--p-fondo) 100%);
+}
+
+/* Grano: una turbulencia SVG en línea (sin petición de red) que rompe
+   las bandas de los degradados y le da textura de papel/película.
+   `soft-light` a opacidad muy baja: se siente, no se ve. */
+:is(.tema-inicio, .tema-noche, .tema-promesa, .tema-romantico,
+    .tema-dedicatoria, .tema-girasol, .tema-pregunta, .tema-navidad, .tema-mes2,
+    .tema-radio, .tema-constelacion, .tema-receta, .tema-mapa, .tema-capsula,
+    .tema-horas, .tema-diccionario, .tema-boveda)::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    opacity: var(--p-grano);
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23g)'/></svg>");
+    background-size: 180px 180px;
+}
+
+/* El contenido real siempre por encima de la atmósfera. */
+:is(.tema-inicio, .tema-noche, .tema-promesa, .tema-romantico,
+    .tema-dedicatoria, .tema-girasol, .tema-pregunta, .tema-navidad, .tema-mes2,
+    .tema-radio, .tema-constelacion, .tema-receta, .tema-mapa, .tema-capsula,
+    .tema-horas, .tema-diccionario, .tema-boveda)>:is(section, footer, .hero) {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   4 · TIPOGRAFÍA
+   Un solo tratamiento de titular, teñido por el tema.
+   ══════════════════════════════════════════════════════════════════════ */
+.hero-title,
+.bn-title,
+.promise-heading,
+.winner-title,
+.isa-title,
+.canvas-title,
+.closing h2,
+.dcl-title,
+.timer-title,
+.section-label h2 {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.12;
+    letter-spacing: -.012em;
+    text-wrap: balance;
+    background: linear-gradient(112deg,
+            var(--p-realce) 0%,
+            color-mix(in srgb, var(--p-realce) 55%, #fff) 38%,
+            var(--p-realce-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 18px color-mix(in srgb, var(--p-halo) 60%, transparent));
+}
+
+.hero-title {
+    font-size: var(--t-display);
+}
+
+.bn-title,
+.promise-heading,
+.closing h2 {
+    font-size: var(--t-h1);
+}
+
+/* Las cejas ("✦ una carta para ti ✦") comparten voz en todas las páginas */
+.bn-eyebrow,
+.promise-eyebrow,
+.hero-badge,
+.bn-letter-eyebrow {
+    font-size: var(--t-ceja);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+}
+
+.hero-sub,
+.bn-sub,
+.closing p,
+.nav-desc {
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+}
+
+.hero-sub {
+    font-size: var(--t-cuerpo);
+    line-height: 1.75;
+}
+
+/* Cursivas de énfasis: en todo el regalo significan «esto lo digo bajito» */
+em {
+    color: color-mix(in srgb, var(--p-realce) 78%, var(--p-tinta));
+    font-style: italic;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   5 · SUPERFICIES
+   Todas las cajas del regalo comparten construcción: vidrio teñido por
+   el tema, filo superior de luz, sombra del color del tema (no negra).
+   ══════════════════════════════════════════════════════════════════════ */
+.nav-card,
+.visit-card,
+.quest-box,
+.winner-box,
+.isa-box,
+.heart-box,
+.gift-box,
+.promise-card,
+.bn-card,
+.bn-letter,
+.bn-poem {
+    background:
+        linear-gradient(165deg,
+            var(--p-vidrio-alto) 0%,
+            var(--p-vidrio) 46%,
+            color-mix(in srgb, var(--p-fondo) 82%, transparent) 100%);
+    border: 1px solid var(--p-borde);
+    border-radius: var(--p-radio);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 9%, transparent) inset,
+        0 18px 46px -18px var(--p-sombra),
+        0 0 0 1px color-mix(in srgb, var(--p-realce) 5%, transparent);
+    backdrop-filter: blur(14px) saturate(1.15);
+    -webkit-backdrop-filter: blur(14px) saturate(1.15);
+    position: relative;
+}
+
+/* Los adornos de las cajas son decoración pura: nunca deben robarle el
+   clic al enlace que los contiene. */
+.nav-card::before,
+.nav-card::after,
+.gift-box::before {
+    pointer-events: none;
+}
+
+.nav-card,
+.gift-box,
+.visit-card {
+    overflow: hidden;
+}
+
+/* Realce al pasar por encima — mismo gesto, distinto color por página */
+.nav-card:hover,
+.gift-box:hover,
+.visit-card:hover {
+    border-color: var(--p-borde-vivo);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 14%, transparent) inset,
+        0 26px 60px -20px var(--p-sombra),
+        0 0 44px -10px var(--p-halo);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   6 · EL MENÚ (index)
+   Nueve puertas. Antes eran nueve rectángulos idénticos; ahora cada una
+   arrastra su propio color desde su destino y lleva su número grabado.
+   ══════════════════════════════════════════════════════════════════════ */
+.main-nav {
+    perspective: 1200px;
+}
+
+.nav-card {
+    padding: var(--e4) var(--e3) calc(var(--e3) + 4px);
+    gap: 10px;
+    isolation: isolate;
+    transition:
+        transform .5s var(--sal),
+        border-color .4s var(--calma),
+        box-shadow .5s var(--calma);
+}
+
+/* Cada tarjeta tiene su tinte: el del sitio al que lleva. Al entrar al
+   destino el color ya te resulta familiar.
+
+   El tinte se declara con `style="--c:#..."` en el propio enlace del
+   index. Antes vivía aquí como una lista de :nth-child, y bastaba mover
+   una tarjeta de sitio para que las nueve cambiaran de color sin que
+   nadie tocara este archivo. */
+
+/* Barra de color en el canto izquierdo: crece de arriba a abajo al pasar */
+.nav-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, var(--c, var(--p-realce)), transparent);
+    transform: scaleY(0);
+    transform-origin: 50% 0;
+    transition: transform .55s var(--ent);
+    z-index: 2;
+}
+
+.nav-card:hover::before,
+.nav-card:focus-visible::before {
+    transform: scaleY(1);
+}
+
+.nav-card:hover {
+    border-color: color-mix(in srgb, var(--c, var(--p-realce)) 60%, transparent);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 14%, transparent) inset,
+        0 30px 64px -22px var(--p-sombra),
+        0 0 52px -12px color-mix(in srgb, var(--c, var(--p-realce)) 45%, transparent);
+}
+
+/* El icono flota sobre su propio halo del color de la tarjeta */
+.nav-icon {
+    position: relative;
+    z-index: 1;
+    font-size: 2.7rem;
+    line-height: 1;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .5));
+    transition: transform .5s var(--sal);
+}
+
+.nav-icon::after {
+    content: '';
+    position: absolute;
+    inset: -55%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--c, var(--p-realce)) 30%, transparent) 0%, transparent 68%);
+    opacity: 0;
+    transition: opacity .45s var(--calma);
+}
+
+.nav-card:hover .nav-icon {
+    transform: translateY(-4px) scale(1.08);
+}
+
+.nav-card:hover .nav-icon::after {
+    opacity: 1;
+}
+
+.nav-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.28rem;
+    font-weight: 700;
+    color: color-mix(in srgb, var(--c, var(--p-realce)) 72%, #fff);
+    letter-spacing: .005em;
+}
+
+.nav-desc {
+    font-size: .855rem;
+    line-height: 1.5;
+    max-width: 24ch;
+}
+
+/* «Entrar →» aparece en el borde inferior al acercarse */
+.nav-card::after {
+    content: 'entrar →';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    text-align: center;
+    font-size: .68rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--c, var(--p-realce)) 80%, transparent);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .4s var(--calma), transform .45s var(--ent);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.nav-card:hover::after,
+.nav-card:focus-visible::after {
+    opacity: 1;
+    transform: none;
+}
+
+.nav-card:hover .nav-desc {
+    /* deja sitio al «entrar →» sin que el texto salte */
+    opacity: .82;
+}
+
+/* Contador de visitas: es una ficha, no una puerta. Se distingue. */
+.visit-card {
+    --c: var(--p-realce);
+    border-style: dashed;
+    border-color: color-mix(in srgb, var(--p-realce) 26%, transparent);
+}
+
+.visit-number {
+    color: var(--p-realce);
+    text-shadow: 0 0 24px var(--p-halo);
+}
+
+/* Los tres puntitos son el «cargando» de la tarjeta y parpadean en bucle
+   infinito. Cuando el número ya está, dejan de tener sentido: se paran y
+   se quedan quietos como tres marcas. Antes seguían latiendo para
+   siempre, pidiendo paciencia por algo que ya había llegado. */
+.visit-card--lista .visit-dot {
+    animation: none;
+    opacity: .3;
+}
+
+/* Sin red: el número que se ve es el último que se supo, no el de ahora.
+   La tarjeta lo dice en vez de disimularlo. */
+.visit-card--sinRed .visit-label::after {
+    content: ' · sin conexión';
+    color: color-mix(in srgb, var(--p-tinta-2) 85%, transparent);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   7 · HERO
+   ══════════════════════════════════════════════════════════════════════ */
+.hero {
+    background:
+        radial-gradient(ellipse 66% 54% at 50% 36%,
+            color-mix(in srgb, var(--p-nube-1) 70%, transparent) 0%,
+            transparent 68%),
+        var(--p-fondo);
+}
+
+.hero::before {
+    background: radial-gradient(ellipse 52% 42% at 50% 108%,
+            color-mix(in srgb, var(--p-realce) 8%, transparent) 0%,
+            transparent 70%);
+}
+
+.hero-badge {
+    background: var(--p-vidrio-alto);
+    border: 1px solid var(--p-borde);
+    color: color-mix(in srgb, var(--p-realce) 86%, #fff);
+    padding: 7px 20px;
+    backdrop-filter: blur(10px);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   8 · BOTONES — un solo idioma, ocho colores
+   Se conserva la distinción sí/no: el «no» nunca se pinta como el «sí».
+   ══════════════════════════════════════════════════════════════════════ */
+.quest-btn,
+.isa-btn,
+.hbtn,
+.gift-btn,
+.present-btn,
+.btn-entrar,
+.dcl-btn,
+.ready-btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: .02em;
+    border-radius: 999px;
+    border: 1px solid var(--p-borde-vivo);
+    background: var(--p-vidrio-alto);
+    color: color-mix(in srgb, var(--p-realce) 88%, #fff);
+    cursor: pointer;
+    transition:
+        transform .32s var(--sal),
+        box-shadow .35s var(--calma),
+        color .3s var(--calma),
+        border-color .3s var(--calma);
+}
+
+/* El relleno entra desde abajo en vez de encenderse de golpe */
+.quest-btn::before,
+.isa-btn::before,
+.hbtn::before,
+.gift-btn::before,
+.present-btn::before,
+.btn-entrar::before,
+.dcl-btn::before,
+.ready-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(140deg, var(--p-realce), var(--p-realce-2));
+    transform: translateY(101%);
+    transition: transform .45s var(--ent);
+}
+
+.quest-btn:hover,
+.isa-btn:hover,
+.hbtn:hover,
+.gift-btn:hover,
+.present-btn:hover,
+.btn-entrar:hover,
+.dcl-btn:hover,
+.ready-btn:hover {
+    color: #14100a;
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px -12px var(--p-halo);
+}
+
+.quest-btn:hover::before,
+.isa-btn:hover::before,
+.hbtn:hover::before,
+.gift-btn:hover::before,
+.present-btn:hover::before,
+.btn-entrar:hover::before,
+.dcl-btn:hover::before,
+.ready-btn:hover::before {
+    transform: none;
+}
+
+.quest-btn:active,
+.isa-btn:active,
+.hbtn:active,
+.gift-btn:active,
+.present-btn:active,
+.btn-entrar:active,
+.dcl-btn:active,
+.ready-btn:active {
+    transform: translateY(-1px) scale(.985);
+}
+
+/* Los «no» conservan su voz propia: templados, nunca dorados. */
+.quest-btn.btn-secondary,
+.isa-btn.ibtn-no,
+.hbtn.hbtn-no,
+.gift-btn.gift-btn-no {
+    color: var(--p-tinta-2);
+    border-color: color-mix(in srgb, var(--p-tinta-2) 34%, transparent);
+    background: color-mix(in srgb, var(--p-fondo) 60%, transparent);
+}
+
+.quest-btn.btn-secondary::before,
+.isa-btn.ibtn-no::before,
+.hbtn.hbtn-no::before,
+.gift-btn.gift-btn-no::before {
+    background: linear-gradient(140deg,
+            color-mix(in srgb, var(--p-tinta-2) 55%, transparent),
+            color-mix(in srgb, var(--p-tinta-2) 22%, transparent));
+}
+
+.quest-btn.btn-secondary:hover,
+.isa-btn.ibtn-no:hover,
+.hbtn.hbtn-no:hover,
+.gift-btn.gift-btn-no:hover {
+    color: var(--p-tinta);
+    box-shadow: 0 12px 28px -14px rgba(0, 0, 0, .8);
+}
+
+/* El botón de entrada del index es el único que respira solo */
+.btn-entrar {
+    padding: 15px 40px;
+    font-size: 1.02rem;
+    background: linear-gradient(140deg, var(--p-realce), var(--p-realce-2));
+    color: #17110a;
+    border-color: transparent;
+    box-shadow: 0 16px 40px -14px var(--p-halo);
+}
+
+.btn-entrar::before {
+    background: linear-gradient(140deg,
+            color-mix(in srgb, var(--p-realce) 70%, #fff),
+            var(--p-realce));
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   9 · VOLVER AL MENÚ
+   Era una pastilla plana idéntica en las ocho páginas. Ahora la flecha
+   retrocede al pasar y el marco se enciende con el color de la página.
+   ══════════════════════════════════════════════════════════════════════ */
+.back-btn {
+    top: clamp(14px, 3vw, 22px);
+    left: clamp(14px, 3vw, 22px);
+    padding: 10px 20px 10px 16px;
+    /* Con el relleno solo se quedaba en 42 px de alto, y en pantallas
+       estrechas bajaba de 40. Es el único camino de vuelta que hay en cada
+       página: no puede ser el elemento más difícil de acertar con el pulgar.
+       Va aquí y no en responsive.css porque este archivo carga el último y
+       es el que define la caja de este botón — allí lo pisaba el relleno. */
+    min-height: 44px;
+    background: color-mix(in srgb, var(--p-fondo) 74%, transparent);
+    border: 1px solid var(--p-borde);
+    color: color-mix(in srgb, var(--p-realce) 88%, #fff);
+    font-size: .84rem;
+    font-weight: 600;
+    letter-spacing: .03em;
+    backdrop-filter: blur(12px) saturate(1.2);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 10%, transparent) inset,
+        0 10px 26px -12px rgba(0, 0, 0, .8);
+    transition:
+        border-color .35s var(--calma),
+        box-shadow .35s var(--calma),
+        color .3s var(--calma),
+        transform .35s var(--sal);
+    /* El texto llega del HTML como «⬅ Volver al Menú»: no se toca.
+       Sólo se separa la flecha para poder animarla aparte. */
+    word-spacing: .12em;
+}
+
+.back-btn:hover,
+.back-btn:focus-visible {
+    background: color-mix(in srgb, var(--p-fondo) 62%, transparent);
+    border-color: var(--p-borde-vivo);
+    color: var(--p-realce);
+    transform: translateX(-3px);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 16%, transparent) inset,
+        0 14px 34px -12px var(--p-halo);
+}
+
+/* Halo que se expande una vez al enfocar/pasar */
+.back-btn::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: 0 0 0 0 var(--p-halo);
+    transition: box-shadow .6s var(--ent);
+}
+
+.back-btn:hover::after {
+    box-shadow: 0 0 0 6px transparent;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   10 · BOTÓN DE MÚSICA
+   ══════════════════════════════════════════════════════════════════════ */
+.music-btn {
+    background: linear-gradient(140deg, var(--p-realce), var(--p-realce-2));
+    box-shadow:
+        0 8px 26px -8px var(--p-halo),
+        0 2px 0 0 color-mix(in srgb, #fff 22%, transparent) inset;
+    color: #16110a;
+}
+
+.music-btn:hover {
+    box-shadow:
+        0 12px 34px -8px var(--p-halo),
+        0 2px 0 0 color-mix(in srgb, #fff 30%, transparent) inset;
+}
+
+/* Anillo que late sólo mientras suena */
+.music-btn::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--p-realce) 45%, transparent);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.music-btn.is-playing::after {
+    animation: sis-anillo 2.4s var(--calma) infinite;
+}
+
+@keyframes sis-anillo {
+    0% {
+        opacity: .7;
+        transform: scale(.92);
+    }
+
+    70% {
+        opacity: 0;
+        transform: scale(1.35);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.35);
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   11 · PIE — deja de ser una línea gris con un nombre suelto
+   ══════════════════════════════════════════════════════════════════════ */
+:is(.tema-inicio, .tema-noche, .tema-promesa, .tema-romantico,
+    .tema-dedicatoria, .tema-girasol, .tema-pregunta, .tema-navidad, .tema-mes2,
+    .tema-radio, .tema-constelacion, .tema-receta, .tema-mapa, .tema-capsula,
+    .tema-horas, .tema-diccionario, .tema-boveda) footer {
+    padding: var(--e6) var(--e3) var(--e5);
+    border-top: 0;
+    color: var(--p-tinta-2);
+    font-size: .78rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+/* Regla fina con el sello del tema en el centro */
+:is(.tema-inicio, .tema-noche, .tema-promesa, .tema-romantico,
+    .tema-dedicatoria, .tema-girasol, .tema-pregunta, .tema-navidad, .tema-mes2,
+    .tema-radio, .tema-constelacion, .tema-receta, .tema-mapa, .tema-capsula,
+    .tema-horas, .tema-diccionario, .tema-boveda) footer::before {
+    content: var(--p-sello);
+    display: block;
+    margin: 0 auto var(--e3);
+    width: min(320px, 70%);
+    padding-bottom: var(--e3);
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: normal;
+    color: color-mix(in srgb, var(--p-realce) 70%, transparent);
+    border-bottom: 1px solid transparent;
+    border-image: linear-gradient(90deg,
+            transparent,
+            color-mix(in srgb, var(--p-realce) 30%, transparent),
+            transparent) 1;
+    text-shadow: 0 0 18px var(--p-halo);
+}
+
+:is(.tema-inicio, .tema-noche, .tema-promesa, .tema-romantico,
+    .tema-dedicatoria, .tema-girasol, .tema-pregunta, .tema-navidad, .tema-mes2,
+    .tema-radio, .tema-constelacion, .tema-receta, .tema-mapa, .tema-capsula,
+    .tema-horas, .tema-diccionario, .tema-boveda) footer p {
+    opacity: .85;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   11 bis · LO QUE CAE
+   `style.css` pinta los pétalos con `nth-child` en oro, oro claro, ámbar y
+   rosa — los MISMOS en las nueve páginas. Sobre el rosa de «romántico» o el
+   verde de «navidad» eso cantaba muchísimo. Aquí cada tema decide de qué
+   está hecha su lluvia; el `nth-child` original sigue dando la variación
+   dentro de la paleta, sólo que ahora la paleta es la correcta.
+   ══════════════════════════════════════════════════════════════════════ */
+[class*='tema-'] .petal {
+    background: var(--p-realce);
+}
+
+[class*='tema-'] .petal:nth-child(even) {
+    background: var(--p-realce-2);
+}
+
+[class*='tema-'] .petal:nth-child(3n) {
+    background: color-mix(in srgb, var(--p-realce) 60%, #fff);
+}
+
+[class*='tema-'] .petal:nth-child(5n) {
+    background: color-mix(in srgb, var(--p-realce-2) 70%, var(--p-tinta));
+}
+
+/* Los pétalos que ya tenían forma propia por tema (nieve, polvo de
+   estrellas) la conservan: `temas.css` los marca con !important y gana. */
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   12 · SEPARADORES Y ADORNOS COMPARTIDOS
+   ══════════════════════════════════════════════════════════════════════ */
+.bn-divider span,
+.promise-divider span {
+    background: linear-gradient(90deg,
+            transparent,
+            color-mix(in srgb, var(--p-realce) 42%, transparent),
+            transparent);
+}
+
+.bn-divider i,
+.promise-divider i {
+    filter: drop-shadow(0 0 10px var(--p-halo));
+}
+
+.scroll-arrow {
+    color: color-mix(in srgb, var(--p-realce) 85%, #fff);
+    letter-spacing: .12em;
+    transition: transform .4s var(--sal), color .3s var(--calma);
+}
+
+.scroll-arrow:hover {
+    transform: translateY(4px);
+    color: var(--p-realce);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   13 · MOVIMIENTO DE ENTRADA
+   Los reveals ya existen en fx.css; aquí sólo se afina la curva para
+   que frenen como algo con peso y no como una interpolación lineal.
+   ══════════════════════════════════════════════════════════════════════ */
+.reveal,
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-zoom,
+.reveal-blur {
+    transition:
+        opacity .85s var(--ent) calc(var(--i, 0) * 85ms),
+        transform 1.05s var(--sal) calc(var(--i, 0) * 85ms),
+        filter .85s var(--calma) calc(var(--i, 0) * 85ms);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   14 · FOCO VISIBLE
+   Nada de esto servía de nada si sólo se podía usar con ratón.
+   ══════════════════════════════════════════════════════════════════════ */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--p-realce);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   15 · MOVIMIENTO REDUCIDO
+   Se congela lo que se mueve por gusto; nunca lo que cuenta algo.
+   ══════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+
+    .music-btn.is-playing::after {
+        animation: none;
+        opacity: .45;
+    }
+
+    .nav-card,
+    .nav-icon,
+    .back-btn,
+    .quest-btn,
+    .isa-btn,
+    .hbtn,
+    .gift-btn,
+    .present-btn,
+    .btn-entrar {
+        transition-duration: .01ms;
+    }
+
+    body::after {
+        opacity: calc(var(--p-grano) * .6);
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   16 · MODAL «CUMPLEAÑOS» — elegir entre El Principito y La Carta
+   Mismo lenguaje que .welcome-overlay/.welcome-box, pero como capa propia
+   para no interferir con la bienvenida (que ya usa ese overlay).
+   ══════════════════════════════════════════════════════════════════════ */
+.cumple-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: color-mix(in srgb, var(--p-fondo) 78%, transparent);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s var(--calma), visibility .35s var(--calma);
+}
+
+.cumple-modal.abierto {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cumple-modal-caja {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    padding: var(--e5) var(--e4);
+    text-align: center;
+    background:
+        linear-gradient(165deg,
+            var(--p-vidrio-alto) 0%,
+            var(--p-vidrio) 46%,
+            color-mix(in srgb, var(--p-fondo) 82%, transparent) 100%);
+    border: 1px solid var(--p-borde);
+    border-radius: var(--p-radio);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 9%, transparent) inset,
+        0 24px 60px -20px var(--p-sombra);
+    backdrop-filter: blur(14px) saturate(1.15);
+    transform: translateY(14px) scale(.97);
+    transition: transform .4s var(--sal);
+}
+
+.cumple-modal.abierto .cumple-modal-caja {
+    transform: none;
+}
+
+.cumple-modal-cerrar {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--p-borde);
+    background: var(--p-vidrio);
+    color: var(--p-tinta-2);
+    font-size: .85rem;
+    cursor: pointer;
+    transition: color .3s var(--calma), border-color .3s var(--calma);
+}
+
+.cumple-modal-cerrar:hover {
+    color: var(--p-realce);
+    border-color: var(--p-borde-vivo);
+}
+
+.cumple-modal-ceja {
+    font-size: var(--t-ceja);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+    margin-bottom: var(--e2);
+}
+
+.cumple-modal-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--t-h3);
+    color: var(--p-tinta);
+    margin-bottom: var(--e4);
+}
+
+.cumple-modal-opciones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--e3);
+}
+
+.cumple-modal-op {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--e1);
+    padding: var(--e4) var(--e2);
+    border-radius: calc(var(--p-radio) * .7);
+    border: 1px solid var(--p-borde);
+    background: var(--p-vidrio);
+    color: var(--p-tinta);
+    transition: transform .35s var(--sal), border-color .3s var(--calma), box-shadow .35s var(--calma);
+}
+
+.cumple-modal-op:hover,
+.cumple-modal-op:focus-visible {
+    transform: translateY(-3px);
+    border-color: var(--p-borde-vivo);
+    box-shadow: 0 14px 30px -14px var(--p-halo);
+}
+
+.cumple-modal-op-icono {
+    font-size: 1.8rem;
+}
+
+.cumple-modal-op-titulo {
+    font-size: .88rem;
+    font-weight: 600;
+}
+
+@media (max-width: 420px) {
+    .cumple-modal-opciones {
+        grid-template-columns: 1fr;
+    }
+}

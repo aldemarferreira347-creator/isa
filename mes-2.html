@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#100a08" />
+    <title>Lo Que Se Abraza — Mes 2 🧸</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+    <link rel="stylesheet" href="css/mes-2.css">
+</head>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     MES 2 · 10 de junio de 2026
+
+     LAS DOS FOTOS
+     Deja los archivos aquí y aparecen solas, sin tocar nada más:
+        img/mes2/peluche.jpg
+        img/mes2/locion.jpg
+     Si todavía no están, cada marco muestra su dibujo a trazo y la
+     página funciona igual de bien. Cuadradas (1:1) se ven mejor.
+
+     LOS TEXTOS
+     Están todos en js/mes-2.js, arriba del todo.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<body class="tema-mes2">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="m2-hero">
+        <span class="m2-ceja reveal-up">Mes 2 · 10 de junio de 2026</span>
+        <h1 class="m2-titulo reveal-up">Lo Que Se Abraza</h1>
+        <p class="m2-sub reveal-up">
+            Este mes no cabe en una pantalla. Fueron dos cosas que se tocan:
+            una para cuando yo no estoy, y otra para que no se me olvide a mí.
+        </p>
+    </section>
+
+    <section class="m2-objetos" aria-label="Los dos regalos del mes 2">
+
+        <!-- ══════════ EL PELUCHE ══════════ -->
+        <article class="m2-obj reveal-up" id="objPeluche">
+            <header class="m2-obj-cab">
+                <span class="m2-obj-orden">Primero</span>
+                <h2 class="m2-obj-titulo">El peluche</h2>
+                <p class="m2-obj-nota">Para las noches en las que te toque abrazar a alguien y yo no llegue.</p>
+            </header>
+
+            <div class="m2-marco m2-marco--peluche" id="marcoPeluche">
+                <img class="m2-foto" id="fotoPeluche" src="img/mes2/peluche.jpg"
+                    alt="El peluche que te regalé el segundo mes">
+                <!-- Mientras no llegue la foto, el marco no se queda con un
+                     emoji: lleva su propio dibujo a trazo. Ver el bloque de
+                     dibujos en mes-2.css. -->
+                <span class="m2-marco-dibujo" aria-hidden="true">
+                    <svg class="m2-dibujo" viewBox="0 0 100 100" focusable="false">
+                        <g class="m2-dibujo-trazo">
+                            <circle cx="30" cy="27" r="10.5" />
+                            <circle cx="70" cy="27" r="10.5" />
+                            <circle cx="50" cy="38" r="21.5" />
+                            <ellipse cx="50" cy="45.5" rx="9.5" ry="7.5" />
+                            <path d="M32 57C26.5 66 26.5 81 34 87c8 6 24 6 32 0 7.5-6 7.5-21 2-30" />
+                            <path d="M34.5 60.5c-6 7.5 0 15.5 10 15.5" />
+                            <path d="M65.5 60.5c6 7.5 0 15.5-10 15.5" />
+                            <circle cx="38" cy="87.5" r="6" />
+                            <circle cx="62" cy="87.5" r="6" />
+                        </g>
+                        <g class="m2-dibujo-lleno">
+                            <circle cx="41.5" cy="34" r="2.1" />
+                            <circle cx="58.5" cy="34" r="2.1" />
+                            <ellipse cx="50" cy="42.5" rx="2.8" ry="2.1" />
+                        </g>
+                    </svg>
+                </span>
+                <!-- El aro que se llena mientras se mantiene pulsado -->
+                <svg class="m2-aro" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                    <circle class="m2-aro-trazo" cx="50" cy="50" r="48" />
+                </svg>
+            </div>
+
+            <button class="m2-accion" id="btnAbrazo" type="button" aria-describedby="pelucheEstado">
+                <span class="m2-accion-txt">Mantén pulsado para abrazarlo</span>
+            </button>
+
+            <p class="m2-estado" id="pelucheEstado" role="status" aria-live="polite"></p>
+
+            <!-- La frase viva: entra, se lee y se va. Es el momento. -->
+            <p class="m2-frase" id="pelucheFrase"></p>
+
+            <!-- El registro: lo que ya dijo, que se queda. Es la memoria.
+                 Sin esto el peluche no dejaba nada — todas sus frases se
+                 borraban y la mitad de la página terminaba en un hueco. -->
+            <ul class="m2-registro" id="pelucheRegistro" aria-label="Lo que te ha ido diciendo"></ul>
+        </article>
+
+
+        <!-- ══════════ EL FRASCO ══════════ -->
+        <article class="m2-obj reveal-up" id="objFrasco">
+            <header class="m2-obj-cab">
+                <span class="m2-obj-orden">Segundo</span>
+                <h2 class="m2-obj-titulo">Mi loción</h2>
+                <p class="m2-obj-nota">Esta no era para ti. Era mía, y te la quedaste. Me pareció justo.</p>
+            </header>
+
+            <div class="m2-marco m2-marco--frasco" id="marcoFrasco">
+                <img class="m2-foto" id="fotoFrasco" src="img/mes2/locion.jpg"
+                    alt="El frasco de mi loción, el que se quedó contigo">
+                <span class="m2-marco-dibujo" aria-hidden="true">
+                    <svg class="m2-dibujo" viewBox="0 0 100 100" focusable="false">
+                        <g class="m2-dibujo-trazo">
+                            <path d="M43 22h14" />
+                            <path d="M43 30.5c-8 2.5-12.5 8-12.5 15v33c0 6 4 10 10 10h19c6 0 10-4 10-10v-33c0-7-4.5-12.5-12.5-15" />
+                            <path d="M30.5 58.5h39" />
+                            <path d="M67 26.5h7.5c2.5 0 4 1.5 4 4v4" />
+                        </g>
+                        <g class="m2-dibujo-lleno">
+                            <path d="M40.5 8.5h19c1.7 0 3 1.3 3 3v8c0 1.7-1.3 3-3 3h-19c-1.7 0-3-1.3-3-3v-8c0-1.7 1.3-3 3-3z" />
+                            <circle cx="83.5" cy="30" r="2" opacity=".85" />
+                            <circle cx="89" cy="24.5" r="1.5" opacity=".6" />
+                            <circle cx="88" cy="35.5" r="1.2" opacity=".45" />
+                        </g>
+                    </svg>
+                </span>
+                <div class="m2-vaho" id="vaho" aria-hidden="true"></div>
+            </div>
+
+            <button class="m2-accion" id="btnRociar" type="button" aria-describedby="frascoEstado">
+                <span class="m2-accion-txt">Rocía una vez</span>
+            </button>
+
+            <p class="m2-estado" id="frascoEstado" role="status" aria-live="polite"></p>
+
+            <!-- La pirámide olfativa: salida, corazón y fondo. Se va
+                 escribiendo sola conforme se rocía. -->
+            <ol class="m2-piramide" id="piramide" aria-label="Las notas que va soltando"></ol>
+        </article>
+    </section>
+
+
+    <!-- ══════════ LO QUE QUEDA ══════════
+         Aparece sólo cuando los dos objetos están abiertos. -->
+    <section class="m2-final" id="final" hidden>
+        <div class="m2-final-caja">
+            <span class="m2-final-sello" aria-hidden="true">✿</span>
+            <h2 class="m2-final-titulo">Lo que queda cuando el olor se va</h2>
+            <div class="m2-final-texto" id="finalTexto"></div>
+            <p class="m2-final-firma">Carlo</p>
+            <p class="m2-digito">Para La Bóveda — mes 2: <strong>8</strong></p>
+        </div>
+    </section>
+
+    <audio id="bgMusic" loop>
+        <source src="music/incondicional.mp3" type="audio/mpeg">
+    </audio>
+    <button class="music-btn" id="musicBtn" title="Play / Pause">▶️</button>
+
+    <footer>
+        <p>Hecho por Carlo</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/mes-2.js"></script>
+    <script>initBgMusic(0);</script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

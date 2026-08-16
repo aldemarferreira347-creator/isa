@@ -1,0 +1,321 @@
+/* ══════════════════════════════════════════════════════════════════════
+   MAPA.CSS — el visor del mes 8.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.mp-hero {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(84px, 16vw, 130px) clamp(20px, 6vw, 28px) clamp(20px, 5vw, 32px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--e2);
+}
+
+.mp-ceja {
+    font-size: var(--t-ceja);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+}
+
+.mp-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--t-h1);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -.012em;
+    text-wrap: balance;
+    background: linear-gradient(112deg,
+            var(--p-realce) 0%,
+            color-mix(in srgb, var(--p-realce) 55%, #fff) 40%,
+            var(--p-realce-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 18px color-mix(in srgb, var(--p-halo) 60%, transparent));
+}
+
+.mp-sub {
+    font-size: var(--t-cuerpo);
+    line-height: 1.75;
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+    max-width: 46ch;
+}
+
+.mp-envoltorio {
+    position: relative;
+    z-index: 1;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 5vw, 28px) clamp(24px, 5vw, 40px);
+}
+
+.mp-visor {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--p-radio);
+    border: 1px solid var(--p-borde);
+    overflow: hidden;
+    cursor: grab;
+    touch-action: none;
+    background: var(--p-fondo);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 8%, transparent) inset,
+        0 18px 46px -18px var(--p-sombra);
+}
+
+.mp-visor:active {
+    cursor: grabbing;
+}
+
+.mp-lienzo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1400px;
+    height: 980px;
+    transform-origin: 0 0;
+    will-change: transform;
+}
+
+.mp-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.mp-tierra {
+    fill: color-mix(in srgb, var(--p-realce) 16%, var(--p-fondo));
+    stroke: color-mix(in srgb, var(--p-realce) 45%, transparent);
+    stroke-width: 2;
+}
+
+.mp-ruta {
+    fill: none;
+    stroke: var(--p-realce-2);
+    stroke-width: 2.5;
+    stroke-dasharray: 3 10;
+    stroke-linecap: round;
+    opacity: .55;
+}
+
+.mp-rosa {
+    opacity: .5;
+}
+
+.mp-rosa-anillo {
+    fill: none;
+    stroke: var(--p-tinta-2);
+    stroke-width: 1.5;
+}
+
+.mp-rosa-cruz {
+    stroke: var(--p-tinta-2);
+    stroke-width: 1;
+}
+
+.mp-rosa-aguja {
+    fill: var(--p-realce);
+}
+
+/* ── Chinchetas ── */
+.mp-pines {
+    position: absolute;
+    inset: 0;
+}
+
+.mp-pin {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin: -30px 0 0 -15px;
+    border: none;
+    border-radius: 50% 50% 50% 4px;
+    transform: rotate(-45deg);
+    cursor: pointer;
+    box-shadow: 0 4px 10px -2px rgba(0, 0, 0, .5);
+    transition: transform .3s var(--sal);
+}
+
+.mp-pin:hover,
+.mp-pin:focus-visible {
+    transform: rotate(-45deg) translateY(-4px) scale(1.08);
+}
+
+.mp-pin:focus-visible {
+    outline: 2px solid var(--p-realce);
+    outline-offset: 3px;
+}
+
+.mp-pin::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--p-fondo) 70%, transparent);
+}
+
+.mp-pin--vivida {
+    background: linear-gradient(140deg, var(--p-realce), var(--p-realce-2));
+}
+
+.mp-pin--futura {
+    background: color-mix(in srgb, var(--p-tinta-2) 45%, transparent);
+    opacity: .8;
+}
+
+.mp-contador {
+    text-align: center;
+    margin-top: var(--e3);
+    font-size: var(--t-menudo);
+    letter-spacing: .04em;
+    color: var(--p-tinta-2);
+}
+
+.mp-digito {
+    text-align: center;
+    margin-top: var(--e2);
+    font-size: .78rem;
+    letter-spacing: .04em;
+    color: var(--p-tinta-2);
+}
+
+.mp-digito strong {
+    color: var(--p-realce);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+}
+
+/* ── Controles ── */
+.mp-controles {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 2;
+}
+
+.mp-ctrl {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--p-borde);
+    background: color-mix(in srgb, var(--p-fondo) 65%, transparent);
+    color: var(--p-tinta);
+    font-size: 1.1rem;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: border-color .3s var(--calma), color .3s var(--calma);
+}
+
+.mp-ctrl:hover {
+    border-color: var(--p-borde-vivo);
+    color: var(--p-realce);
+}
+
+.mp-ayuda {
+    text-align: center;
+    font-size: var(--t-menudo);
+    color: var(--p-tinta-2);
+    margin-top: var(--e2);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   POPUP DE CHINCHETA
+   ══════════════════════════════════════════════════════════════════════ */
+.mp-popup[hidden] {
+    display: none;
+}
+
+.mp-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--e3);
+    background: rgba(0, 0, 0, .55);
+    backdrop-filter: blur(4px);
+}
+
+.mp-popup-caja {
+    max-width: 420px;
+    width: 100%;
+    padding: var(--e4) var(--e3) var(--e3);
+    border-radius: var(--p-radio);
+    border: 1px solid var(--p-borde-vivo);
+    background:
+        linear-gradient(165deg,
+            var(--p-vidrio-alto) 0%,
+            var(--p-vidrio) 46%,
+            color-mix(in srgb, var(--p-fondo) 90%, transparent) 100%);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .6);
+    position: relative;
+    animation: mp-entra .4s var(--sal);
+}
+
+@keyframes mp-entra {
+    from {
+        opacity: 0;
+        transform: scale(.94) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.mp-popup-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+    margin-bottom: 10px;
+}
+
+.mp-popup--futura .mp-popup-titulo {
+    color: var(--p-tinta-2);
+}
+
+.mp-popup-texto {
+    font-size: .92rem;
+    line-height: 1.6;
+    color: var(--p-tinta-2);
+}
+
+.mp-popup-cerrar {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--p-borde);
+    background: transparent;
+    color: var(--p-tinta-2);
+    cursor: pointer;
+    transition: color .25s var(--calma), border-color .25s var(--calma);
+}
+
+.mp-popup-cerrar:hover {
+    color: var(--p-realce);
+    border-color: var(--p-borde-vivo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mp-popup-caja {
+        animation: none;
+    }
+}

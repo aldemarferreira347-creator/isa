@@ -1,0 +1,542 @@
+/* ══════════════════════════════════════════════════════
+   FX.CSS — capa de animación compartida
+   Agnóstica de paleta: cada página conserva su color propio
+   sobrescribiendo --fx-accent / --fx-accent-2 / --fx-glow.
+   Cargar SIEMPRE después de style.css.
+   ══════════════════════════════════════════════════════ */
+
+:root {
+    /* Valores por defecto — cada página puede redefinirlos en su <body> o sección */
+    --fx-accent: #ffe044;
+    --fx-accent-2: #f43f8a;
+    --fx-glow: rgba(255, 224, 68, 0.45);
+    --fx-ease: cubic-bezier(.16, .9, .3, 1);
+    --fx-ease-out: cubic-bezier(.22, 1, .36, 1);
+}
+
+/* ══ 1. GUARDA DE MOVIMIENTO ══
+   Respeta a quien pidió menos animación a nivel de sistema operativo.
+   Todo se vuelve instantáneo pero NADA queda invisible. */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* Los pétalos NO desaparecen: se congelan.
+       Quitar la decoración entera se siente como una página rota;
+       lo que molesta es el movimiento perpetuo, no el adorno. */
+    .petal {
+        animation: none !important;
+        transform: rotate(var(--fx-still-rot, 20deg)) !important;
+        opacity: var(--fx-petal-op, .35) !important;
+    }
+
+    .fx-aurora {
+        animation: none !important;
+    }
+
+    .reveal,
+    [class*="reveal-"] {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+
+}
+
+/* ══ 2. PÉTALOS CON PROFUNDIDAD ══
+   Antes: rectángulos planos, una sola capa, todos iguales.
+   Ahora: 3 capas de parallax, forma real de pétalo, desenfoque por lejanía. */
+.petal {
+    position: absolute;
+    top: -8vh;
+    border-radius: 50% 8% 50% 8%;
+    will-change: transform, opacity;
+    animation: fx-fall linear infinite;
+    pointer-events: none;
+}
+
+/* Capa lejana: pequeña, borrosa, lenta */
+.petal.fx-depth-far {
+    filter: blur(2.5px);
+    opacity: .28;
+    z-index: 0;
+}
+
+/* Capa media */
+.petal.fx-depth-mid {
+    filter: blur(.6px);
+    opacity: .45;
+    z-index: 1;
+}
+
+/* Capa cercana: nítida, grande, rápida, con brillo propio */
+.petal.fx-depth-near {
+    opacity: .7;
+    z-index: 2;
+    box-shadow: 0 0 10px var(--fx-glow);
+}
+
+/* Caída con deriva lateral y giro en 3 ejes — ya no es una línea recta */
+@keyframes fx-fall {
+    0% {
+        transform: translate3d(0, 0, 0) rotateZ(0deg) rotateX(0deg);
+        opacity: 0;
+    }
+
+    8% {
+        opacity: var(--fx-petal-op, .5);
+    }
+
+    35% {
+        transform: translate3d(var(--fx-drift-a, 30px), 35vh, 0) rotateZ(140deg) rotateX(180deg);
+    }
+
+    70% {
+        transform: translate3d(var(--fx-drift-b, -25px), 72vh, 0) rotateZ(260deg) rotateX(320deg);
+    }
+
+    92% {
+        opacity: var(--fx-petal-op, .5);
+    }
+
+    100% {
+        transform: translate3d(var(--fx-drift-c, 15px), 112vh, 0) rotateZ(400deg) rotateX(520deg);
+        opacity: 0;
+    }
+}
+
+/* ══ 3. REVEALS DIRECCIONALES CON STAGGER ══
+   Antes: un solo fade genérico. Ahora: dirección + retardo en cascada
+   vía --i (índice que inyecta common.js). */
+.reveal,
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-zoom,
+.reveal-blur {
+    opacity: 0;
+    transition:
+        opacity .9s var(--fx-ease) calc(var(--i, 0) * 90ms),
+        transform 1s var(--fx-ease) calc(var(--i, 0) * 90ms),
+        filter .9s ease calc(var(--i, 0) * 90ms);
+    will-change: opacity, transform;
+}
+
+.reveal,
+.reveal-up {
+    transform: translateY(38px);
+}
+
+.reveal-left {
+    transform: translateX(-46px);
+}
+
+.reveal-right {
+    transform: translateX(46px);
+}
+
+.reveal-zoom {
+    transform: scale(.9);
+}
+
+.reveal-blur {
+    transform: translateY(24px);
+    filter: blur(10px);
+}
+
+.reveal.visible,
+.reveal-up.visible,
+.reveal-left.visible,
+.reveal-right.visible,
+.reveal-zoom.visible,
+.reveal-blur.visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+}
+
+/* ══ 4. FLIP DE DÍGITOS DEL CONTADOR ══
+   Sólo se dispara sobre la unidad que realmente cambió. */
+.time-val {
+    display: inline-block;
+    transform-origin: 50% 50%;
+    backface-visibility: hidden;
+}
+
+.time-val.is-flipping {
+    animation: fx-digit-flip .55s var(--fx-ease-out);
+}
+
+@keyframes fx-digit-flip {
+    0% {
+        transform: rotateX(-88deg) translateY(-6px);
+        opacity: .15;
+        filter: brightness(2.2);
+    }
+
+    55% {
+        transform: rotateX(12deg) translateY(2px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotateX(0) translateY(0);
+        opacity: 1;
+        filter: brightness(1);
+    }
+}
+
+/* El bloque de segundos late suave para que el reloj se sienta vivo */
+.time-block {
+    perspective: 500px;
+}
+
+/* ══ 5. BARRIDO DE BRILLO ══
+   Para tarjetas y botones: una luz que cruza al pasar el mouse. */
+.fx-shine {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.fx-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -70%;
+    width: 45%;
+    height: 200%;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(100deg,
+            transparent 0%,
+            rgba(255, 255, 255, .04) 35%,
+            rgba(255, 255, 255, .22) 50%,
+            rgba(255, 255, 255, .04) 65%,
+            transparent 100%);
+    transform: skewX(-18deg) translateX(0);
+    opacity: 0;
+    transition: none;
+}
+
+.fx-shine:hover::after,
+.fx-shine:focus-visible::after {
+    opacity: 1;
+    animation: fx-sweep .85s var(--fx-ease-out);
+}
+
+@keyframes fx-sweep {
+    from {
+        transform: skewX(-18deg) translateX(0);
+    }
+
+    to {
+        transform: skewX(-18deg) translateX(420%);
+    }
+}
+
+/* ══ 6. ENTRADA DE PÁGINA ══
+   Aquí hubo una cortina que tapaba la pantalla al pulsar un enlace.
+   Se eliminó: para funcionar tenía que interceptar cada clic con
+   preventDefault y navegar a mano, lo que retrasaba la navegación,
+   sacaba la página del bfcache y hacía que el botón atrás recargara
+   todo desde cero. La navegación es la nativa del navegador.
+
+   Al cargar: el contenido entra desde un velo.
+   SÓLO opacidad, nunca transform. Un ancestro con transform convierte
+   todo position:fixed descendiente en position:absolute — el overlay de
+   bienvenida, el botón volver y el de música se descolocaban durante la
+   animación y saltaban a su sitio al terminar. */
+@keyframes fx-page-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+body.fx-enter {
+    animation: fx-page-in .6s ease-out both;
+}
+
+/* ══ 7. AURORA DE FONDO ══
+   Luz cálida que respira detrás del hero. Hereda el color de la página.
+   z-index -1: queda sobre el fondo del contenedor pero debajo del texto.
+   Requisito: el padre debe crear contexto de apilamiento
+   (position + z-index), como hace .hero. */
+.fx-aurora {
+    position: absolute;
+    inset: -20% -10%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: .55;
+    background:
+        radial-gradient(ellipse 42% 34% at 22% 32%, var(--fx-glow) 0%, transparent 64%),
+        radial-gradient(ellipse 38% 30% at 78% 62%, var(--fx-accent-2) 0%, transparent 62%);
+    filter: blur(58px) saturate(1.15);
+    animation: fx-aurora-drift 17s ease-in-out infinite alternate;
+}
+
+@keyframes fx-aurora-drift {
+    0% {
+        transform: translate3d(-2%, -1%, 0) scale(1);
+        opacity: .42;
+    }
+
+    50% {
+        transform: translate3d(3%, 2%, 0) scale(1.09);
+        opacity: .62;
+    }
+
+    100% {
+        transform: translate3d(-1%, 3%, 0) scale(1.03);
+        opacity: .48;
+    }
+}
+
+/* ══ 8. BOTÓN DE MÚSICA CON ECUALIZADOR ══
+   Se expande a pastilla cuando suena; las barras bailan.
+   common.js inyecta la estructura interna, el HTML de cada página no cambia. */
+.music-btn {
+    gap: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 52px;
+    transition:
+        width .45s var(--fx-ease),
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.music-btn.is-playing {
+    width: 92px;
+    gap: 7px;
+}
+
+.music-btn .fx-icon {
+    font-size: 1.35rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.music-btn .fx-eq {
+    display: none;
+    align-items: flex-end;
+    gap: 2.5px;
+    height: 15px;
+}
+
+.music-btn.is-playing .fx-eq {
+    display: flex;
+}
+
+.music-btn .fx-eq i {
+    display: block;
+    width: 3px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, .92);
+    transform-origin: bottom;
+    animation: fx-eq-bounce var(--spd, .7s) ease-in-out infinite alternate;
+}
+
+.music-btn .fx-eq i:nth-child(1) {
+    height: 5px;
+    --spd: .52s;
+}
+
+.music-btn .fx-eq i:nth-child(2) {
+    height: 12px;
+    --spd: .71s;
+    animation-delay: .1s;
+}
+
+.music-btn .fx-eq i:nth-child(3) {
+    height: 8px;
+    --spd: .61s;
+    animation-delay: .21s;
+}
+
+.music-btn .fx-eq i:nth-child(4) {
+    height: 15px;
+    --spd: .79s;
+    animation-delay: .05s;
+}
+
+@keyframes fx-eq-bounce {
+    from {
+        transform: scaleY(.3);
+        opacity: .6;
+    }
+
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+/* Halo que pulsa mientras suena */
+.music-btn.is-playing::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50px;
+    border: 1px solid var(--fx-glow);
+    animation: fx-halo 2.4s ease-out infinite;
+    pointer-events: none;
+}
+
+@keyframes fx-halo {
+    0% {
+        transform: scale(.9);
+        opacity: .8;
+    }
+
+    100% {
+        transform: scale(1.35);
+        opacity: 0;
+    }
+}
+
+/* ══ 9. BOTÓN VOLVER ══ */
+.back-btn {
+    overflow: hidden;
+}
+
+.back-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 20%, var(--fx-glow) 50%, transparent 80%);
+    transform: translateX(-120%);
+    transition: transform .6s var(--fx-ease-out);
+    pointer-events: none;
+}
+
+.back-btn:hover::before {
+    transform: translateX(120%);
+}
+
+.back-btn:hover {
+    letter-spacing: .4px;
+}
+
+/* ══ 10. TARJETAS CON RELIEVE ══
+   Brillo que sigue al cursor. common.js escribe --mx/--my.
+   OJO: .fx-spot ocupa ::before y .fx-shine ocupa ::after. No aplicarlas
+   a elementos que ya usen ese pseudo-elemento en style.css
+   (p. ej. .visit-card usa ::before, .promise-card usa ambos). */
+.fx-spot {
+    position: relative;
+}
+
+.fx-spot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle 220px at var(--mx, 50%) var(--my, 50%),
+            var(--fx-glow) 0%,
+            transparent 70%);
+    opacity: 0;
+    transition: opacity .35s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.fx-spot:hover::before {
+    opacity: .38;
+}
+
+/* Sobre tarjetas con foto el halo debe ser un roce, no un velo:
+   se apoya encima de la imagen y la lavaría si fuera más fuerte. */
+.card.fx-spot::before,
+.bn-card.fx-spot::before {
+    mix-blend-mode: screen;
+}
+
+.card.fx-spot:hover::before,
+.bn-card.fx-spot:hover::before {
+    opacity: .2;
+}
+
+/* Sin cursor (táctil) no hay halo que seguir */
+@media (hover: none) {
+
+    .fx-spot::before,
+    .fx-shine::after {
+        display: none;
+    }
+}
+
+/* ══ 11. UTILIDADES ══ */
+
+/* Flotación suave e infinita */
+.fx-float {
+    animation: fx-float 6s ease-in-out infinite;
+}
+
+@keyframes fx-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+/* Latido para emojis y sellos */
+.fx-beat {
+    animation: fx-beat 2.6s ease-in-out infinite;
+}
+
+@keyframes fx-beat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    14% {
+        transform: scale(1.13);
+    }
+
+    28% {
+        transform: scale(1);
+    }
+
+    42% {
+        transform: scale(1.08);
+    }
+}
+
+/* Texto con brillo que recorre el degradado */
+.fx-shimmer {
+    background-size: 220% auto;
+    animation: fx-shimmer 6s linear infinite;
+}
+
+@keyframes fx-shimmer {
+    to {
+        background-position: 220% center;
+    }
+}
+
+/* Foco visible y accesible en todo lo interactivo */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--fx-accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+}

@@ -1,0 +1,388 @@
+/* ══════════════════════════════════════════════════════════════════════
+   RECETA.CSS — la encimera del mes 7.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.rc-hero {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(84px, 16vw, 130px) clamp(20px, 6vw, 28px) clamp(20px, 5vw, 32px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--e2);
+}
+
+.rc-ceja {
+    font-size: var(--t-ceja);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+}
+
+.rc-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--t-h1);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -.012em;
+    text-wrap: balance;
+    background: linear-gradient(112deg,
+            var(--p-realce) 0%,
+            color-mix(in srgb, var(--p-realce) 55%, #fff) 40%,
+            var(--p-realce-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 18px color-mix(in srgb, var(--p-halo) 60%, transparent));
+}
+
+.rc-sub {
+    font-size: var(--t-cuerpo);
+    line-height: 1.75;
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+    max-width: 46ch;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   ENCIMERA + OLLA
+   ══════════════════════════════════════════════════════════════════════ */
+.rc-cocina {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 6vw, 28px) clamp(24px, 5vw, 32px);
+    display: grid;
+    gap: var(--e3);
+}
+
+.rc-panel {
+    padding: clamp(20px, 4.5vw, 30px);
+    border-radius: var(--p-radio);
+    border: 1px solid var(--p-borde);
+    background:
+        linear-gradient(165deg,
+            var(--p-vidrio-alto) 0%,
+            var(--p-vidrio) 46%,
+            color-mix(in srgb, var(--p-fondo) 82%, transparent) 100%);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 9%, transparent) inset,
+        0 18px 46px -18px var(--p-sombra);
+    backdrop-filter: blur(14px) saturate(1.15);
+    -webkit-backdrop-filter: blur(14px) saturate(1.15);
+}
+
+.rc-panel-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--p-tinta);
+    margin-bottom: var(--e2);
+}
+
+/* ── Encimera: los ingredientes disponibles ── */
+.rc-encimera {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.rc-chip {
+    min-height: 44px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--p-borde);
+    background: color-mix(in srgb, var(--p-fondo) 55%, transparent);
+    color: var(--p-tinta);
+    font-family: 'Poppins', sans-serif;
+    font-size: .85rem;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: transform .3s var(--sal), border-color .3s var(--calma), box-shadow .3s var(--calma);
+}
+
+.rc-chip:hover {
+    border-color: var(--p-borde-vivo);
+    transform: translateY(-2px);
+}
+
+.rc-chip:active {
+    cursor: grabbing;
+}
+
+.rc-chip--arrastrando {
+    position: fixed;
+    z-index: 60;
+    top: 0;
+    left: 0;
+    cursor: grabbing;
+    box-shadow: 0 20px 40px -14px rgba(0, 0, 0, .6);
+    transform: scale(1.04) rotate(-1.5deg);
+    pointer-events: none;
+}
+
+.rc-chip--secreto {
+    border-color: var(--p-borde-vivo);
+    background: color-mix(in srgb, var(--p-realce-2) 16%, transparent);
+    color: color-mix(in srgb, var(--p-realce-2) 90%, #fff);
+}
+
+.rc-chip--aparece {
+    animation: rc-brota .55s var(--sal);
+}
+
+@keyframes rc-brota {
+    from {
+        opacity: 0;
+        transform: scale(.85) translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ── La olla ── */
+.rc-olla {
+    min-height: 120px;
+    border-radius: calc(var(--p-radio) - 4px);
+    border: 1px dashed var(--p-borde-vivo);
+    background: color-mix(in srgb, var(--p-realce) 6%, transparent);
+    padding: var(--e2);
+    transition: background .3s var(--calma), border-color .3s var(--calma);
+}
+
+.rc-olla-vacio {
+    text-align: center;
+    padding: var(--e3) 0;
+    color: var(--p-tinta-2);
+    font-size: .88rem;
+}
+
+.rc-olla-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rc-ingrediente-olla {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--p-fondo) 50%, transparent);
+    font-size: .88rem;
+    color: var(--p-tinta);
+    animation: rc-brota .4s var(--sal);
+}
+
+.rc-quitar {
+    flex: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--p-tinta-2);
+    cursor: pointer;
+    font-size: .8rem;
+    transition: color .25s var(--calma), background .25s var(--calma);
+}
+
+.rc-quitar:hover {
+    color: var(--p-realce);
+    background: color-mix(in srgb, var(--p-realce) 14%, transparent);
+}
+
+.rc-cocinar-fila {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--e2);
+}
+
+.rc-cocinar {
+    padding: 13px 36px;
+    border-radius: 999px;
+    border: 1px solid var(--p-borde-vivo);
+    background: linear-gradient(140deg, var(--p-realce), var(--p-realce-2));
+    color: #1b0f06;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: .95rem;
+    cursor: pointer;
+    transition: transform .32s var(--sal), box-shadow .35s var(--calma), opacity .3s var(--calma);
+}
+
+.rc-cocinar:not(:disabled):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px -12px var(--p-halo);
+}
+
+.rc-cocinar:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   RESULTADO Y VALE — pensado para imprimirse
+   ══════════════════════════════════════════════════════════════════════ */
+.rc-resultado {
+    animation: rc-brota .6s var(--sal);
+}
+
+.rc-resultado-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--t-h2);
+    text-align: center;
+    background: linear-gradient(112deg, var(--p-realce), var(--p-realce-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: var(--e2);
+}
+
+.rc-resultado-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    list-style: none;
+    margin-bottom: var(--e3);
+    padding: 0;
+}
+
+.rc-resultado-lista li {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--p-fondo) 50%, transparent);
+    border: 1px solid var(--p-borde);
+    font-size: .78rem;
+    color: var(--p-tinta-2);
+}
+
+.rc-vale {
+    margin-top: var(--e3);
+    padding: var(--e3);
+    border-radius: calc(var(--p-radio) - 4px);
+    border: 1px dashed var(--p-borde-vivo);
+    text-align: center;
+}
+
+.rc-vale-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+    margin-bottom: 6px;
+}
+
+.rc-vale-texto {
+    font-size: .9rem;
+    line-height: 1.6;
+    color: var(--p-tinta-2);
+    margin-bottom: var(--e2);
+}
+
+.rc-vale-fila {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: .85rem;
+    color: var(--p-tinta-2);
+}
+
+.rc-vale-fecha {
+    min-height: 40px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--p-borde);
+    background: color-mix(in srgb, var(--p-fondo) 60%, transparent);
+    color: var(--p-tinta);
+    font-family: 'Poppins', sans-serif;
+    font-size: .85rem;
+}
+
+.rc-imprimir {
+    display: block;
+    margin: var(--e3) auto 0;
+    padding: 10px 24px;
+    min-height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--p-borde);
+    background: transparent;
+    color: var(--p-tinta-2);
+    font-family: 'Poppins', sans-serif;
+    font-size: .82rem;
+    cursor: pointer;
+    transition: color .3s var(--calma), border-color .3s var(--calma);
+}
+
+.rc-imprimir:hover {
+    color: var(--p-realce);
+    border-color: var(--p-borde-vivo);
+}
+
+.rc-digito {
+    margin-top: var(--e3);
+    padding-top: var(--e2);
+    border-top: 1px dashed var(--p-borde);
+    text-align: center;
+    font-size: .78rem;
+    letter-spacing: .04em;
+    color: var(--p-tinta-2);
+}
+
+.rc-digito strong {
+    color: var(--p-realce);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   IMPRESIÓN — la receta y el vale son lo único que sale en papel.
+   ══════════════════════════════════════════════════════════════════════ */
+@media print {
+
+    .back-btn,
+    .rc-hero,
+    .rc-panel:not(.rc-resultado),
+    .petals-wrap,
+    footer,
+    .rc-imprimir,
+    .rc-digito {
+        display: none !important;
+    }
+
+    body {
+        background: #fff !important;
+        color: #1a1208 !important;
+    }
+
+    .rc-resultado-nombre,
+    .rc-vale-titulo {
+        -webkit-text-fill-color: #1a1208 !important;
+        background: none !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .rc-chip--aparece,
+    .rc-ingrediente-olla,
+    .rc-resultado {
+        animation: none;
+    }
+}

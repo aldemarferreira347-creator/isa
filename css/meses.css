@@ -1,0 +1,799 @@
+/* ══════════════════════════════════════════════════════════════════════
+   MESES.CSS — el hilo del año.
+
+   El menú de arriba son puertas sueltas: nueve cosas que existen a la vez.
+   Esto es lo contrario, y por eso no puede parecerse a una rejilla de
+   tarjetas. Un año es UNA sola cosa que avanza, así que se dibuja como
+   un hilo vertical que se va llenando: lo vivido brilla, lo que falta
+   queda en trazo discontinuo. De un vistazo se ve cuánto se ha caminado
+   y cuánto queda.
+
+   Consume los tokens de sistema.css (--p-*, --e*, --ent/--sal/--calma).
+   Carga DESPUÉS de sistema.css.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.meses {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: clamp(20px, 6vw, 56px) clamp(16px, 5vw, 24px) clamp(40px, 9vw, 88px);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   1 · LA CABECERA — la única parte visible con el hilo plegado.
+   Tiene que valer por sí sola: dice cuántos van, cuál sigue y cuánto
+   falta. Si no invita a abrirse, el resto no existe.
+   ══════════════════════════════════════════════════════════════════════ */
+.meses-cab {
+    /* Es un <button>: hereda tipografías del sistema, no del agente. */
+    font-family: inherit;
+    color: inherit;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: clamp(14px, 4vw, 26px);
+    text-align: left;
+    cursor: pointer;
+    padding: clamp(18px, 4.5vw, 26px) clamp(18px, 4.5vw, 30px);
+    border-radius: var(--p-radio);
+    border: 1px solid var(--p-borde);
+    background:
+        linear-gradient(165deg,
+            var(--p-vidrio-alto) 0%,
+            var(--p-vidrio) 46%,
+            color-mix(in srgb, var(--p-fondo) 82%, transparent) 100%);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 9%, transparent) inset,
+        0 18px 46px -18px var(--p-sombra);
+    backdrop-filter: blur(14px) saturate(1.15);
+    -webkit-backdrop-filter: blur(14px) saturate(1.15);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+        border-color .4s var(--calma),
+        box-shadow .45s var(--calma),
+        transform .45s var(--sal);
+}
+
+/* Barnizado de luz que cruza al pasar por encima. Decoración pura:
+   nunca intercepta el clic del botón que lo contiene. */
+.meses-cab::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%),
+            color-mix(in srgb, var(--p-realce) 13%, transparent) 0%,
+            transparent 62%);
+    opacity: 0;
+    transition: opacity .5s var(--calma);
+}
+
+.meses-cab:hover::before,
+.meses-cab:focus-visible::before {
+    opacity: 1;
+}
+
+.meses-cab:hover,
+.meses-cab:focus-visible {
+    border-color: var(--p-borde-vivo);
+    transform: translateY(-2px);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 15%, transparent) inset,
+        0 28px 62px -22px var(--p-sombra),
+        0 0 48px -14px var(--p-halo);
+}
+
+.meses-cab:active {
+    transform: translateY(0) scale(.995);
+}
+
+.meses-cab-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.meses-ceja {
+    font-size: var(--t-ceja);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+}
+
+.meses-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 5vw, 2.1rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -.012em;
+    background: linear-gradient(112deg,
+            var(--p-realce) 0%,
+            color-mix(in srgb, var(--p-realce) 55%, #fff) 40%,
+            var(--p-realce-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.meses-sub {
+    font-size: var(--t-menudo);
+    line-height: 1.55;
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+}
+
+/* Lo que sigue, en su propio renglón y con el acento del tema: es el dato
+   por el que alguien vuelve a esta página. */
+.meses-proximo {
+    font-size: var(--t-menudo);
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 85%, #fff);
+    letter-spacing: .01em;
+}
+
+/* Aquí llegó a haber un quinto renglón («Desplegar el año ▾»). Se quitó:
+   la cabecera ya lleva ceja, título, subtítulo y el mes que viene, y la
+   flecha del anillo —que gira al abrir— ya dice que esto se despliega.
+   Un renglón más era competencia, no ayuda. */
+
+
+/* ── El anillo de progreso ──
+   Un número solo («4/12») no dice nada del tamaño de lo que falta.
+   El arco sí: se ve de un vistazo que apenas va un tercio. */
+.meses-anillo {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: clamp(64px, 17vw, 84px);
+    aspect-ratio: 1;
+    flex: none;
+}
+
+.meses-anillo svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* empieza arriba, no a las 3 en punto */
+    transform: rotate(-90deg);
+    overflow: visible;
+}
+
+.meses-anillo-fondo {
+    fill: none;
+    stroke: color-mix(in srgb, var(--p-tinta-2) 22%, transparent);
+    stroke-width: 3;
+}
+
+.meses-anillo-trazo {
+    fill: none;
+    stroke: url(#mesesArco);
+    stroke-width: 3;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 6px var(--p-halo));
+    transition: stroke-dashoffset 1.1s var(--ent);
+}
+
+.meses-cuenta {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(.92rem, 3vw, 1.08rem);
+    font-weight: 700;
+    color: var(--p-realce);
+    letter-spacing: .01em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    z-index: 1;
+}
+
+/* La flecha: gira al abrir. Vive en el anillo, pegada abajo, para no
+   pedir una tercera columna en móvil. */
+.meses-flecha {
+    position: absolute;
+    bottom: -14px;
+    left: 50%;
+    translate: -50% 0;
+    font-size: .72rem;
+    line-height: 1;
+    color: color-mix(in srgb, var(--p-realce) 70%, transparent);
+    transition: rotate .45s var(--sal), color .3s var(--calma);
+}
+
+.meses--abierta .meses-flecha {
+    rotate: 180deg;
+    color: var(--p-realce);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   2 · EL PANEL QUE SE DESPLIEGA
+   grid-template-rows 0fr → 1fr: la única manera de animar una altura
+   que no se conoce de antemano sin medirla con JS (y sin que se corte
+   al girar el teléfono o cambiar el tamaño de la ventana).
+   ══════════════════════════════════════════════════════════════════════ */
+.meses-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .62s var(--ent);
+}
+
+.meses--abierta .meses-panel {
+    grid-template-rows: 1fr;
+}
+
+.meses-panel>div {
+    overflow: hidden;
+    min-height: 0;
+}
+
+.meses-hilo {
+    /* Es una <ol>: doce cosas en un orden que importa. Se le quitan los
+       marcadores porque el número ya está dibujado en cada nodo. */
+    list-style: none;
+    margin: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    padding: clamp(22px, 5vw, 32px) 0 4px;
+    --gap: clamp(6px, 1.6vw, 10px);
+    --carril: clamp(34px, 9vw, 42px);
+    /* El relleno lateral de cada fila. Vive aquí y no suelto dentro de
+       `.mes` porque el hilo TIENE que conocerlo: es lo que separa el
+       borde de la fila del centro del nodo por el que pasa la línea. */
+    --pad-x: clamp(13px, 3.4vw, 18px);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   EL HILO
+   Aquí hubo una sola línea larga dibujada sobre el contenedor, con la
+   altura calculada a mano. No funcionaba: cada mes mide distinto (unos
+   llevan dos renglones de descripción y otros uno), así que ninguna
+   fórmula acertaba dónde caía el centro de cada nodo.
+
+   Ahora el hilo son DOS TRAMOS POR FILA: uno que entra desde medio hueco
+   más arriba hasta el centro de la fila, y otro que sale del centro
+   hasta medio hueco más abajo. Los tramos de dos filas seguidas se
+   encuentran exactos en mitad del hueco, midan lo que midan las filas.
+
+   Los tramos van sobre el <li>, NO sobre la superficie interactiva.
+   Dos razones: el <li> no tiene relleno ni borde, así que la geometría
+   es limpia; y el desplazamiento del hover ocurre dentro de la
+   superficie sin arrastrar consigo la línea.
+
+   La coordenada horizontal es la parte delicada. Un elemento absoluto
+   se posiciona contra la caja de RELLENO de su ancla, pero la columna
+   del nodo empieza DESPUÉS del relleno de `.mes`. Con `--carril / 2` a
+   secas la línea salía desplazada a la izquierda tantos píxeles como
+   relleno tuviera la fila (12 en móvil, 18 en escritorio) y no pasaba
+   por el centro de los círculos. De ahí que aquí se sumen el relleno y
+   el borde de la superficie.
+
+   `bottom: 50%` funciona porque el relleno vertical de `.mes` es
+   simétrico y va centrado: el centro de la fila ES el centro del nodo.
+
+   De paso, el hilo no se llena «hasta un punto»: se enciende MES A MES.
+   Lo vivido va encendido, lo que falta va en trazo discontinuo, y el mes
+   que viene recibe el degradado que apaga la luz.
+   ══════════════════════════════════════════════════════════════════════ */
+.mes-item {
+    position: relative;
+    /* 1px = el borde transparente de `.mes`, que existe para que al
+       encenderse en hover no empuje el contenido. */
+    --hilo-x: calc(1px + var(--pad-x) + var(--carril) / 2);
+}
+
+.mes-item::before,
+.mes-item::after {
+    content: '';
+    position: absolute;
+    left: var(--hilo-x);
+    translate: -50% 0;
+    width: 2px;
+    pointer-events: none;
+    background: repeating-linear-gradient(180deg,
+            color-mix(in srgb, var(--p-tinta-2) 30%, transparent) 0 5px,
+            transparent 5px 11px);
+}
+
+/* Medio hueco MÁS 1 px de solape: sin él, el redondeo a subpíxeles deja
+   una juntura visible entre el tramo de salida de una fila y el de
+   entrada de la siguiente. Solapar un píxel no se ve; el corte, sí. */
+
+/* tramo de entrada: medio hueco por encima → centro de la fila */
+.mes-item::before {
+    top: calc(var(--gap) / -2 - 1px);
+    bottom: 50%;
+}
+
+/* tramo de salida: centro de la fila → medio hueco por debajo */
+.mes-item::after {
+    top: 50%;
+    bottom: calc(var(--gap) / -2 - 1px);
+}
+
+/* El año no empieza antes del primer mes ni sigue después del último */
+.mes-item:first-child::before,
+.mes-item:last-child::after {
+    display: none;
+}
+
+/* Lo caminado: continuo y encendido */
+.mes-item:has(.mes--abierto)::before,
+.mes-item:has(.mes--abierto)::after {
+    background: linear-gradient(180deg, var(--p-realce), var(--p-realce-2));
+    box-shadow: 0 0 12px -1px var(--p-halo);
+}
+
+/* Un mes cuyo día llegó pero cuya página todavía no: el hilo pasa, pero
+   sin encenderse del todo. Ni apagado (ese mes existió) ni encendido
+   (todavía no se puede entrar). */
+.mes-item:has(.mes--camino)::before,
+.mes-item:has(.mes--camino)::after {
+    background: linear-gradient(180deg,
+            color-mix(in srgb, var(--p-realce) 42%, transparent),
+            color-mix(in srgb, var(--p-realce-2) 42%, transparent));
+    box-shadow: none;
+}
+
+/* El punto exacto donde se acaba lo vivido: la luz se apaga dentro del
+   tramo, no de golpe en un borde. */
+.mes-item:has(.mes--siguiente)::before {
+    background: linear-gradient(180deg,
+            var(--p-realce-2) 0%,
+            color-mix(in srgb, var(--p-tinta-2) 30%, transparent) 100%);
+    box-shadow: none;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   3 · CADA MES
+   ══════════════════════════════════════════════════════════════════════ */
+.mes {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--carril) 1fr auto;
+    align-items: center;
+    gap: clamp(12px, 3.2vw, 18px);
+    padding: clamp(12px, 3vw, 15px) var(--pad-x);
+    border-radius: calc(var(--p-radio) * .72);
+    border: 1px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    isolation: isolate;
+    transition:
+        background-color .38s var(--calma),
+        border-color .38s var(--calma);
+}
+
+/* Entrada en cascada al desplegar: el año se dibuja de arriba abajo,
+   igual que se vivió. Va sobre el <li> para que arrastre consigo los dos
+   tramos de hilo — si sólo entrara la superficie, la línea aparecería
+   entera desde el primer fotograma y el efecto se perdería. */
+.meses--abierta .mes-item {
+    animation: mes-entra .55s var(--ent) both;
+    animation-delay: calc(var(--i) * 55ms + 120ms);
+}
+
+@keyframes mes-entra {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+/* ── El nodo sobre el hilo ── */
+.mes-nodo {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: var(--carril);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    /* Tapa el hilo por detrás para que el trazo no cruce el número */
+    background:
+        radial-gradient(circle at 50% 50%,
+            var(--p-fondo) 0 58%,
+            transparent 100%),
+        var(--p-fondo);
+    border: 1px solid color-mix(in srgb, var(--c, var(--p-realce)) 42%, transparent);
+    transition:
+        border-color .4s var(--calma),
+        box-shadow .45s var(--calma),
+        transform .45s var(--sal);
+}
+
+.mes-nodo-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(.82rem, 2.7vw, .95rem);
+    font-weight: 700;
+    line-height: 1;
+    color: color-mix(in srgb, var(--c, var(--p-realce)) 78%, #fff);
+    font-variant-numeric: tabular-nums;
+}
+
+.mes--abierto .mes-nodo {
+    box-shadow:
+        0 0 0 3px color-mix(in srgb, var(--c) 12%, transparent),
+        0 0 18px -4px color-mix(in srgb, var(--c) 55%, transparent);
+}
+
+.mes--cerrado .mes-nodo {
+    border-style: dashed;
+    border-color: color-mix(in srgb, var(--p-tinta-2) 30%, transparent);
+}
+
+.mes--cerrado .mes-nodo-num {
+    color: color-mix(in srgb, var(--p-tinta-2) 78%, transparent);
+}
+
+/* En camino: sólido pero a media luz. Ni la línea llena del abierto ni
+   el discontinuo del cerrado. */
+.mes--camino .mes-nodo {
+    border-color: color-mix(in srgb, var(--c) 30%, transparent);
+}
+
+.mes--camino .mes-nodo-num {
+    color: color-mix(in srgb, var(--c) 52%, var(--p-tinta-2));
+}
+
+
+/* ── El texto ── */
+.mes-cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+    transition: transform .42s var(--sal);
+}
+
+.mes-fila {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.mes-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 3.4vw, 1.14rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: color-mix(in srgb, var(--c, var(--p-realce)) 70%, #fff);
+    transition: color .35s var(--calma);
+}
+
+/* En un mes cerrado el sitio del título lo ocupa la PISTA — es lo único
+   que hay de verdad que leer, y es distinta en cada mes. Antes ahí iba
+   «Todavía no» en los ocho: ocho renglones seguidos con la misma cadena
+   convertían dos tercios del año en una lista de clones.
+
+   Va en cursiva y a media luz para que se lea como un susurro y no
+   compita con los cuatro títulos de verdad que hay más arriba. */
+.mes--cerrado .mes-titulo {
+    font-style: italic;
+    font-weight: 400;
+    color: color-mix(in srgb, var(--p-tinta-2) 92%, var(--p-tinta));
+}
+
+/* El que viene se lee un punto más claro que los otros siete: es el
+   único de los cerrados que importa hoy. */
+.mes--siguiente .mes-titulo {
+    color: color-mix(in srgb, var(--p-realce) 52%, var(--p-tinta));
+}
+
+.mes--camino .mes-titulo {
+    color: color-mix(in srgb, var(--c) 52%, var(--p-tinta));
+}
+
+.mes-fecha {
+    font-size: .68rem;
+    letter-spacing: .13em;
+    font-variant-numeric: tabular-nums;
+    color: color-mix(in srgb, var(--p-tinta-2) 72%, transparent);
+    white-space: nowrap;
+}
+
+.mes-desc {
+    font-size: clamp(.76rem, 2.5vw, .84rem);
+    line-height: 1.5;
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+}
+
+/* Debajo de la pista va cuánto falta. Es un dato real, cambia cada día
+   que ella entra y dibuja la forma del año que queda mejor que
+   cualquier frase de relleno. Tabular para que la cifra no baile. */
+.mes--cerrado .mes-desc {
+    font-size: .72rem;
+    letter-spacing: .09em;
+    text-transform: lowercase;
+    font-variant-numeric: tabular-nums;
+    /* 64 % daba 4,20 : 1 sobre el fondo del tema y AA pide 4,5 a este
+       tamaño. Con 78 % pasa a 5,3 : 1 y sigue leyéndose como un dato
+       secundario, que es lo que es. */
+    color: color-mix(in srgb, var(--p-tinta-2) 78%, transparent);
+}
+
+.mes--siguiente .mes-desc {
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 72%, var(--p-tinta-2));
+}
+
+
+/* ── La marca del final (icono, candado o puntos) ── */
+.mes-marca {
+    font-size: clamp(1.15rem, 3.6vw, 1.32rem);
+    line-height: 1;
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, .45));
+    transition: transform .45s var(--sal), opacity .35s var(--calma);
+}
+
+.mes--cerrado .mes-marca {
+    opacity: .34;
+    filter: grayscale(1);
+    font-size: clamp(.9rem, 3vw, 1rem);
+}
+
+/* Los tres puntos del mes en camino laten muy despacio: es un «se está
+   montando», no un «no existe». */
+.mes--camino .mes-marca {
+    font-size: 1.1rem;
+    filter: none;
+    /* Es decorativo (aria-hidden) y lo que dice ya está en el texto de la
+       fila, pero a 60 % se quedaba en 4,48 : 1 — a un pelo del mínimo. Por
+       dos puntos de mezcla no vale la pena dejarlo por debajo. */
+    color: color-mix(in srgb, var(--c) 78%, transparent);
+    animation: mes-camino 2.6s var(--calma) infinite;
+}
+
+@keyframes mes-camino {
+
+    0%,
+    100% {
+        opacity: .5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* ── Estados de un mes abierto ── */
+.mes--abierto {
+    cursor: pointer;
+}
+
+/* El desplazamiento va en el TEXTO, no en la fila entera: mover `.mes`
+   arrastraría el fondo y el borde con él y la fila se saldría de su
+   sitio cada vez que el ratón pasa por encima. */
+.mes--abierto:hover,
+.mes--abierto:focus-visible {
+    background: color-mix(in srgb, var(--c) 9%, transparent);
+    border-color: color-mix(in srgb, var(--c) 34%, transparent);
+}
+
+.mes--abierto:hover .mes-cuerpo,
+.mes--abierto:focus-visible .mes-cuerpo {
+    transform: translateX(5px);
+}
+
+.mes--abierto:hover .mes-nodo,
+.mes--abierto:focus-visible .mes-nodo {
+    transform: scale(1.1);
+    border-color: var(--c);
+    box-shadow:
+        0 0 0 4px color-mix(in srgb, var(--c) 16%, transparent),
+        0 0 26px -3px color-mix(in srgb, var(--c) 70%, transparent);
+}
+
+.mes--abierto:hover .mes-marca,
+.mes--abierto:focus-visible .mes-marca {
+    transform: translateX(3px) scale(1.12);
+}
+
+.mes--abierto:hover .mes-titulo,
+.mes--abierto:focus-visible .mes-titulo {
+    color: color-mix(in srgb, var(--c) 88%, #fff);
+}
+
+.mes--abierto:active .mes-cuerpo {
+    transform: translateX(3px);
+}
+
+.mes:focus-visible {
+    outline: 2px solid var(--c, var(--p-realce));
+    outline-offset: 3px;
+}
+
+
+/* ── El que viene ──
+   Late muy despacio. Es el único nodo del hilo que se mueve solo: marca
+   dónde está el presente sin necesidad de escribirlo. */
+.mes--siguiente .mes-nodo {
+    border-color: color-mix(in srgb, var(--p-realce) 46%, transparent);
+    border-style: solid;
+}
+
+.mes--siguiente .mes-nodo::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--p-realce) 42%, transparent);
+    animation: mes-latido 3.2s var(--calma) infinite;
+    pointer-events: none;
+}
+
+@keyframes mes-latido {
+    0% {
+        opacity: .75;
+        transform: scale(.94);
+    }
+
+    65% {
+        opacity: 0;
+        transform: scale(1.4);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.4);
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   3 bis · MODO DE PRUEBA
+   Sólo existe en el DOM mientras `MODO_PRUEBA` (js/meses.js) esté en
+   `true`. Deliberadamente llamativo — un aviso discreto es fácil de
+   dejarse encendido sin querer.
+   ══════════════════════════════════════════════════════════════════════ */
+.meses-modoPrueba {
+    margin: 0 0 var(--e3);
+    padding: 12px 16px;
+    border: 1px dashed color-mix(in srgb, var(--p-realce) 55%, transparent);
+    border-radius: 12px;
+    font-size: .78rem;
+    line-height: 1.55;
+    color: color-mix(in srgb, var(--p-realce) 92%, #fff);
+    background: color-mix(in srgb, var(--p-realce) 12%, transparent);
+}
+
+.meses-modoPrueba code {
+    font-family: ui-monospace, 'Courier New', monospace;
+    font-size: .92em;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--p-fondo) 55%, transparent);
+}
+
+/* Las filas que sólo se ven abiertas por el modo de prueba (no porque su
+   día haya llegado de verdad) llevan un borde punteado del color del
+   mes: ni el brillo sólido de un mes abierto, ni el trazo gris de uno
+   cerrado — un tercer estado a propósito distinto de los otros dos. */
+.mes--prueba {
+    border-style: dashed;
+    border-color: color-mix(in srgb, var(--c) 42%, transparent);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   4 · SIN JAVASCRIPT
+   El hilo se dibuja por JS. Si no corre, al menos que las puertas
+   abiertas sigan siendo alcanzables.
+   ══════════════════════════════════════════════════════════════════════ */
+.meses-sinjs {
+    margin-top: var(--e3);
+    padding: var(--e3);
+    border: 1px dashed var(--p-borde);
+    border-radius: var(--p-radio);
+    font-size: var(--t-menudo);
+    color: var(--p-tinta-2);
+    line-height: 2;
+}
+
+.meses-sinjs a {
+    color: var(--p-realce);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   5 · MÓVIL
+   ══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 520px) {
+    .meses-hilo {
+        --pad-x: 12px;
+    }
+
+    .mes {
+        gap: 11px;
+    }
+
+    .mes-fila {
+        gap: 7px;
+    }
+
+    /* El emoji de cada mes no aporta nada en 360 px: se cambia por una
+       flecha, que sí dice algo (esto se puede abrir). */
+    .mes-marca {
+        font-size: .82rem;
+        filter: none;
+    }
+
+    .mes--abierto .mes-marca {
+        /* oculta el emoji, deja sitio a la flecha */
+        font-size: 0;
+        color: color-mix(in srgb, var(--c) 60%, transparent);
+    }
+
+    .mes--abierto .mes-marca::after {
+        content: '→';
+        font-size: .84rem;
+    }
+}
+
+/* En pantallas táctiles el hover no llega nunca: el desplazamiento
+   lateral al pulsar es la única confirmación de que algo pasó. */
+@media (hover: none) {
+    .mes--abierto:active {
+        background: color-mix(in srgb, var(--c) 12%, transparent);
+    }
+
+    .mes--abierto:active .mes-cuerpo {
+        transform: translateX(4px);
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   6 · MOVIMIENTO REDUCIDO
+   Se van los latidos, las cascadas y el crecimiento del hilo. Se quedan
+   los cambios de estado, que son información, no adorno.
+   ══════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+
+    .meses-panel,
+    .meses-anillo-trazo {
+        transition-duration: .01ms;
+    }
+
+    .meses--abierta .mes-item,
+    .mes--siguiente .mes-nodo::after,
+    .mes--camino .mes-marca {
+        animation: none;
+    }
+
+    .mes--camino .mes-marca {
+        opacity: .7;
+    }
+
+    .mes--abierto:hover .mes-cuerpo {
+        transform: none;
+    }
+
+    .mes--siguiente .mes-nodo::after {
+        opacity: .5;
+        transform: none;
+    }
+
+    .meses-cab:hover {
+        transform: none;
+    }
+}

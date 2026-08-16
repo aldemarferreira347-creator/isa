@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dedicatoria — Feliz Día de la Mujer 💜</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+</head>
+
+<body class="tema-dedicatoria">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <!-- Falling petals -->
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="quest-section reveal-zoom" id="interactive-quest">
+        <div class="quest-box" id="questBox">
+            <div id="questContent">
+                <p class="quest-text" id="questText">Hola corazón ❣️<br>¿Sabes por qué me gustas? 😊</p>
+                <div class="quest-btns" id="questBtns">
+                    <button class="quest-btn btn-primary" onclick="handleQuest('si')">Sí</button>
+                    <button class="quest-btn btn-secondary" onclick="handleQuest('no')">No</button>
+                </div>
+                <ul class="quest-list" id="razonesList">
+                    <li>✨ Eres muy amable y considerada.</li>
+                    <li>✨ Tienes una sonrisa que ilumina mi día.</li>
+                    <li>✨ Me encanta tu sentido del humor.</li>
+                    <li>✨ Eres muy inteligente y creativa.</li>
+                    <li>✨ Siempre sabes cómo hacerme sentir mejor.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="winner-section reveal-up">
+        <div class="winner-box" id="winnerBox">
+            <div class="winner-dec-flower flower-1">🌼</div>
+            <div class="winner-dec-flower flower-2">🌻</div>
+            <div class="winner-dec-flower flower-3">🌼</div>
+            <div class="winner-dec-heart heart-1">💖</div>
+            <div class="winner-dec-heart heart-2">💕</div>
+            <div class="winner-dec-heart heart-3">💗</div>
+
+            <h2 class="winner-title" id="winnerTitle">La ganadora del puesto número 1 es:</h2>
+            <div class="winner-loader" id="winnerLoader">
+                <div class="spinner"></div>
+                <div class="winner-loading-text">Cargando...</div>
+            </div>
+            <div class="winner-message" id="winnerMessage">
+                La ganadora del puesto número 1 de mi corazón es:
+                <span class="winner-focus">Isabela Quiñonez González ❣️</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="isa-section reveal-up">
+        <div class="isa-box" id="isaBox">
+            <h2 class="isa-title">Para Isabelita ❤️</h2>
+            <div class="isa-content">
+                <p class="isa-question" id="isaQuestion">Isa, ¿me quieres? ❤️</p>
+                <div class="isa-btns" id="isaBtns">
+                    <button class="isa-btn ibtn-si" id="isaBtnSi">Sí 💛</button>
+                    <button class="isa-btn ibtn-no" id="isaBtnNo">No 💔</button>
+                </div>
+                <div class="isa-message" id="isaMessage"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ HEART ═══ -->
+    <section class="heart-section reveal-zoom">
+        <div class="heart-box" id="heartBox">
+            <p class="heart-question">¿Quieres un corazón? ❣️</p>
+            <div class="heart-btns">
+                <button class="hbtn hbtn-yes" id="btnSi">Sí 💛</button>
+                <button class="hbtn hbtn-no" id="btnNo">No 💔</button>
+            </div>
+            <pre class="heart-art" id="heartArt"></pre>
+            <p class="heart-ok" id="heartOk"></p>
+        </div>
+    </section>
+
+    <!-- ═══ CLOSING ═══ -->
+    <section class="closing">
+        <h2 class="reveal-up">Hoy celebro a la mujer<br>que me hace mejor persona</h2>
+        <p class="reveal-up">
+            No sé cómo llamar exactamente lo que somos, pero sé que eres
+            de las pocas personas en las que confío con todo. Feliz día, hermosa.
+            Ojalá siempre tengas recuerdos, alegrías, y sonrisas tan bonitas como las tuyas.
+        </p>
+        <div class="closing-hearts">isabela❣️</div>
+    </section>
+
+    <audio id="bgMusic" autoplay loop>
+        <source src="music/incondicional.mp3" type="audio/mpeg">
+    </audio>
+    <button class="music-btn" id="musicBtn" title="Play / Pause">▶️</button>
+
+    <footer>
+        <p>Hecho por Carlo</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/dedicatoria.js"></script>
+    <script>initBgMusic(20);</script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

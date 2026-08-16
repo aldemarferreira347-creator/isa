@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#160b06" />
+    <title>Receta para Dos — Mes 7 ❋</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+    <link rel="stylesheet" href="css/receta.css">
+</head>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     MES 7 · 10 de noviembre de 2026 — Receta para Dos
+
+     EL VALE
+     El texto está abajo, en la sección .rc-vale. Es una promesa real: una
+     cena cocinada por ti. La fecha la escribe ella y se guarda sola.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<body class="tema-receta">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="rc-hero">
+        <span class="rc-ceja reveal-up">Mes 7 · 10 de noviembre de 2026</span>
+        <h1 class="rc-titulo reveal-up">Receta para Dos</h1>
+        <p class="rc-sub reveal-up">
+            Ningún ingrediente de aquí se compra en una tienda. Arrástralos
+            (o tócalos, si prefieres) a la olla — el plato que sale depende
+            de lo que eches.
+        </p>
+    </section>
+
+    <section class="rc-cocina" aria-label="Encimera para cocinar una receta">
+        <div class="rc-panel">
+            <p class="rc-panel-titulo">La encimera</p>
+            <div class="rc-encimera" id="rcEncimera"></div>
+        </div>
+
+        <div class="rc-panel">
+            <p class="rc-panel-titulo">La olla</p>
+            <div class="rc-olla" id="rcOlla">
+                <p class="rc-olla-vacio" id="rcOllaVacio">Todavía no has echado nada.</p>
+                <ul class="rc-olla-lista" id="rcOllaLista"></ul>
+            </div>
+            <div class="rc-cocinar-fila">
+                <button type="button" class="rc-cocinar" id="rcCocinar" disabled>Cocinar</button>
+            </div>
+        </div>
+
+        <div class="rc-panel rc-resultado" id="rcResultado" hidden>
+            <p class="rc-resultado-nombre" id="rcResultadoNombre"></p>
+            <ul class="rc-resultado-lista" id="rcResultadoLista"></ul>
+
+            <div class="rc-vale">
+                <p class="rc-vale-titulo">Vale por una cena</p>
+                <p class="rc-vale-texto">
+                    Una cena de verdad, cocinada por mí, con lo que sea que hayas
+                    echado en esta olla. Sólo falta la fecha — la eliges tú.
+                </p>
+                <div class="rc-vale-fila">
+                    <label for="rcValeFecha">Fecha:</label>
+                    <input type="date" class="rc-vale-fecha" id="rcValeFecha">
+                </div>
+            </div>
+
+            <button type="button" class="rc-imprimir" id="rcImprimir">🖨 Imprimir la receta</button>
+            <p class="rc-digito" id="rcDigito" hidden>Para La Bóveda — mes 7: <strong>9</strong></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Mes a mes, un poco más cerca.</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/receta.js"></script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

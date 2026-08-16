@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carta de Promesa ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+</head>
+
+<body class="tema-promesa">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <!-- Falling petals -->
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="promise-section reveal-zoom" id="cartas">
+        <div class="promise-wrap">
+            <div class="promise-float-heart pf1">💗</div>
+            <div class="promise-float-heart pf2">🌹</div>
+            <div class="promise-float-heart pf3">💕</div>
+            <div class="promise-float-heart pf4">✨</div>
+
+            <div class="promise-card">
+                <div class="promise-seal fx-beat">💌</div>
+                <p class="promise-eyebrow">✦ Una carta para ti ✦</p>
+                <h2 class="promise-heading">¿Qué si prometo <em>amarte?</em></h2>
+
+                <div class="promise-divider"><span></span><i>❤️</i><span></span></div>
+
+                <div class="promise-body">
+                    <p>Si este amor sigue tan <span class="promise-highlight">duradero y fuerte</span> como en aquel día
+                        que nos dijimos que nos amábamos, acompañados de un beso que llenaba nuestros corazones de
+                        alegrías, amor y la intención más clara y sencilla de <span class="promise-highlight">amor hacia
+                            el otro</span>.</p>
+                    <br>
+                    <p>Si ese amor nos perdura hasta nuestros últimos días, si amar y preocuparse por el otro se vuelve
+                        <span class="promise-highlight">algo natural y espontáneo</span>, si cada día nuestro amor crece
+                        continuamente, si cada día vamos a demostrar de <span class="promise-highlight">mil
+                            maneras</span> cuánto nos importa el otro…
+                    </p>
+                </div>
+
+                <div class="promise-divider" style="margin-top: 32px;"><span></span><i>🌹</i><span></span></div>
+
+                <div class="promise-final">
+                    …entonces sí,
+                    <strong>prometo amarte toda la vida,<br>o hasta que el corazón te brinde amor tan sincero como la
+                        verdad absoluta. ❣️</strong>
+                </div>
+
+                <p class="promise-signature">— De Carlo</p>
+            </div>
+        </div>
+    </section>
+
+    <audio id="bgMusic" autoplay loop>
+        <source src="music/prometofonseca.mp3" type="audio/mpeg">
+    </audio>
+    <button class="music-btn" id="musicBtn" title="Play / Pause">▶️</button>
+
+    <footer>
+        <p>Hecho por Carlo</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script>initBgMusic(0);</script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

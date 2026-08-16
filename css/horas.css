@@ -1,0 +1,207 @@
+/* ══════════════════════════════════════════════════════════════════════
+   HORAS.CSS — la rueda del mes 10.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.hr-hero {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(84px, 16vw, 130px) clamp(20px, 6vw, 28px) clamp(20px, 5vw, 32px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--e2);
+}
+
+.hr-ceja {
+    font-size: var(--t-ceja);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+}
+
+.hr-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--t-h1);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -.012em;
+    text-wrap: balance;
+    background: linear-gradient(112deg,
+            var(--p-realce) 0%,
+            color-mix(in srgb, var(--p-realce) 55%, #fff) 40%,
+            var(--p-realce-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 18px color-mix(in srgb, var(--p-halo) 60%, transparent));
+}
+
+.hr-sub {
+    font-size: var(--t-cuerpo);
+    line-height: 1.75;
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+    max-width: 46ch;
+}
+
+.hr-envoltorio {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 6vw, 28px) clamp(24px, 5vw, 32px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hr-rueda {
+    position: relative;
+    width: min(78vw, 380px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    touch-action: none;
+}
+
+.hr-anillo {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid var(--p-borde);
+    background: radial-gradient(circle at 50% 50%,
+            color-mix(in srgb, var(--p-realce) 5%, transparent) 0%,
+            transparent 70%),
+        color-mix(in srgb, var(--p-fondo) 88%, #000);
+}
+
+.hr-centro {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 34%;
+    height: 34%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid var(--p-borde);
+    background: color-mix(in srgb, var(--p-fondo) 60%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    font-size: 1.6rem;
+}
+
+.hr-aguja {
+    position: absolute;
+    left: 50%;
+    top: -3px;
+    width: 2px;
+    height: 14px;
+    background: var(--p-realce);
+    box-shadow: 0 0 8px 1px var(--p-halo);
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.hr-hora {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    margin: -17px 0 0 -17px;
+    border-radius: 50%;
+    border: 1px solid var(--p-borde);
+    background: color-mix(in srgb, var(--p-fondo) 55%, transparent);
+    color: var(--p-tinta-2);
+    font-family: 'Poppins', sans-serif;
+    font-size: .68rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .3s var(--calma), color .3s var(--calma), transform .3s var(--sal);
+}
+
+.hr-hora:hover,
+.hr-hora:focus-visible {
+    color: var(--p-realce);
+    border-color: var(--p-borde-vivo);
+}
+
+.hr-hora--activa {
+    background: linear-gradient(140deg, var(--p-realce), var(--p-realce-2));
+    color: #17110a;
+    border-color: transparent;
+    box-shadow: 0 0 14px -2px var(--p-halo);
+}
+
+.hr-ayuda {
+    text-align: center;
+    font-size: var(--t-menudo);
+    color: var(--p-tinta-2);
+    margin-top: var(--e3);
+    max-width: 32ch;
+}
+
+.hr-tarjeta {
+    margin-top: var(--e3);
+    width: 100%;
+    max-width: 420px;
+    padding: var(--e3);
+    text-align: center;
+    border-radius: var(--p-radio);
+    border: 1px solid var(--p-borde-vivo);
+    background: color-mix(in srgb, var(--p-fondo) 45%, transparent);
+    animation: hr-entra .45s var(--sal);
+}
+
+@keyframes hr-entra {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.hr-tarjeta-hora {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-variant-numeric: tabular-nums;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+    margin-bottom: 6px;
+}
+
+.hr-tarjeta-texto {
+    font-size: .92rem;
+    line-height: 1.55;
+    color: var(--p-tinta-2);
+}
+
+.hr-texto--vacio {
+    font-style: italic;
+    opacity: .7;
+}
+
+.hr-digito {
+    margin-top: var(--e3);
+    font-size: .78rem;
+    letter-spacing: .04em;
+    color: var(--p-tinta-2);
+}
+
+.hr-digito strong {
+    color: var(--p-realce);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hr-tarjeta {
+        animation: none;
+    }
+}

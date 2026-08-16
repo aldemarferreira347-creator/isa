@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flores Amarillas 🌻</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+</head>
+
+<body class="tema-girasol">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <!-- Falling petals -->
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="canvas-container" id="canvasContainer">
+        <h2 class="canvas-title reveal-up">más formas en las que te demuestro mi amor ❣️</h2>
+        <canvas id="sunflowerCanvas" width="600" height="600"></canvas>
+        <div class="scroll-arrow" style="margin-top: 20px;"
+            onclick="window.location.href='romantico.html'">Ver más ↓</div>
+    </section>
+
+    <!-- ═══ CARNATION ROW ═══ -->
+    <div class="carnations-row" id="carnations-row"></div>
+
+    <section class="flower-gift-section" id="flowerGift">
+        <div class="gift-box fx-spot reveal-zoom">
+            <div id="giftQuestion">
+                <p class="gift-question">🌼 ¿Hoy es el día de<br><span>las flores amarillas?</span></p>
+                <div class="gift-btns">
+                    <button class="gift-btn gift-btn-yes" onclick="giftAnswer(true)">Sí ✨</button>
+                    <button class="gift-btn gift-btn-no" onclick="giftAnswer(false)">No 🌙</button>
+                </div>
+            </div>
+            <div class="gift-response" id="giftYes">
+                <div class="gift-msg">
+                    <strong>ok, toma tu regalo corazón ❣️</strong>
+                    hay algo especial esperándote...
+                </div>
+                <button class="present-btn" onclick="openFlowerModal()">🎁 &nbsp;Regalo</button>
+            </div>
+            <div class="gift-response" id="giftNo">
+                <div class="gift-msg">
+                    <strong>¿enserio? no importa 🌼</strong>
+                    todo tuyo de igual manera, niña ❣️
+                </div>
+                <button class="present-btn" onclick="openFlowerModal()">🎁 &nbsp;Regalo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOWER MODAL -->
+    <div class="flower-modal" id="flowerModal">
+        <canvas id="flowerAnimationCanvas"></canvas>
+        <button class="modal-close" onclick="closeFlowerModal()">✕ &nbsp;Cerrar</button>
+    </div>
+
+    <audio id="bgMusic" autoplay loop>
+        <source src="music/musica.mp3" type="audio/mpeg">
+    </audio>
+    <button class="music-btn" id="musicBtn" title="Play / Pause">▶️</button>
+
+    <footer>
+        <p>Hecho por Carlo</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/flores-amarillas.js"></script>
+    <script>initBgMusic(0);</script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

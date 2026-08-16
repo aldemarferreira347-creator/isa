@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#120a09" />
+    <title>La Radio de Nosotros — Mes 5 ♪</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+    <link rel="stylesheet" href="css/radio-nosotros.css">
+</head>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     MES 5 · 10 de septiembre de 2026 — La Radio de Nosotros
+
+     LOS TEXTOS
+     Casi todo está en js/radio-nosotros.js. Cada estación tiene un
+     campo `porque`: mientras esté vacío la tarjeta lo dice tal cual, sin
+     fingir una razón. Escríbelo cuando quieras, canción por canción.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<body class="tema-radio">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="rd-hero">
+        <span class="rd-ceja reveal-up">Mes 5 · 10 de septiembre de 2026</span>
+        <h1 class="rd-titulo reveal-up">La Radio de Nosotros</h1>
+        <p class="rd-sub reveal-up">
+            Entre una emisora y otra sólo hay estática. Gira el dial despacio:
+            lo que suena cuando encuentras una no estaba en ninguna lista,
+            estaba escondido.
+        </p>
+    </section>
+
+    <section class="rd-aparato" aria-label="Radio sintonizable">
+        <div class="rd-carcasa">
+            <button type="button" class="rd-power" id="radioPower" aria-pressed="false">
+                Encender la radio
+            </button>
+
+            <p class="rd-lectura" id="radioLectura" aria-live="polite">87.5 FM</p>
+
+            <div class="rd-dial">
+                <input type="range" class="rd-input" id="radioDial" min="875" max="1080" step="1" value="875"
+                    disabled aria-label="Dial de frecuencia FM, de 87.5 a 108.0"
+                    aria-describedby="radioBuscando">
+                <div class="rd-regla" id="radioRegla" aria-hidden="true"></div>
+                <div class="rd-aguja" id="radioAguja" aria-hidden="true"></div>
+            </div>
+
+            <p class="rd-ayuda">Arrastra el dial o sintoniza con las flechas del teclado.</p>
+
+            <p class="rd-buscando" id="radioBuscando">enciende la radio para empezar</p>
+
+            <div class="rd-tarjeta" id="radioTarjeta" hidden>
+                <button type="button" class="rd-play" id="radioPlay" aria-label="Pausar">⏸</button>
+                <div class="rd-tarjeta-texto">
+                    <p class="rd-tarjeta-titulo" id="radioTarjetaTitulo"></p>
+                    <p class="rd-tarjeta-porque" id="radioTarjetaPorque"></p>
+                </div>
+            </div>
+
+            <p class="rd-contador" id="radioContador">0/18 estaciones encontradas</p>
+
+            <div class="rd-cierre" id="radioCierre" hidden>
+                Encontraste las dieciocho.
+                <em>Eso es todo lo que hemos escuchado juntos hasta ahora — y sigue creciendo.</em>
+                <p class="rd-digito" id="radioDigito" hidden>Para La Bóveda — mes 5: <strong>7</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <audio id="radioAudioCancion" preload="none"></audio>
+
+    <footer>
+        <p>Mes a mes, un poco más cerca.</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/radio-nosotros.js"></script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,831 @@
+/* ══════════════════════════════════════════════════════════════════════
+   MES-2.CSS — lo que se abraza.
+
+   El resto del regalo brilla: oro, halos, degradados con filo. Esta
+   página no. Un peluche y un frasco de perfume no son objetos brillantes,
+   son objetos tibios, y la paleta (.tema-mes2 en sistema.css) va en esa
+   dirección: ámbar apagado, lavanda en polvo, el radio más blando de las
+   nueve atmósferas y el grano más alto.
+
+   Todo lo demás — botones, botón de volver, pie — lo pone sistema.css.
+   Aquí sólo vive lo que es de esta página.
+   ══════════════════════════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   1 · ENTRADA
+   ══════════════════════════════════════════════════════════════════════ */
+.m2-hero {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(84px, 16vw, 130px) clamp(20px, 6vw, 28px) clamp(24px, 6vw, 40px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--e2);
+}
+
+.m2-ceja {
+    font-size: var(--t-ceja);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+}
+
+.m2-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--t-h1);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -.012em;
+    text-wrap: balance;
+    background: linear-gradient(112deg,
+            var(--p-realce) 0%,
+            color-mix(in srgb, var(--p-realce) 55%, #fff) 40%,
+            var(--p-realce-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 18px color-mix(in srgb, var(--p-halo) 60%, transparent));
+}
+
+.m2-sub {
+    font-size: var(--t-cuerpo);
+    line-height: 1.75;
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+    max-width: 46ch;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   2 · LOS DOS OBJETOS
+   Dos columnas iguales en escritorio. No es una rejilla de tarjetas de
+   catálogo: son dos, y las dos pesan lo mismo.
+   ══════════════════════════════════════════════════════════════════════ */
+.m2-objetos {
+    position: relative;
+    z-index: 1;
+    max-width: 940px;
+    margin: 0 auto;
+    padding: clamp(16px, 4vw, 28px) clamp(20px, 6vw, 28px) clamp(48px, 10vw, 96px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
+    gap: clamp(28px, 6vw, 46px);
+    align-items: start;
+}
+
+.m2-obj {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--e2);
+    text-align: center;
+    padding: clamp(24px, 5vw, 34px) clamp(18px, 4.5vw, 28px) clamp(26px, 5vw, 34px);
+    border-radius: var(--p-radio);
+    border: 1px solid var(--p-borde);
+    background:
+        linear-gradient(165deg,
+            var(--p-vidrio-alto) 0%,
+            var(--p-vidrio) 46%,
+            color-mix(in srgb, var(--p-fondo) 82%, transparent) 100%);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 9%, transparent) inset,
+        0 18px 46px -18px var(--p-sombra);
+    backdrop-filter: blur(14px) saturate(1.15);
+    -webkit-backdrop-filter: blur(14px) saturate(1.15);
+}
+
+.m2-obj-cab {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.m2-obj-orden {
+    font-size: .66rem;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-tinta-2) 80%, transparent);
+}
+
+.m2-obj-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.35rem, 4.6vw, 1.7rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: color-mix(in srgb, var(--p-realce) 74%, #fff);
+}
+
+.m2-obj-nota {
+    font-size: var(--t-menudo);
+    line-height: 1.6;
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+    max-width: 32ch;
+    margin: 0 auto;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   3 · EL MARCO DE LA FOTO
+   Círculo: los dos objetos son cosas de mano, no cuadros. El aro de
+   progreso vive en el borde, así que el marco tiene que ser redondo.
+   ══════════════════════════════════════════════════════════════════════ */
+.m2-marco {
+    position: relative;
+    width: min(74%, 240px);
+    aspect-ratio: 1;
+    margin: var(--e2) 0 var(--e1);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+    background:
+        radial-gradient(circle at 50% 30%,
+            color-mix(in srgb, var(--p-realce) 12%, transparent) 0%,
+            transparent 62%),
+        color-mix(in srgb, var(--p-fondo) 70%, transparent);
+    border: 1px solid var(--p-borde);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 10%, transparent) inset,
+        0 22px 52px -20px var(--p-sombra);
+    transition: box-shadow .6s var(--calma), transform .5s var(--sal);
+}
+
+.m2-foto {
+    width: calc(100% - 12px);
+    height: calc(100% - 12px);
+    object-fit: cover;
+    border-radius: 50%;
+    /* La foto llega tal cual del teléfono: se la calienta un punto para
+       que no choque con la paleta ámbar del resto de la página. */
+    filter: saturate(1.04) contrast(1.02);
+}
+
+/* ── El dibujo de dentro ──
+   Mientras no haya foto, el marco enseña su dibujo. Es un estado
+   TERMINADO, no un hueco: aquí antes había un emoji a 5 rem haciendo
+   de foco visual de media página, que es exactamente lo que un emoji
+   no puede sostener. Ahora es un trazo dibujado, del grosor de la
+   tipografía y del color del tema, y el marco se ve acabado con foto
+   o sin ella. */
+.m2-marco-dibujo {
+    display: none;
+    width: 58%;
+    color: color-mix(in srgb, var(--p-realce) 58%, var(--p-tinta-2));
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, .45));
+}
+
+.m2-marco--vacio {
+    border-style: dashed;
+    border-color: color-mix(in srgb, var(--p-realce) 26%, transparent);
+}
+
+.m2-marco--vacio .m2-marco-dibujo {
+    display: block;
+}
+
+.m2-dibujo {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* Trazo fino y uniforme: el dibujo tiene que leerse como un apunte a
+   lápiz, no como un icono de interfaz. `non-scaling-stroke` mantiene el
+   mismo grosor en los dos tamaños de marco (móvil y escritorio) — sin
+   él, el dibujo pequeño sale con la línea más gorda. */
+.m2-dibujo-trazo {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.m2-dibujo-lleno {
+    fill: currentColor;
+    stroke: none;
+}
+
+/* Al abrazar, el dibujo se calienta con el resto del marco. */
+.m2-marco--abrazado .m2-marco-dibujo,
+.m2-marco--rociado .m2-marco-dibujo {
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+}
+
+.m2-marco-dibujo {
+    transition: color .5s var(--calma);
+}
+
+
+/* ── El aro que se llena al abrazar ── */
+.m2-aro {
+    position: absolute;
+    inset: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    transform: rotate(-90deg);
+    /* empieza arriba */
+    overflow: visible;
+    pointer-events: none;
+}
+
+.m2-aro-trazo {
+    fill: none;
+    stroke: var(--p-realce);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 6px var(--p-halo));
+    transition: stroke-dashoffset .4s var(--calma);
+}
+
+/* Durante el abrazo el aro sigue el dedo en tiempo real: la transición
+   de .4 s lo dejaría siempre un paso por detrás. */
+.m2-marco--abrazado .m2-aro-trazo {
+    transition: none;
+}
+
+
+/* ── El latido ──
+   Muy poco recorrido a propósito (2 %). Un peluche que rebota es un
+   juguete; un peluche que respira es otra cosa. */
+.m2-marco--abrazado {
+    animation: m2-latido 1.15s var(--calma) infinite;
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 16%, transparent) inset,
+        0 26px 60px -20px var(--p-sombra),
+        0 0 60px -8px var(--p-halo);
+}
+
+@keyframes m2-latido {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    14% {
+        transform: scale(1.022);
+    }
+
+    28% {
+        transform: scale(1.004);
+    }
+
+    42% {
+        transform: scale(1.016);
+    }
+}
+
+
+/* ── El sacudón del frasco al rociar ── */
+.m2-marco--rociado {
+    animation: m2-rociado .42s var(--sal);
+}
+
+@keyframes m2-rociado {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    30% {
+        transform: translateY(3px) scale(.978);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   4 · EL VAHO DEL PERFUME
+   Motas que suben, se abren y se van. Cada una se borra sola al acabar
+   su animación: el DOM no crece con las pulsaciones.
+   ══════════════════════════════════════════════════════════════════════ */
+.m2-vaho {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 2;
+}
+
+.m2-mota {
+    position: absolute;
+    top: 22%;
+    left: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            color-mix(in srgb, var(--p-realce-2) 75%, #fff) 0%,
+            color-mix(in srgb, var(--p-realce) 40%, transparent) 55%,
+            transparent 72%);
+    opacity: 0;
+    animation: m2-mota-sube 1.6s var(--ent) forwards;
+    will-change: transform, opacity;
+}
+
+@keyframes m2-mota-sube {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(.2);
+    }
+
+    18% {
+        opacity: .85;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--dx)), var(--dy)) scale(var(--esc));
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   5 · EL BOTÓN DE CADA OBJETO
+   Toma su forma de sistema.css y añade lo suyo: uno se mantiene
+   pulsado, el otro se pulsa y ya.
+   ══════════════════════════════════════════════════════════════════════ */
+.m2-accion {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    font-size: .88rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    padding: 12px 26px;
+    /* 44 px es el mínimo cómodo con el pulgar, y este botón se mantiene
+       pulsado varios segundos: pierde el dedo y se corta el abrazo. */
+    min-height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--p-borde-vivo);
+    background: var(--p-vidrio-alto);
+    color: color-mix(in srgb, var(--p-realce) 90%, #fff);
+    cursor: pointer;
+    /* Mantener pulsado en móvil no debe seleccionar el texto del botón */
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: none;
+    transition:
+        transform .3s var(--sal),
+        box-shadow .35s var(--calma),
+        color .3s var(--calma),
+        border-color .3s var(--calma),
+        opacity .3s var(--calma);
+}
+
+.m2-accion::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(140deg, var(--p-realce), var(--p-realce-2));
+    transform: translateY(101%);
+    transition: transform .45s var(--ent);
+}
+
+.m2-accion:hover:not(:disabled),
+.m2-accion:focus-visible {
+    color: #201209;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px -12px var(--p-halo);
+}
+
+.m2-accion:hover:not(:disabled)::before,
+.m2-accion:focus-visible::before {
+    transform: none;
+}
+
+/* Mientras se abraza, el botón se hunde y se queda hundido: es el
+   único aviso de que el gesto sigue vivo aunque se mire la foto. */
+.m2-accion--activa {
+    color: #201209;
+    border-color: transparent;
+    transform: translateY(1px) scale(.97);
+    box-shadow: 0 6px 16px -10px var(--p-halo);
+}
+
+.m2-accion--activa::before {
+    transform: none;
+}
+
+.m2-accion:disabled {
+    cursor: default;
+    opacity: .5;
+    color: var(--p-tinta-2);
+    border-color: color-mix(in srgb, var(--p-tinta-2) 28%, transparent);
+    transform: none;
+    box-shadow: none;
+}
+
+.m2-accion:disabled::before {
+    transform: translateY(101%);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   6 · ESTADO Y FRASES
+   ══════════════════════════════════════════════════════════════════════ */
+.m2-estado {
+    font-size: .74rem;
+    letter-spacing: .06em;
+    color: color-mix(in srgb, var(--p-tinta-2) 78%, transparent);
+    font-variant-numeric: tabular-nums;
+    min-height: 1.2em;
+    transition: color .4s var(--calma);
+}
+
+.m2-estado--listo {
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+    font-weight: 600;
+}
+
+/* La frase del abrazo: ocupa su sitio desde el principio (min-height)
+   para que al aparecer no empuje media página hacia abajo. El hueco es
+   deliberado — dos renglones, lo que mide la frase más larga — porque un
+   salto de layout en mitad de un abrazo se nota mucho más que un espacio
+   en calma. Debajo ya está el registro, así que la tarjeta no termina en
+   blanco mientras se espera. */
+.m2-frase {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(.95rem, 3.2vw, 1.06rem);
+    line-height: 1.55;
+    color: color-mix(in srgb, var(--p-realce) 60%, var(--p-tinta));
+    text-wrap: pretty;
+    width: 100%;
+    max-width: 30ch;
+    min-height: 2.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+.m2-frase.visible {
+    animation: m2-frase-entra 3.4s var(--ent) forwards;
+}
+
+/* Entra, se queda un rato legible y se va sola: si no desapareciera,
+   la siguiente frase la sustituiría de golpe y no se leería ninguna. */
+@keyframes m2-frase-entra {
+    0% {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    12% {
+        opacity: 1;
+        transform: none;
+    }
+
+    82% {
+        opacity: 1;
+        transform: none;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   6 bis · EL REGISTRO DEL PELUCHE
+   Lo que ya dijo, que se queda.
+
+   Tiene que parecerse lo MENOS posible a la pirámide del frasco, aunque
+   las dos sean listas: si los dos objetos dejan el mismo artefacto, el
+   mes deja de tener dos regalos y pasa a tener uno repetido.
+
+   La pirámide del frasco está ordenada por tramos con sus etiquetas,
+   porque un perfume está literalmente construido así. Esto no tiene
+   estructura ninguna: son frases dichas en voz baja, una debajo de otra,
+   separadas por una línea de pelo y sangradas hacia dentro. Se lee como
+   un margen escrito a mano, no como una ficha técnica.
+   ══════════════════════════════════════════════════════════════════════ */
+.m2-registro {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.m2-registro:empty {
+    display: none;
+}
+
+.m2-recuerdo {
+    position: relative;
+    padding: 9px 0 9px 18px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: .86rem;
+    line-height: 1.55;
+    color: color-mix(in srgb, var(--p-tinta-2) 88%, var(--p-tinta));
+    text-wrap: pretty;
+    border-top: 1px solid color-mix(in srgb, var(--p-borde) 62%, transparent);
+}
+
+/* La primera no lleva línea arriba: la caja ya tiene la suya. */
+.m2-recuerdo:first-child {
+    border-top: 0;
+}
+
+/* Un guion en vez de una viñeta. La pirámide usa ✿; aquí no hay flor
+   ninguna, sólo la marca de que alguien habló. */
+.m2-recuerdo::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    font-style: normal;
+    color: color-mix(in srgb, var(--p-realce) 48%, transparent);
+}
+
+/* La última que salió queda un punto más encendida: es lo último que
+   dijo, y en una conversación eso es lo que se está oyendo todavía. */
+.m2-recuerdo:last-child {
+    color: color-mix(in srgb, var(--p-realce) 34%, var(--p-tinta));
+}
+
+.m2-recuerdo--nuevo {
+    animation: m2-recuerdo-entra .8s var(--ent) both;
+}
+
+/* Entra abriéndose hacia abajo, no deslizándose de lado: es algo que se
+   añade a una pila, no algo que llega de fuera. */
+@keyframes m2-recuerdo-entra {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Cuando ya ha dicho todo lo que tenía que decir. */
+.m2-registro--completo::after {
+    content: 'no le queda nada más que decir';
+    margin-top: var(--e2);
+    padding-top: var(--e2);
+    border-top: 1px solid color-mix(in srgb, var(--p-borde) 62%, transparent);
+    font-size: .63rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    /* A 60 % salía 4,54 : 1 — pasa, pero por muy poco para un texto de
+       10 px en versalitas. A 76 % queda con margen. */
+    color: color-mix(in srgb, var(--p-realce) 76%, transparent);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   7 · LA PIRÁMIDE OLFATIVA
+   Se lee de arriba abajo como se huele un perfume: lo primero que sale
+   no es lo que se queda.
+   ══════════════════════════════════════════════════════════════════════ */
+.m2-piramide {
+    list-style: none;
+    width: 100%;
+    margin: var(--e1) 0 0;
+    padding: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.m2-piramide:empty {
+    display: none;
+}
+
+.m2-tramo {
+    font-size: .63rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 68%, transparent);
+    margin-top: var(--e2);
+    padding-bottom: 4px;
+    border-bottom: 1px solid color-mix(in srgb, var(--p-borde) 80%, transparent);
+}
+
+.m2-tramo:first-child {
+    margin-top: 0;
+}
+
+.m2-nota {
+    position: relative;
+    padding-left: 16px;
+    font-size: .84rem;
+    line-height: 1.55;
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+}
+
+.m2-nota::before {
+    content: '✿';
+    position: absolute;
+    left: 0;
+    top: .05em;
+    font-size: .62rem;
+    color: color-mix(in srgb, var(--p-realce-2) 70%, transparent);
+}
+
+.m2-nota--nueva {
+    animation: m2-nota-entra .75s var(--ent) both;
+}
+
+@keyframes m2-nota-entra {
+    from {
+        opacity: 0;
+        transform: translateX(-8px);
+        filter: blur(3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   8 · LA CARTA FINAL
+   ══════════════════════════════════════════════════════════════════════ */
+.m2-final {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 6vw, 28px) clamp(56px, 12vw, 110px);
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 1.1s var(--ent), transform 1.1s var(--ent);
+}
+
+.m2-final.visible {
+    opacity: 1;
+    transform: none;
+}
+
+.m2-final-caja {
+    position: relative;
+    padding: clamp(32px, 7vw, 52px) clamp(24px, 6vw, 46px) clamp(28px, 6vw, 42px);
+    border-radius: var(--p-radio);
+    border: 1px solid var(--p-borde);
+    background:
+        linear-gradient(165deg,
+            var(--p-vidrio-alto) 0%,
+            var(--p-vidrio) 46%,
+            color-mix(in srgb, var(--p-fondo) 86%, transparent) 100%);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 10%, transparent) inset,
+        0 30px 70px -26px var(--p-sombra),
+        0 0 70px -30px var(--p-halo);
+    backdrop-filter: blur(16px) saturate(1.15);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    text-align: center;
+}
+
+.m2-final-sello {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    translate: -50% 0;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 1rem;
+    color: #201209;
+    background: linear-gradient(140deg, var(--p-realce), var(--p-realce-2));
+    box-shadow: 0 8px 22px -8px var(--p-halo);
+}
+
+.m2-final-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 5vw, 1.95rem);
+    font-weight: 700;
+    line-height: 1.2;
+    text-wrap: balance;
+    margin-bottom: var(--e3);
+    background: linear-gradient(112deg,
+            var(--p-realce) 0%,
+            color-mix(in srgb, var(--p-realce) 55%, #fff) 40%,
+            var(--p-realce-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.m2-final-texto {
+    display: flex;
+    flex-direction: column;
+    gap: var(--e2);
+    text-align: left;
+}
+
+.m2-final-texto p {
+    font-size: var(--t-cuerpo);
+    line-height: 1.85;
+    color: var(--p-tinta);
+    text-wrap: pretty;
+}
+
+.m2-final-firma {
+    margin-top: var(--e4);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: color-mix(in srgb, var(--p-realce) 80%, #fff);
+}
+
+.m2-digito {
+    margin-top: var(--e3);
+    padding-top: var(--e2);
+    border-top: 1px dashed var(--p-borde);
+    font-size: .78rem;
+    letter-spacing: .04em;
+    color: var(--p-tinta-2);
+}
+
+.m2-digito strong {
+    color: var(--p-realce);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   9 · MOVIMIENTO REDUCIDO
+   El latido y el vaho se van. El aro y los estados se quedan: son
+   información, no adorno, y sin ellos no se puede jugar.
+   ══════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+
+    .m2-marco--abrazado,
+    .m2-marco--rociado,
+    .m2-nota--nueva,
+    .m2-recuerdo--nuevo {
+        animation: none;
+    }
+
+    .m2-frase.visible {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .m2-final {
+        transition-duration: .01ms;
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   10 · MÓVIL
+   ══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+    .m2-marco {
+        width: min(66%, 200px);
+    }
+
+    .m2-obj {
+        padding: 24px 16px 26px;
+    }
+}
+
+/* Pantalla táctil: sin hover, el hundido del botón es la única
+   confirmación de que el dedo está haciendo algo. */
+@media (hover: none) {
+    .m2-accion:active:not(:disabled) {
+        transform: translateY(1px) scale(.97);
+    }
+}

@@ -1,0 +1,424 @@
+/* ══════════════════════════════════════════════════════════════════════
+   PREGUNTA.CSS — reestructura del módulo «La Pregunta»
+
+   Antes: una cabecera, un sobre marrón y una tarjeta, todo del mismo tono
+   y sin jerarquía. La carta más importante del regalo se leía en un bloque
+   de 3 000 palabras dentro de una caja de 480 px, con el texto pegado a los
+   bordes y sin un solo respiro.
+
+   Ahora el módulo son tres actos:
+     I   · el escritorio — la escena de pixel art y quién escribe
+     II  · la carta      — pensada para LEERSE: medida, ritmo, capitular
+     III · la pregunta   — el momento, aislado y con su propio peso
+
+   Ni una palabra del texto cambia. Cambia dónde vive.
+   Carga después de sistema.css.
+   ══════════════════════════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   1 · EL ESCENARIO
+   ══════════════════════════════════════════════════════════════════════ */
+.tema-pregunta .dcl-section {
+    padding: clamp(28px, 7vw, 64px) clamp(14px, 4vw, 28px) clamp(60px, 10vw, 110px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(24px, 5vw, 44px);
+}
+
+/* Los orbes de fondo eran tres manchas moradas que no pegaban con la vela.
+   Se retiran: la atmósfera ya la pone `ambiente.js` con sus pavesas. */
+.tema-pregunta .dcl-orb {
+    display: none;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   2 · ACTO I — LA ESCENA DE PIXEL ART
+   Un lienzo de 128×80 píxeles ampliado por un múltiplo entero. El marco
+   imita un daguerrotipo: passe-partout oscuro y filo de oro.
+   ══════════════════════════════════════════════════════════════════════ */
+.pixel-escena {
+    width: 100%;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(10px, 2vw, 16px);
+}
+
+.pixel-marco {
+    position: relative;
+    /* Ancho propio, no el de su contenido. Si el marco se encoge alrededor
+       del lienzo y el lienzo elige su tamaño mirando al marco, ninguno de
+       los dos crece nunca: se quedaban los dos en la escala mínima. */
+    width: 100%;
+    box-sizing: border-box;
+    padding: clamp(10px, 2.4vw, 18px);
+    background: linear-gradient(160deg, #150d04, #0a0602);
+    border: 1px solid rgba(245, 197, 24, .28);
+    border-radius: 10px;
+    box-shadow:
+        0 1px 0 0 rgba(255, 233, 166, .10) inset,
+        0 0 46px -14px rgba(245, 197, 24, .30),
+        0 26px 60px -26px rgba(0, 0, 0, .9);
+    line-height: 0;
+    /* el lienzo se mide contra ESTE ancho para elegir su escala entera */
+    display: flex;
+    justify-content: center;
+}
+
+#pixelPregunta {
+    display: block;
+    /* Lo que hace que el pixel art sea pixel art: al ampliar, cada píxel se
+       copia como un cuadrado duro en vez de difuminarse con sus vecinos. */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    border-radius: 2px;
+}
+
+/* Rótulo bajo la escena, en letra de máquina */
+.pixel-pie {
+    font-family: ui-monospace, 'Courier New', monospace;
+    font-size: clamp(.6rem, 1.7vw, .68rem);
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    /* .42 daba 2,89 : 1 a 9,6 px: es la fecha de la carta, un dato que se
+       lee, no un adorno. Subido hasta pasar el 4,5 de AA sin dejar de ser
+       un rótulo secundario. */
+    color: rgba(245, 197, 24, .72);
+    text-align: center;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   3 · LA CABECERA
+   ══════════════════════════════════════════════════════════════════════ */
+.tema-pregunta .dcl-header {
+    text-align: center;
+    max-width: 620px;
+}
+
+.tema-pregunta .dcl-eyebrow {
+    font-family: ui-monospace, 'Courier New', monospace;
+    font-size: clamp(.66rem, 1.9vw, .78rem);
+    letter-spacing: .34em;
+    text-transform: uppercase;
+    color: rgba(245, 197, 24, .72);
+    margin-bottom: clamp(10px, 2vw, 16px);
+}
+
+.tema-pregunta .dcl-title {
+    font-size: clamp(1.9rem, 6vw, 3.3rem);
+    line-height: 1.08;
+    letter-spacing: -.015em;
+}
+
+.tema-pregunta .dcl-sub {
+    margin-top: clamp(10px, 2vw, 16px);
+    color: var(--p-tinta-2);
+    font-size: clamp(.92rem, 2.4vw, 1.02rem);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   4 · ACTO II — EL SOBRE
+   ══════════════════════════════════════════════════════════════════════ */
+.tema-pregunta .dcl-envelope-wrap {
+    width: 100%;
+    max-width: 720px;
+}
+
+.tema-pregunta .dcl-envelope {
+    max-width: 100%;
+}
+
+.tema-pregunta .dcl-env-body {
+    background:
+        linear-gradient(158deg, rgba(58, 36, 8, .55), rgba(14, 9, 2, .92)),
+        var(--p-fondo);
+    border: 1px solid rgba(245, 197, 24, .26);
+    border-radius: 3px 3px 14px 14px;
+    padding: clamp(58px, 12vw, 82px) clamp(14px, 4vw, 34px) clamp(24px, 5vw, 40px);
+    box-shadow:
+        0 1px 0 0 rgba(255, 233, 166, .08) inset,
+        0 0 70px -18px rgba(245, 197, 24, .22),
+        0 30px 70px -28px rgba(0, 0, 0, .92);
+}
+
+/* La solapa gana un pliegue: dos caras con luz distinta, no un triángulo
+   plano. Es lo que hace que se lea como papel doblado. */
+.tema-pregunta .dcl-env-flap::before {
+    background:
+        linear-gradient(100deg, rgba(255, 233, 166, .07) 0 49.5%, transparent 50%),
+        linear-gradient(162deg, #47290a, #221305);
+    border-bottom: 1px solid rgba(245, 197, 24, .34);
+}
+
+.tema-pregunta .dcl-envelope.open .dcl-env-flap {
+    transform: rotateX(180deg);
+    transition: transform .9s cubic-bezier(.34, 1.32, .5, 1);
+}
+
+/* El lacre: cera con brillo desplazado y borde irregular */
+.tema-pregunta .dcl-seal {
+    width: clamp(52px, 13vw, 64px);
+    height: clamp(52px, 13vw, 64px);
+    background:
+        radial-gradient(circle at 34% 30%, #ffe07a 0%, #f5c518 26%, #a8730c 74%, #6d4806 100%);
+    box-shadow:
+        0 0 26px rgba(245, 197, 24, .55),
+        0 5px 12px rgba(0, 0, 0, .6),
+        0 -2px 6px rgba(255, 233, 166, .3) inset;
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
+}
+
+/* Anillo que se expande: el sello «llama» sin gritar */
+.tema-pregunta .dcl-seal-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(245, 197, 24, .5);
+    animation: pregLlamada 2.8s cubic-bezier(.4, 0, .2, 1) infinite;
+    pointer-events: none;
+}
+
+@keyframes pregLlamada {
+    0% { opacity: .75; transform: scale(.9); }
+    70% { opacity: 0; transform: scale(1.45); }
+    100% { opacity: 0; transform: scale(1.45); }
+}
+
+.tema-pregunta .dcl-envelope.open .dcl-seal-wrap::after {
+    animation: none;
+    opacity: 0;
+}
+
+.tema-pregunta .dcl-open-hint {
+    font-family: ui-monospace, 'Courier New', monospace;
+    /* .55 se quedaba en 4,2 : 1. Es la única instrucción de la página
+       («toca el sello para abrir»): si no se lee, no se pasa de aquí. */
+    color: rgba(245, 197, 24, .68);
+    letter-spacing: .26em;
+    font-size: clamp(.64rem, 1.9vw, .74rem);
+    margin-top: clamp(14px, 3vw, 20px);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   5 · EL PAPEL — aquí es donde se juega todo
+   El texto no cambia; cambia poder leerlo. Medida corta, interlínea alta,
+   capitular en el primer párrafo y aire entre bloques.
+   ══════════════════════════════════════════════════════════════════════ */
+.tema-pregunta .dcl-paper {
+    background:
+        /* fibras del papel: dos tramas finísimas cruzadas */
+        repeating-linear-gradient(0deg, rgba(255, 233, 166, .022) 0 1px, transparent 1px 3px),
+        repeating-linear-gradient(90deg, rgba(255, 233, 166, .016) 0 1px, transparent 1px 4px),
+        linear-gradient(168deg, rgba(52, 32, 6, .55), rgba(16, 10, 2, .82));
+    border: 1px solid rgba(245, 197, 24, .14);
+    border-radius: 8px;
+    padding: clamp(26px, 6vw, 52px) clamp(18px, 5vw, 46px) clamp(28px, 6vw, 48px);
+    box-shadow: 0 1px 0 0 rgba(255, 233, 166, .06) inset;
+}
+
+.tema-pregunta .dcl-paper-top {
+    text-align: center;
+    padding-bottom: clamp(18px, 4vw, 28px);
+    margin-bottom: clamp(22px, 5vw, 34px);
+    border-bottom: 1px solid rgba(245, 197, 24, .13);
+}
+
+.tema-pregunta .dcl-paper-date {
+    font-family: ui-monospace, 'Courier New', monospace;
+    font-size: clamp(.66rem, 1.9vw, .76rem);
+    letter-spacing: .3em;
+    color: rgba(245, 197, 24, .6);
+}
+
+.tema-pregunta .dcl-paper-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.05rem, 3.4vw, 1.4rem);
+    font-style: italic;
+    color: color-mix(in srgb, var(--p-realce) 78%, #fff);
+    margin-top: 8px;
+}
+
+.tema-pregunta .dcl-p {
+    /* La medida es lo que decide si un texto largo se lee o se abandona:
+       por encima de ~68 caracteres el ojo pierde el renglón al volver. */
+    max-width: 64ch;
+    margin: 0 auto clamp(18px, 3.6vw, 26px);
+    font-size: clamp(1rem, 2.6vw, 1.08rem);
+    line-height: 1.92;
+    color: rgba(246, 234, 212, .88);
+    text-wrap: pretty;
+}
+
+/* Capitular en el primer párrafo: marca dónde empieza la carta */
+.tema-pregunta .dcl-p:first-of-type::first-letter {
+    float: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2em;
+    line-height: .82;
+    padding: .06em .12em 0 0;
+    color: var(--p-realce);
+    text-shadow: 0 0 22px rgba(245, 197, 24, .35);
+}
+
+.tema-pregunta .dcl-p em {
+    color: color-mix(in srgb, var(--p-realce) 80%, #fff);
+    font-style: italic;
+}
+
+.tema-pregunta .dcl-divider {
+    margin: clamp(26px, 6vw, 42px) auto;
+    max-width: 64ch;
+}
+
+.tema-pregunta .dcl-divider span {
+    background: linear-gradient(90deg, transparent, rgba(245, 197, 24, .34), transparent);
+}
+
+.tema-pregunta .dcl-divider i {
+    filter: drop-shadow(0 0 10px rgba(245, 197, 24, .5));
+}
+
+/* La propuesta: el pasaje que más pesa, con marco propio */
+.tema-pregunta .dcl-proposal {
+    max-width: 64ch;
+    margin: clamp(28px, 6vw, 44px) auto;
+    padding: clamp(22px, 5vw, 34px) clamp(18px, 4vw, 32px);
+    background: linear-gradient(160deg, rgba(245, 197, 24, .07), rgba(245, 197, 24, .015));
+    border: 1px solid rgba(245, 197, 24, .22);
+    border-radius: 10px;
+    position: relative;
+}
+
+/* Comilla de apertura, en marca de agua */
+.tema-pregunta .dcl-proposal::before {
+    content: '“';
+    position: absolute;
+    top: -.18em;
+    left: .12em;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.4rem, 10vw, 5rem);
+    line-height: 1;
+    color: rgba(245, 197, 24, .13);
+    pointer-events: none;
+}
+
+.tema-pregunta .dcl-proposal-title {
+    font-family: ui-monospace, 'Courier New', monospace;
+    font-size: clamp(.66rem, 1.9vw, .76rem);
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: rgba(245, 197, 24, .8);
+    text-align: center;
+    margin-bottom: clamp(14px, 3vw, 20px);
+    position: relative;
+}
+
+.tema-pregunta .dcl-signature {
+    max-width: 64ch;
+    margin: clamp(32px, 7vw, 50px) auto 0;
+    padding-top: clamp(20px, 4vw, 30px);
+    border-top: 1px solid rgba(245, 197, 24, .13);
+    text-align: right;
+}
+
+.tema-pregunta .dcl-signature-name {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.02rem, 3vw, 1.25rem);
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   6 · ACTO III — LA PREGUNTA
+   Se separa del resto con aire de sobra: es el único momento de la página
+   en el que ella tiene que hacer algo.
+   ══════════════════════════════════════════════════════════════════════ */
+.tema-pregunta .dcl-question-wrap {
+    margin-top: clamp(48px, 10vw, 96px);
+}
+
+.tema-pregunta .dcl-question-card {
+    background:
+        radial-gradient(120% 90% at 50% 0%, rgba(245, 197, 24, .10), transparent 62%),
+        linear-gradient(165deg, rgba(46, 28, 4, .8), rgba(10, 6, 1, .94));
+    border: 1px solid rgba(245, 197, 24, .3);
+    border-radius: 16px;
+    padding: clamp(30px, 7vw, 52px) clamp(20px, 5vw, 44px);
+    box-shadow:
+        0 1px 0 0 rgba(255, 233, 166, .10) inset,
+        0 0 70px -16px rgba(245, 197, 24, .28),
+        0 32px 74px -30px rgba(0, 0, 0, .92);
+}
+
+.tema-pregunta .dcl-q-emoji {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+    filter: drop-shadow(0 0 20px rgba(245, 197, 24, .55));
+}
+
+.tema-pregunta .dcl-q-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 5.4vw, 2.6rem);
+    line-height: 1.16;
+    margin: clamp(14px, 3vw, 22px) 0 clamp(10px, 2vw, 14px);
+    background: linear-gradient(108deg, #fff2c8, #f5c518 48%, #ff9b4a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tema-pregunta .dcl-q-sub {
+    color: var(--p-tinta-2);
+    font-size: clamp(.86rem, 2.3vw, .95rem);
+    margin-bottom: clamp(24px, 5vw, 36px);
+}
+
+.tema-pregunta .dcl-btns {
+    display: flex;
+    gap: clamp(10px, 2.5vw, 16px);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tema-pregunta .dcl-btn {
+    padding: clamp(12px, 3vw, 15px) clamp(22px, 5vw, 34px);
+    font-size: clamp(.92rem, 2.5vw, 1rem);
+}
+
+.tema-pregunta .dcl-res-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 4.4vw, 1.9rem);
+}
+
+.tema-pregunta .dcl-res-text {
+    color: rgba(246, 234, 212, .84);
+    line-height: 1.85;
+    max-width: 46ch;
+    margin: clamp(12px, 3vw, 18px) auto 0;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   7 · MOVIMIENTO REDUCIDO
+   Se apaga lo que sólo adorna. La escena de pixel art NO se apaga: baja su
+   amplitud desde el JS, porque una vela que no titila no es una vela.
+   ══════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+
+    .tema-pregunta .dcl-seal-wrap::after,
+    .tema-pregunta .dcl-open-hint {
+        animation: none;
+    }
+
+    .tema-pregunta .dcl-envelope.open .dcl-env-flap {
+        transition-duration: .01ms;
+    }
+}

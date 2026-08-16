@@ -1,0 +1,187 @@
+/* ══════════════════════════════════════════════════════════════════════
+   DICCIONARIO.CSS — el mes 11.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.dc-hero {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(84px, 16vw, 130px) clamp(20px, 6vw, 28px) clamp(20px, 5vw, 32px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--e2);
+}
+
+.dc-ceja {
+    font-size: var(--t-ceja);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+}
+
+.dc-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--t-h1);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -.012em;
+    text-wrap: balance;
+    background: linear-gradient(112deg,
+            var(--p-realce) 0%,
+            color-mix(in srgb, var(--p-realce) 55%, #fff) 40%,
+            var(--p-realce-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 18px color-mix(in srgb, var(--p-halo) 60%, transparent));
+}
+
+.dc-sub {
+    font-size: var(--t-cuerpo);
+    line-height: 1.75;
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+    max-width: 46ch;
+}
+
+.dc-envoltorio {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 6vw, 28px) clamp(56px, 11vw, 100px);
+}
+
+.dc-buscador-fila {
+    position: relative;
+    margin-bottom: var(--e3);
+}
+
+.dc-buscador {
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--p-borde);
+    background: color-mix(in srgb, var(--p-fondo) 55%, transparent);
+    color: var(--p-tinta);
+    font-family: 'Poppins', sans-serif;
+    font-size: .94rem;
+    transition: border-color .3s var(--calma), box-shadow .3s var(--calma);
+}
+
+.dc-buscador:focus-visible {
+    outline: none;
+    border-color: var(--p-borde-vivo);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--p-realce) 22%, transparent);
+}
+
+.dc-buscador::placeholder {
+    color: var(--p-tinta-2);
+}
+
+.dc-contador {
+    text-align: center;
+    font-size: var(--t-menudo);
+    color: var(--p-tinta-2);
+    margin-bottom: var(--e3);
+}
+
+.dc-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dc-entrada {
+    border-radius: calc(var(--p-radio) - 6px);
+    border: 1px solid var(--p-borde);
+    background:
+        linear-gradient(165deg,
+            var(--p-vidrio-alto) 0%,
+            var(--p-vidrio) 46%,
+            color-mix(in srgb, var(--p-fondo) 82%, transparent) 100%);
+    overflow: hidden;
+    transition: border-color .3s var(--calma);
+}
+
+.dc-entrada--abierta {
+    border-color: var(--p-borde-vivo);
+}
+
+.dc-entrada-cab {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    min-height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.dc-palabra {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--p-tinta);
+}
+
+.dc-categoria {
+    flex: none;
+    font-size: .72rem;
+    font-style: italic;
+    letter-spacing: .04em;
+    color: var(--p-tinta-2);
+}
+
+.dc-entrada-cuerpo {
+    padding: 0 20px 18px;
+}
+
+.dc-definicion {
+    font-size: .9rem;
+    line-height: 1.6;
+    color: var(--p-tinta-2);
+    margin-bottom: 8px;
+}
+
+.dc-ejemplo {
+    font-size: .86rem;
+    font-style: italic;
+    color: color-mix(in srgb, var(--p-realce) 78%, var(--p-tinta));
+}
+
+.dc-fecha {
+    font-style: normal;
+    font-size: .76rem;
+    color: var(--p-tinta-2);
+}
+
+.dc-vacio {
+    text-align: center;
+    padding: var(--e5) var(--e3);
+    color: var(--p-tinta-2);
+    font-size: .9rem;
+}
+
+.dc-digito {
+    text-align: center;
+    margin-top: var(--e3);
+    font-size: .78rem;
+    letter-spacing: .04em;
+    color: var(--p-tinta-2);
+}
+
+.dc-digito strong {
+    color: var(--p-realce);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+}

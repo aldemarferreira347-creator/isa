@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#060f0c" />
+    <title>El Mapa — Mes 8 ⌖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+    <link rel="stylesheet" href="css/mapa.css">
+</head>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     MES 8 · 10 de diciembre de 2026 — El Mapa
+
+     LOS TEXTOS
+     Están en js/mapa.js, en el array CHINCHETAS. Las vividas llevan
+     `nombre` + `historia`; las futuras sólo `destino`. Vacíos, se nota
+     — no inventan nada por su cuenta.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<body class="tema-mapa">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="mp-hero">
+        <span class="mp-ceja reveal-up">Mes 8 · 10 de diciembre de 2026</span>
+        <h1 class="mp-titulo reveal-up">El Mapa</h1>
+        <p class="mp-sub reveal-up">
+            Arrastra para moverte, acerca para mirar de cerca. Las chinchetas
+            doradas se abren. Las apagadas todavía no — son promesas, no
+            recuerdos.
+        </p>
+    </section>
+
+    <section class="mp-envoltorio" aria-label="Mapa con lugares vividos y por vivir">
+        <div class="mp-visor" id="mpVisor">
+            <div class="mp-lienzo" id="mpLienzo">
+                <svg class="mp-svg" viewBox="0 0 1400 980" aria-hidden="true">
+                    <path class="mp-tierra"
+                        d="M200,580 C300,540 420,560 460,640 C500,720 480,820 400,870 C320,910 220,880 180,800 C140,720 140,630 200,580 Z" />
+                    <path class="mp-tierra"
+                        d="M480,180 C580,120 700,130 760,200 C820,270 800,360 720,400 C640,440 540,420 480,370 C420,320 410,240 480,180 Z" />
+                    <path class="mp-tierra"
+                        d="M820,520 C950,460 1100,470 1180,540 C1260,610 1250,720 1180,780 C1120,830 1000,850 900,820 C820,800 760,720 770,630 C775,590 790,550 820,520 Z" />
+                    <path class="mp-tierra"
+                        d="M1020,220 C1080,160 1180,160 1230,220 C1270,270 1250,340 1190,370 C1130,400 1050,380 1020,320 C1000,280 1000,250 1020,220 Z" />
+                    <path class="mp-ruta"
+                        d="M260,620 L520,340 L840,560 L1080,260 M260,620 L400,830 M520,340 L700,190 M840,560 L1180,650 L960,800" />
+                    <g class="mp-rosa" transform="translate(120,120)">
+                        <circle class="mp-rosa-anillo" r="42" />
+                        <path class="mp-rosa-cruz" d="M0,-42 L0,42 M-42,0 L42,0" />
+                        <path class="mp-rosa-aguja" d="M0,-30 L8,0 L0,30 L-8,0 Z" />
+                    </g>
+                </svg>
+                <div class="mp-pines" id="mpPines"></div>
+            </div>
+            <div class="mp-controles">
+                <button type="button" class="mp-ctrl" id="mpZoomMas" aria-label="Acercar">+</button>
+                <button type="button" class="mp-ctrl" id="mpZoomMenos" aria-label="Alejar">−</button>
+                <button type="button" class="mp-ctrl" id="mpCentrar" aria-label="Centrar el mapa">⟲</button>
+            </div>
+        </div>
+        <p class="mp-ayuda">Arrastra para moverte · rueda o los botones para acercar</p>
+        <p class="mp-contador" id="mpContador"></p>
+        <p class="mp-digito" id="mpDigito" hidden>Para La Bóveda — mes 8: <strong>4</strong></p>
+    </section>
+
+    <div class="mp-popup" id="mpPopup" hidden role="dialog" aria-modal="true" aria-labelledby="mpPopupTitulo">
+        <div class="mp-popup-caja">
+            <button type="button" class="mp-popup-cerrar" id="mpPopupCerrar" aria-label="Cerrar">✕</button>
+            <p class="mp-popup-titulo" id="mpPopupTitulo"></p>
+            <p class="mp-popup-texto" id="mpPopupTexto"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Mes a mes, un poco más cerca.</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/mapa.js"></script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

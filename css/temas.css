@@ -1,0 +1,355 @@
+/* ══════════════════════════════════════════════════════
+   TEMAS.CSS — variantes de color por página
+   Cada página conserva su identidad; aquí vive esa identidad
+   como CSS real en vez de atributos style= repartidos por el HTML.
+   Cargar después de responsive.css.
+   ══════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════
+   ACENTOS POR PÁGINA
+   Sólo redefinen las variables que consume fx.css (aurora, brillos,
+   cortina de transición, halo del botón de música). El resto del
+   diseño de cada página queda tal cual.
+   ══════════════════════════════════════════════════════ */
+
+/* Menú principal — dorado cálido sobre rosa */
+.tema-inicio {
+    --fx-accent: #ffe044;
+    --fx-accent-2: rgba(244, 63, 138, .5);
+    --fx-glow: rgba(245, 197, 24, .42);
+}
+
+/* Buenas noches — azul de medianoche y lila */
+.tema-noche {
+    --fx-accent: #c9b8ff;
+    --fx-accent-2: rgba(90, 70, 190, .5);
+    --fx-glow: rgba(150, 130, 255, .34);
+}
+
+/* Los pétalos se vuelven polvo de estrellas */
+.tema-noche .petal {
+    border-radius: 50%;
+    background: #dcd2ff !important;
+    box-shadow: 0 0 7px rgba(190, 170, 255, .85);
+}
+
+/* Carta de promesa — rosa profundo */
+.tema-promesa {
+    --fx-accent: #ffe044;
+    --fx-accent-2: rgba(244, 63, 138, .6);
+    --fx-glow: rgba(244, 63, 138, .38);
+}
+
+/* Romántico — rosa suave */
+.tema-romantico {
+    --fx-accent: #ffb3d1;
+    --fx-accent-2: rgba(244, 63, 138, .5);
+    --fx-glow: rgba(255, 150, 195, .34);
+}
+
+/* Dedicatoria — dorado brillante */
+.tema-dedicatoria {
+    --fx-accent: #ffe044;
+    --fx-accent-2: rgba(255, 183, 0, .45);
+    --fx-glow: rgba(255, 224, 68, .4);
+}
+
+/* Flores amarillas — girasol */
+.tema-girasol {
+    --fx-accent: #ffd11a;
+    --fx-accent-2: rgba(255, 183, 0, .55);
+    --fx-glow: rgba(255, 209, 26, .42);
+}
+
+.tema-girasol .petal {
+    background: #ffd94d !important;
+}
+
+/* La pregunta — ámbar de vela */
+.tema-pregunta {
+    --fx-accent: #f5c518;
+    --fx-accent-2: rgba(255, 140, 0, .45);
+    --fx-glow: rgba(245, 197, 24, .4);
+}
+
+/* ══════════════════════════════════════════════════════
+   TEMA NAVIDAD — verde pino, rojo y dorado
+   Reemplaza ~15 atributos style= inline de carta-de-navidad.html.
+   El TEXTO de la carta no cambia: sólo su vestido.
+   ══════════════════════════════════════════════════════ */
+.tema-navidad {
+    --nav-verde: #40c057;
+    --nav-verde-claro: #69db7c;
+    --nav-rojo: #ff5252;
+    --nav-rojo-hondo: #d32f2f;
+    --nav-dorado: #fff176;
+    --nav-hielo: #90caf9;
+
+    /* La capa fx hereda estos colores: aurora, brillos y cortina se vuelven navideños */
+    --fx-accent: var(--nav-dorado);
+    --fx-accent-2: rgba(211, 47, 47, .55);
+    --fx-glow: rgba(105, 219, 124, .38);
+}
+
+/* Esta carta es más larga que las demás: necesita más ancho de lectura */
+.promise-wrap--ancho {
+    max-width: 800px;
+}
+
+/* ── Tarjeta ── */
+.tema-navidad .promise-card {
+    background: linear-gradient(160deg, rgba(8, 45, 20, .92) 0%, rgba(3, 20, 8, .98) 100%);
+    border: 1px solid rgba(220, 53, 69, .4);
+    border-radius: clamp(18px, 4.5vw, 32px);
+    box-shadow:
+        0 0 80px rgba(220, 53, 69, .15),
+        0 30px 60px rgba(0, 0, 0, .6),
+        inset 0 2px 20px rgba(220, 53, 69, .1);
+}
+
+.tema-navidad .promise-card::before {
+    background: radial-gradient(circle, rgba(211, 47, 47, .14) 0%, transparent 70%);
+}
+
+.tema-navidad .promise-card::after {
+    background: radial-gradient(circle, rgba(64, 192, 87, .12) 0%, transparent 70%);
+}
+
+/* ── Sello de Santa ── */
+.tema-navidad .promise-seal {
+    background: linear-gradient(135deg, var(--nav-rojo-hondo), #b71c1c);
+    box-shadow: 0 0 30px rgba(211, 47, 47, .6), 0 5px 15px rgba(0, 0, 0, .5);
+    width: clamp(64px, 17vw, 85px);
+    height: clamp(64px, 17vw, 85px);
+    font-size: clamp(1.9rem, 6.5vw, 2.6rem);
+}
+
+/* ── Encabezados ── */
+.tema-navidad .promise-eyebrow {
+    color: var(--nav-verde-claro);
+    letter-spacing: clamp(2.5px, 1.2vw, 5px);
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(105, 219, 124, .4);
+}
+
+.tema-navidad .promise-heading {
+    color: var(--nav-dorado);
+    text-shadow: 0 2px 15px rgba(255, 241, 118, .3);
+}
+
+.tema-navidad .promise-heading em {
+    color: var(--nav-rojo);
+}
+
+/* ── Separadores ── */
+.tema-navidad .promise-divider span {
+    background: linear-gradient(90deg, transparent, rgba(105, 219, 124, .45), transparent);
+}
+
+.tema-navidad .promise-divider i {
+    font-size: clamp(1.05rem, 3.5vw, 1.3rem);
+}
+
+.tema-navidad .promise-divider--pino i {
+    color: var(--nav-verde-claro);
+}
+
+.tema-navidad .promise-divider--hielo i {
+    color: var(--nav-hielo);
+}
+
+/* ── Cuerpo ── */
+.tema-navidad .promise-body {
+    font-size: clamp(.98rem, 3vw, 1.05rem);
+}
+
+.tema-navidad .promise-highlight {
+    color: var(--nav-dorado);
+}
+
+.tema-navidad .promise-highlight--verde {
+    color: var(--nav-verde);
+}
+
+/* ── Cierre ── */
+.tema-navidad .promise-final {
+    background: linear-gradient(135deg, rgba(211, 47, 47, .15), rgba(27, 94, 32, .15));
+    border-color: rgba(211, 47, 47, .4);
+    border-radius: clamp(14px, 4vw, 20px);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, .2);
+}
+
+.tema-navidad .promise-final strong {
+    color: var(--nav-rojo);
+    font-size: 1.3em;
+    text-shadow: 0 2px 10px rgba(255, 82, 82, .4);
+}
+
+.tema-navidad .promise-signature {
+    margin-top: clamp(20px, 5vw, 30px);
+    color: var(--nav-dorado);
+    font-size: clamp(1rem, 3.2vw, 1.1rem);
+    font-weight: 500;
+}
+
+/* ── Adornos flotantes: cada uno con su ritmo ── */
+.tema-navidad .promise-float-heart {
+    animation: floatUpSlow 4s ease-in-out infinite alternate;
+}
+
+.tema-navidad .pf-pino {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    top: -10px;
+    left: 10px;
+    animation-delay: .2s;
+}
+
+.tema-navidad .pf-copo-1 {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    top: 20px;
+    right: 15px;
+    animation-delay: 1.5s;
+    opacity: .8;
+}
+
+.tema-navidad .pf-trineo {
+    font-size: clamp(1.35rem, 4.5vw, 2rem);
+    bottom: 10px;
+    left: 20px;
+    animation-delay: 2.1s;
+}
+
+.tema-navidad .pf-regalo {
+    font-size: clamp(1.15rem, 3.8vw, 1.7rem);
+    bottom: 30px;
+    right: 25px;
+    animation-delay: .8s;
+}
+
+.tema-navidad .pf-copo-2 {
+    font-size: clamp(1rem, 3.2vw, 1.4rem);
+    top: 40%;
+    left: -20px;
+    animation-delay: 3s;
+    filter: blur(1px);
+}
+
+.tema-navidad .pf-estrella {
+    font-size: clamp(1.05rem, 3.4vw, 1.5rem);
+    top: 55%;
+    right: -15px;
+    animation-delay: 1.2s;
+}
+
+/* En pantallas chicas los adornos de los bordes se salen del marco */
+@media (max-width: 560px) {
+
+    .tema-navidad .pf-copo-2,
+    .tema-navidad .pf-estrella {
+        display: none;
+    }
+}
+
+/* ── Nieve: los pétalos se vuelven copos ── */
+.tema-navidad .petal {
+    border-radius: 50%;
+    background: #eaf4ff !important;
+    box-shadow: 0 0 6px rgba(200, 230, 255, .8);
+}
+
+.tema-navidad .petal.fx-depth-near {
+    box-shadow: 0 0 12px rgba(220, 240, 255, .9);
+}
+
+/* ── Guirnalda de luces en el borde superior de la tarjeta ── */
+.tema-navidad .promise-card {
+    /* espacio para que las luces no pisen el sello */
+    padding-top: clamp(30px, 7vw, 60px);
+}
+
+.tema-navidad .promise-wrap::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 6%;
+    right: 6%;
+    height: 3px;
+    border-radius: 3px;
+    z-index: 3;
+    background:
+        repeating-linear-gradient(90deg,
+            var(--nav-rojo) 0 6px,
+            transparent 6px 26px),
+        repeating-linear-gradient(90deg,
+            transparent 0 13px,
+            var(--nav-verde-claro) 13px 19px,
+            transparent 19px 26px);
+    filter: drop-shadow(0 0 5px rgba(255, 120, 120, .85)) drop-shadow(0 0 9px rgba(105, 219, 124, .6));
+    animation: tema-guirnalda 2.4s steps(2, end) infinite;
+    pointer-events: none;
+}
+
+@keyframes tema-guirnalda {
+
+    0%,
+    100% {
+        opacity: 1;
+        filter: drop-shadow(0 0 5px rgba(255, 120, 120, .85)) drop-shadow(0 0 9px rgba(105, 219, 124, .6));
+    }
+
+    50% {
+        opacity: .58;
+        filter: drop-shadow(0 0 3px rgba(255, 120, 120, .5)) drop-shadow(0 0 5px rgba(105, 219, 124, .35));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tema-navidad .promise-wrap::before {
+        animation: none;
+    }
+}
+
+/* ══════════════════════════════════════════════════════
+   ESCENA DE NOCHEBUENA (js/navidad-escena.js)
+   Un lienzo con marco, debajo de la carta. Relación 3:2 en
+   escritorio y algo más alto en móvil, donde el ancho manda.
+   ══════════════════════════════════════════════════════ */
+.escena-navidad {
+    padding: clamp(10px, 3vw, 30px) 20px clamp(50px, 9vw, 90px);
+    display: flex;
+    justify-content: center;
+}
+
+.escena-marco {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 3 / 2;
+    border-radius: clamp(16px, 4vw, 26px);
+    overflow: hidden;
+    border: 1px solid rgba(140, 230, 160, .22);
+    box-shadow:
+        0 0 0 1px rgba(255, 241, 118, .07),
+        0 30px 70px -28px rgba(0, 0, 0, .85);
+}
+
+#escenaNavidad {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Viñeta por encima: funde el lienzo con la página en vez de cortarlo */
+.escena-marco::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 clamp(30px, 8vw, 70px) rgba(3, 16, 10, .75);
+}
+
+@media (max-width: 560px) {
+    .escena-marco {
+        aspect-ratio: 4 / 5;
+    }
+}

@@ -1,0 +1,390 @@
+/* ══════════════════════════════════════════════════════════════════════
+   RADIO-NOSOTROS.CSS — el dial del mes 5.
+
+   Todo lo compartido (botón de volver, pie, tipografía de titulares) lo
+   pone sistema.css con .tema-radio. Aquí sólo vive el aparato: la carcasa
+   de madera-cobre, la regla de frecuencias y la tarjeta que aparece al
+   sintonizar.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.rd-hero {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(84px, 16vw, 130px) clamp(20px, 6vw, 28px) clamp(20px, 5vw, 32px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--e2);
+}
+
+.rd-ceja {
+    font-size: var(--t-ceja);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+}
+
+.rd-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--t-h1);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -.012em;
+    text-wrap: balance;
+    background: linear-gradient(112deg,
+            var(--p-realce) 0%,
+            color-mix(in srgb, var(--p-realce) 55%, #fff) 40%,
+            var(--p-realce-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 18px color-mix(in srgb, var(--p-halo) 60%, transparent));
+}
+
+.rd-sub {
+    font-size: var(--t-cuerpo);
+    line-height: 1.75;
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+    max-width: 46ch;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   EL APARATO
+   ══════════════════════════════════════════════════════════════════════ */
+.rd-aparato {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 6vw, 28px) clamp(56px, 11vw, 100px);
+}
+
+.rd-carcasa {
+    padding: clamp(26px, 5.5vw, 40px) clamp(22px, 5vw, 34px) clamp(30px, 6vw, 40px);
+    border-radius: var(--p-radio);
+    border: 1px solid var(--p-borde);
+    background:
+        linear-gradient(165deg,
+            var(--p-vidrio-alto) 0%,
+            var(--p-vidrio) 46%,
+            color-mix(in srgb, var(--p-fondo) 82%, transparent) 100%);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 9%, transparent) inset,
+        0 18px 46px -18px var(--p-sombra);
+    backdrop-filter: blur(14px) saturate(1.15);
+    -webkit-backdrop-filter: blur(14px) saturate(1.15);
+}
+
+/* ── El botón de encendido ── */
+.rd-power {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto var(--e4);
+    padding: 12px 26px 12px 20px;
+    min-height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--p-borde-vivo);
+    background: var(--p-vidrio-alto);
+    color: color-mix(in srgb, var(--p-realce) 88%, #fff);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: .92rem;
+    cursor: pointer;
+    transition: transform .32s var(--sal), box-shadow .35s var(--calma), background .3s var(--calma);
+}
+
+.rd-power::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--p-tinta-2);
+    box-shadow: 0 0 0 0 transparent;
+    transition: background .3s var(--calma), box-shadow .4s var(--calma);
+}
+
+.rd-power:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px -14px var(--p-halo);
+}
+
+.rd-power.is-on::before {
+    background: #6cff8f;
+    box-shadow: 0 0 12px 2px #6cff8f;
+}
+
+.rd-power.is-on {
+    border-color: color-mix(in srgb, var(--p-realce) 55%, transparent);
+}
+
+/* ── Lectura digital ── */
+.rd-lectura {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(1.3rem, 5vw, 1.7rem);
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: var(--p-realce);
+    text-shadow: 0 0 20px var(--p-halo);
+    margin-bottom: var(--e3);
+    min-height: 1.6em;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   EL DIAL — un <input type="range"> real, invisible, montado sobre la
+   regla dibujada. Así el teclado (flechas, Inicio, Fin) y los lectores
+   de pantalla lo controlan gratis; sólo se pinta la aguja aparte.
+   ══════════════════════════════════════════════════════════════════════ */
+.rd-dial {
+    position: relative;
+    height: 74px;
+    margin-bottom: var(--e3);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--p-fondo) 55%, transparent);
+    border: 1px solid var(--p-borde);
+    overflow: hidden;
+    transition: box-shadow .4s var(--calma);
+}
+
+.rd-dial--cerca {
+    box-shadow: 0 0 0 1px var(--p-borde-vivo) inset, 0 0 30px -6px var(--p-halo);
+}
+
+.rd-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    /* El área táctil real es todo el dial, no el thumb nativo minúsculo */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.rd-input:disabled {
+    cursor: not-allowed;
+}
+
+.rd-input:focus-visible~.rd-regla {
+    outline: 2px solid var(--p-realce);
+    outline-offset: 3px;
+    border-radius: 10px;
+}
+
+.rd-regla {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.radio-marca {
+    position: absolute;
+    bottom: 8px;
+    width: 1px;
+    height: 10px;
+    background: var(--p-tinta-2);
+    opacity: .35;
+    transform: translateX(-50%);
+}
+
+.radio-marca--num {
+    height: 16px;
+    opacity: .8;
+    padding-top: 20px;
+    font-size: .6rem;
+    color: var(--p-tinta-2);
+    text-align: center;
+}
+
+/* Punto que marca una estación ya encontrada */
+.radio-hallazgo {
+    position: absolute;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--p-realce-2);
+    box-shadow: 0 0 8px 1px var(--p-halo);
+    transform: translateX(-50%);
+}
+
+/* La aguja: una línea vertical que se mueve con el valor del range */
+.rd-aguja {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--p-realce), var(--p-realce-2));
+    box-shadow: 0 0 10px 1px var(--p-halo);
+    transform: translateX(-50%);
+    pointer-events: none;
+    transition: box-shadow .3s var(--calma);
+}
+
+.rd-aguja::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--p-realce);
+    transform: translateX(-50%);
+    box-shadow: 0 0 12px 2px var(--p-halo);
+}
+
+.rd-ayuda {
+    text-align: center;
+    font-size: var(--t-menudo);
+    color: var(--p-tinta-2);
+    margin-bottom: var(--e4);
+}
+
+.rd-buscando {
+    text-align: center;
+    font-size: .82rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--p-tinta-2);
+    min-height: 1.4em;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   LA TARJETA DE ESTACIÓN
+   ══════════════════════════════════════════════════════════════════════ */
+.rd-tarjeta[hidden] {
+    display: none;
+}
+
+.rd-tarjeta {
+    display: flex;
+    align-items: center;
+    gap: var(--e3);
+    padding: var(--e3);
+    border-radius: calc(var(--p-radio) - 6px);
+    background: color-mix(in srgb, var(--p-fondo) 45%, transparent);
+    border: 1px solid var(--p-borde-vivo);
+    animation: rd-entra .5s var(--sal);
+}
+
+@keyframes rd-entra {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.rd-play {
+    flex: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid var(--p-borde-vivo);
+    background: linear-gradient(140deg, var(--p-realce), var(--p-realce-2));
+    color: #17110a;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .32s var(--sal), box-shadow .35s var(--calma);
+}
+
+.rd-play:hover {
+    transform: scale(1.06);
+    box-shadow: 0 10px 26px -10px var(--p-halo);
+}
+
+.rd-tarjeta-texto {
+    min-width: 0;
+}
+
+.rd-tarjeta-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: color-mix(in srgb, var(--p-realce) 80%, #fff);
+    margin-bottom: 4px;
+}
+
+.rd-tarjeta-porque {
+    font-size: .88rem;
+    line-height: 1.5;
+    color: var(--p-tinta-2);
+}
+
+.radio-porque--vacio {
+    font-style: italic;
+    opacity: .7;
+}
+
+.rd-contador {
+    text-align: center;
+    margin-top: var(--e3);
+    font-size: var(--t-menudo);
+    letter-spacing: .06em;
+    color: var(--p-tinta-2);
+}
+
+.rd-cierre {
+    margin-top: var(--e4);
+    padding-top: var(--e4);
+    border-top: 1px solid var(--p-borde);
+    text-align: center;
+    font-size: var(--t-cuerpo);
+    line-height: 1.7;
+    color: var(--p-tinta-2);
+}
+
+.rd-cierre em {
+    display: block;
+    margin-top: 6px;
+}
+
+.rd-digito {
+    margin-top: var(--e3);
+    padding-top: var(--e2);
+    border-top: 1px dashed var(--p-borde);
+    font-size: .78rem;
+    letter-spacing: .04em;
+}
+
+.rd-digito strong {
+    color: var(--p-realce);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+    .rd-tarjeta {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rd-tarjeta {
+        animation: none;
+    }
+}

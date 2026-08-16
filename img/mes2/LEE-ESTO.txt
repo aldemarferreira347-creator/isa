@@ -1,0 +1,7 @@
+Aqui van las dos fotos del mes 2. Los nombres tienen que ser exactos:
+
+    peluche.jpg     el peluche
+    locion.jpg      el frasco de locion
+
+Se ven mejor cuadradas (1:1), porque el marco es redondo.
+Si todavia no estan, la pagina funciona igual: cada marco muestra su dibujo.

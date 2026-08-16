@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0806" />
+    <title>Cápsula del Tiempo — Mes 9 ✉</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+    <link rel="stylesheet" href="css/capsula.css">
+</head>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     MES 9 · 10 de enero de 2027 — Cápsula del Tiempo
+
+     Nada que editar aquí: este mes lo escribe ella. Lo que guarda vive
+     en el localStorage de su navegador (clave m9_capsula) y se lee de
+     nuevo dentro de la Bóveda (mes 12) cuando llegue el 10 de abril.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<body class="tema-capsula">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="cp-hero">
+        <span class="cp-ceja reveal-up">Mes 9 · 10 de enero de 2027</span>
+        <h1 class="cp-titulo reveal-up">Cápsula del Tiempo</h1>
+        <p class="cp-sub reveal-up">
+            Por primera vez en todo el año, este mes no te doy nada:
+            te pido algo. Escribe, y luego suéltalo — no vas a poder
+            volver a leerlo hasta dentro de tres meses.
+        </p>
+    </section>
+
+    <section class="cp-envoltorio" aria-label="Escribir y sellar la cápsula del tiempo">
+        <form class="cp-panel" id="cpEscribir">
+            <div class="cp-campo">
+                <label for="cpCartaTi">Una carta para ti misma, dentro de un año</label>
+                <p>¿Qué te gustaría recordar de quién eres justo ahora?</p>
+                <textarea id="cpCartaTi" placeholder="Escribe aquí…"></textarea>
+            </div>
+            <div class="cp-campo">
+                <label for="cpCartaMi">Una carta para mí</label>
+                <p>Lo que sea. Esto lo leo yo, no antes del 10 de abril.</p>
+                <textarea id="cpCartaMi" placeholder="Escribe aquí…"></textarea>
+            </div>
+            <div class="cp-sellar-fila">
+                <button type="submit" class="cp-sellar" id="cpSellar" disabled>Sellar la cápsula</button>
+            </div>
+        </form>
+
+        <div class="cp-panel cp-sellada" id="cpSellada" hidden>
+            <div class="cp-sello">✉</div>
+            <p class="cp-sellada-titulo">Sellada.</p>
+            <p class="cp-sellada-fecha">El <span id="cpFechaSello"></span></p>
+            <p class="cp-cuenta-atras" id="cpCuentaAtras"></p>
+            <button type="button" class="cp-descargar" id="cpDescargar">
+                Descargar una copia para mí (opcional)
+            </button>
+            <p class="cp-digito" id="cpDigito" hidden>Para La Bóveda — mes 9: <strong>1</strong></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Mes a mes, un poco más cerca.</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/capsula.js"></script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

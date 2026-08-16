@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Cumpleaños mi amor❣️</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/fx.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/carta-cumpleanos.css">
+    <link rel="stylesheet" href="css/sistema.css">
+</head>
+
+<body class="tema-carta">
+  <a href="momentos-cumpleanos.html" class="back-btn">⬅ Volver</a>
+
+
+  <div style="width:100%;height:100vh;overflow:hidden;position:relative;">
+    <canvas id="hc" style="display:block;width:100%;height:100%;"></canvas>
+    <div id="hud" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;">
+      <!-- corner stars -->
+      <span class="hud-corner-star tl" id="hcs-tl">✦</span>
+      <span class="hud-corner-star tr" id="hcs-tr">✦</span>
+      <span class="hud-corner-star bl" id="hcs-bl">✦</span>
+      <span class="hud-corner-star br" id="hcs-br">✦</span>
+
+      <!-- top title block -->
+      <div style="position:absolute;top:22px;left:50%;transform:translateX(-50%);text-align:center;max-width:90vw;width:max-content;">
+        <div id="tt">✦ PARA TI MI REINA ❣️ ✦</div>
+        <div id="st">con todo el amor del universo</div>
+        <div id="hud-deco">· · ✦ · ·</div>
+      </div>
+
+      <!-- bottom bar -->
+      <div id="hud-bottom">
+        <div id="hud-explore-text">— &nbsp;ACERCA EL ZOOM PARA ABRIR LA CARTA &nbsp;—</div>
+        <div id="hud-nav">«&nbsp;&nbsp;· · · · ·&nbsp;&nbsp;»</div>
+        <span id="hud-hand">☞</span>
+      </div>
+      <!-- zoom hint — appears as user zooms in close -->
+      <div id="zoom-hint">
+        <div id="zoom-hint-icon">💌</div>
+        <div id="zoom-hint-text">abriendo la carta…</div>
+      </div>
+    </div>
+
+    <div id="letter-page">
+      <canvas id="letter-embers"></canvas>
+      <div id="letter-stars"></div>
+
+      <div id="letter-progress"><div id="letter-progress-fill"></div></div>
+      <button id="letter-close" aria-label="Cerrar carta">✕</button>
+
+      <div id="letter-scroll">
+        <div id="letter-inner">
+
+          <header id="letter-head">
+            <div id="letter-icon">💛</div>
+            <div id="letter-date">19 de julio del 2026</div>
+            <h1 id="letter-heading">Para ti</h1>
+            <div id="letter-subheading">mi rayito de luz</div>
+            <div class="letter-rule">✦</div>
+          </header>
+
+          <div id="letter-body">
+
+            <p class="lead">Y es que ya nada me es igual. Es el primer cumpleaños que pasamos juntos, y la pregunta es:
+              <strong>¿por qué?</strong></p>
+
+            <p>¿Por qué la vida no nos encontró mucho antes, si se supone que somos los amores de la vida del otro? ¿No
+              habría sido mejor ser vecinos? Así te vería 24/7 y te hubiera acompañado en cada una de tus caídas
+              emocionales o en cada intento en el que hubieras querido superarte. Pero aquí estamos, viviendo una de
+              nuestras fechas más importantes hasta el momento, y solo espero que hoy seas feliz con mi compañía.</p>
+
+            <p>Por ejemplo...</p>
+
+            <p>¿De casualidad tú conoces a una chica crespa, morena, de ojos cafés, que a veces usa lentes y otras veces
+              lentes de contacto? ¿Una chica enojona, alegre, bajita, nalgona, que siempre usa crema para el pelo,
+              manillas y anillos, que casi siempre lleva pantalones desahogados, que siempre encuentra la manera de
+              pelear conmigo por cualquier cosa, que a veces me habla bonito, a la que siempre le doy los buenos días y
+              a la que llamo mi rayito de luz, mi rayito de sol, mi niña, mi niñita?</p>
+
+            <p>¿Conoces a esa persona que me saca sonrisas sin siquiera proponérselo? ¿A esa persona que, sin hacer nada,
+              logra calmarme? ¿A esa persona que siempre me motiva a seguir adelante cada vez que más lo necesito?</p>
+
+            <p>Pues yo sí la conozco... y tengo la suerte de llamarla <strong>mi novia</strong>.</p>
+
+            <p>Te amo, niña. Aunque la distancia nos esté marcando tanto, aunque ya no mires aquella página tan
+              importante para mí, supongo que simplemente ya pasó su momento.</p>
+
+            <p>Eso no significa que nuestro presente no tenga un significado enorme. No te hagas la loca, señorita, tú me
+              amas de aquí al infinito y yo a ti muchísimo más.</p>
+
+            <p>Casi nunca sentía la necesidad de ver a alguien, pero eso empezó a cambiar desde que cumplí 17 años. Esta
+              distancia entre nosotros ya no me está cuadrando ni en el corazón ni en la cabeza, y eso me sorprende
+              porque nunca antes me habían dicho que yo estaba enamorado. Pero ahora, por todo lo que siento, hasta yo
+              mismo creo que deberían recordármelo todos los días.</p>
+
+            <p>La gente no para con sus preguntas:</p>
+
+            <div class="q-list">
+              <em>"¿Y su amor?"</em><br>
+              <em>"¿Y su mujer?"</em><br>
+              <em>"¿Y las idas a Agroindustria?"</em><br>
+              <em>"¿Y Tecnoparque?"</em><br>
+              <em>"¿Qué hace aquí?"</em><br>
+              <em>"¿Por qué anda tan callado?"</em>
+            </div>
+
+            <p>Tal parece que todo cambia.</p>
+
+            <p>Ahora la luz de la luna ya no me da la misma tranquilidad de antes. En su momento me bastaba con un solo
+              vistazo para despejar mis dudas. Ahora necesito un <strong>"te amo"</strong> y mirarte a los ojos para
+              sentir algo que nunca antes había sentido: la felicidad de estar al lado de mi pareja. Eso logra liberar
+              gran parte de los problemas de mi día.</p>
+
+            <p>Claro, no siempre es suficiente, porque cuando amo algo nunca me canso ni me parece suficiente. Eres como
+              ese helado que nunca quiero que se derrita, porque quisiera disfrutar cada momento contigo para siempre.</p>
+
+            <p>Ahora me la paso en mi barco de papel, y tú eres el único mar que quiero navegar. Aunque pasen
+              desacuerdos o conversaciones cortantes, eso solo es la tormenta que a veces debo enfrentar. Gracias a
+              Dios, esa tormenta desaparece en un instante cuando escucho ese:</p>
+
+            <blockquote class="pull">Te amo, niño.</blockquote>
+
+            <p>Esa es la frase que calma todas mis tormentas y le pone fin a cualquier tormento, y me dejó encontrar ese
+              tesoro que no es plata, ni oro, ni diamantes. Aquel tesoro eres tú, que me demuestras que, a veces, lo
+              esencial es invisible a los ojos, y mi remedio es confiar en que solo con el corazón puedo comprender de
+              verdad tus intenciones conmigo.</p>
+
+            <h3 class="section-break">Amor mío</h3>
+
+            <p>Desde que llegaste, todo cambió dentro de mí. Aprendí que el amor no es solo sentir, sino cuidar,
+              respetar y elegir todos los días.</p>
+
+            <p>No quiero un amor perfecto contigo; quiero uno real... de esos que pasan por tormentas, pero nunca se
+              rompen.</p>
+
+            <p>Quiero estar en tus días felices y también en los que no lo son tanto, porque ahí es donde el amor se
+              vuelve más fuerte.</p>
+
+            <p>Si algún día el mundo se pone en contra, recuerda que siempre tendrás mi mano para sostenerte. Porque yo
+              no solo te amo, yo no solo soy tu novio o aquel que prueba tus labios... yo soy aquel hombre que no quiere
+              verte triste, ni aquel que huye de tus tristezas. Yo quiero ser el elegido para escuchar tus plegarias,
+              tus risas, tus tristezas, y por eso te elijo. Te elegí ayer, te elijo hoy y te elegiré siempre.</p>
+
+            <p>Eres la persona con la que quiero bailar bajo la lluvia mientras nuestras risas entonan nuestro baile y
+              nos dejan simplemente ser nosotros, sin filtros, sin que exista ese miedo al qué dirán si nos ven, sin ese
+              miedo que nos limita a no dar el 100 % de nuestro corazón.</p>
+
+            <p>La meta de hoy fue hacerte feliz, así como yo aprendí a querer la distancia solo porque tú estabas del
+              otro lado.</p>
+
+            <p>Hoy mi regalo fueron una cadena, unos aretes y una pulsera.</p>
+
+            <div class="gifts">
+              <p class="gift"><b>La cadena</b> es para que, sin importar a dónde vayas, sientas y puedas ver mi amor.</p>
+              <p class="gift"><b>La pulsera</b> es para que, con cada acción que hagas, recuerdes que te amo y que te
+                quiero acompañar en tu día a día.</p>
+              <p class="gift"><b>Los aretes</b> son para que las malas intenciones de otras personas sean filtradas por
+                el amor que te tengo.</p>
+            </div>
+
+            <p>¿A quién le miento? En este domingo, lo que más quiero es un beso tuyo, un abrazo y un "te amo"
+              mirándonos a los ojos.</p>
+
+            <p>Aunque la distancia nos deje esa fina y dura marca, solo es un pequeño desafío que nos pone la vida. Tan
+              lindos son esos momentos donde estamos juntos que Dios los equilibra con una o dos semanas sin vernos para
+              que no muramos de amor mutuo.</p>
+
+            <p>Pero, ¿qué pasaría si pudiéramos estar juntos sin ese perjuicio que tanto nos atormenta? Tal vez
+              mejoraría el clima. Tal vez el destino nos tiene una semejanza con el Sol y la Luna: dos seres tan
+              distintos, una pareja a la que el mundo mismo le impide acercarse. Aun así, Dios inventó los eclipses como
+              muestra de que nada es imposible.</p>
+
+            <p>Y esto es así. Solo quiero que el destino nos permita tener esa misma decisión en la vida: no dejar
+              espacio para nadie más, no dejar un lugar para cobijar a otra persona, no dejar entrada ni oportunidad a
+              otra persona que no seamos tú y yo.</p>
+
+            <p>O simplemente tú eras la chica con aquel rostro borroso que tanto me llamaba en mis sueños y que tanto
+              anhelaba conocer.</p>
+
+            <p>Además, que lleves alguna de estas cosas remarca mi idea de que, pase lo que pase, eres mía y también de
+              que tengas en conocimiento que soy preso de la cárcel de tus besos.</p>
+
+            <p>Gracias por existir, por hacerme sonreír incluso en los días difíciles, por creer en mí cuando ni yo mismo
+              lo hago y por enseñarme que el amor sí puede sentirse de esta manera.</p>
+
+            <p>Por otro lado, mi forma de entender el amor me hace querer compartir mi vida contigo y elegirte solo a
+              ti.</p>
+
+            <p>Recuerda que, si dudas mil y una veces de que te amo, mil cien veces te diré cuánto te amo.</p>
+
+            <blockquote class="pull climax">Feliz cumpleaños,<br>mi rayito de luz. ❤️</blockquote>
+
+            <p>Feliz cumpleaños al mejor elemento de Las Brisas, aunque a veces se sienta agobiada hasta del mismo
+              mundo.</p>
+
+            <p>Espero que este sea apenas el primero de muchísimos cumpleaños que podamos celebrar juntos. Te amo hoy,
+              mañana y todos los días que la vida me permita estar a tu lado.</p>
+
+          </div>
+
+          <div id="letter-footer">✶ con amor eterno ✶</div>
+
+          <!-- Broche de oro button (Removed as per new flow) -->
+
+          <div class="letter-deco bottom">· · ✦ · ·</div>
+        </div>
+      </div>
+
+      <div id="letter-fade-bottom"></div>
+      <div id="letter-scroll-hint">desliza<span>⌄</span></div>
+    </div>
+  </div>
+
+
+  <div id="audio-start">
+    <!-- viewport corner stars (fixed, always visible on welcome) -->
+    <span class="viewport-star vtl">✦</span>
+    <span class="viewport-star vtr">✦</span>
+    <span class="viewport-star vbl">✦</span>
+    <span class="viewport-star vbr">✦</span>
+
+    <!-- nebula background clouds -->
+    <div class="nebula-blob bl"></div>
+    <div class="nebula-blob br"></div>
+    <div class="nebula-blob tl"></div>
+    <div class="nebula-blob tr"></div>
+
+    <!-- twinkling stars -->
+    <div id="welcome-stars"></div>
+
+    <!-- card -->
+    <div id="welcome-card">
+      <div class="welcome-deco" aria-hidden="true">· · ✦ · ·</div>
+      <span id="welcome-icon">💌</span>
+      <div id="welcome-title">Bienvenida a tu carta<br>especial, señorita</div>
+      <div class="heart-divider">♡</div>
+      <div id="welcome-sub">con todo el amor del universo</div>
+      <div id="welcome-btn">✦ Abrir carta ✦</div>
+      <div class="welcome-deco bottom" aria-hidden="true">· · ✦ · ·</div>
+    </div>
+  </div>
+
+
+  <!-- ===== AUDIO SYSTEM — 3-song playlist ===== -->
+  <!-- Track order: 0=caritalinda, 1=amorcompleto, 2=videoplayback -->
+  <audio id="bg-audio" preload="auto"></audio>
+
+
+  <div id="music-ctrl">
+    <span id="music-ctrl-icon"></span>
+    <div id="music-bars">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <span id="music-track-name" style="opacity:.6;font-size:10px;letter-spacing:2px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+  </div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- capa DOM: bienvenida, carta, nebulosa, música -->
+  <script src="js/carta-cumpleanos.js"></script>
+  <!-- motor 3D: partículas, bloom propio, coreografía del corazón -->
+  <script src="js/corazon-3d.js"></script>
+
+</body>
+</html>

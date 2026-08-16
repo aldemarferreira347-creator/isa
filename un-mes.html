@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0A0818" />
+    <title>UN MES — NIVEL 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/un-mes-pixel.css">
+</head>
+
+<body>
+
+    <canvas id="escena" aria-hidden="true"></canvas>
+    <div class="crt" aria-hidden="true"></div>
+
+    <!-- ══════════ HUD ══════════ -->
+    <header class="hud">
+        <a class="hud-salir" href="index.html">&lt; SALIR</a>
+        <span class="hud-nivel" id="nivelTxt">NIVEL 1</span>
+        <div class="hud-vidas" id="vidas" title="Corazones conseguidos"></div>
+        <div class="hud-xp"><i id="xp"></i></div>
+        <button class="hud-son" id="son" type="button" aria-pressed="false">SON OFF</button>
+    </header>
+
+    <main>
+
+        <!-- ══════════ PORTADA ══════════ -->
+        <section class="pantalla portada">
+            <h1 class="rotulo">
+                <b>UN MES</b>
+                <span>ISABELA &amp; CARLO</span>
+            </h1>
+            <p class="subrotulo">
+                10 · 05 · 2026<br>
+                UNA PARTIDA DE CUATRO JUEVES
+            </p>
+            <p class="subrotulo parpadea">▼ BAJA PARA JUGAR ▼</p>
+        </section>
+
+        <!-- ══════════ ESTADÍSTICAS ══════════ -->
+        <section class="pantalla">
+            <div class="caja aparece">
+                <h2 class="caja-titulo">PARTIDA GUARDADA</h2>
+                <dl class="stats">
+                    <div>
+                        <dt>TIEMPO JUGADO</dt>
+                        <dd>1 MES<small>de novios</small></dd>
+                    </div>
+                    <div>
+                        <dt>ANTES DE EMPEZAR</dt>
+                        <dd>268 DIAS<small>8 meses, 3 semanas y 4 días metiéndote en mi vida</small></dd>
+                    </div>
+                    <div>
+                        <dt>DIA CLAVE</dt>
+                        <dd>JUEVES<small>el único que nos pertenece de lunes a viernes</small></dd>
+                    </div>
+                    <div>
+                        <dt>OBJETO FINAL</dt>
+                        <dd>? ? ?<small>bloqueado hasta el combate</small></dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- ══════════ GALERÍA ══════════ -->
+        <section class="pantalla">
+            <div class="caja aparece">
+                <h2 class="caja-titulo">ALBUM — 6 RECUERDOS</h2>
+                <p style="margin:0">Cada recuerdo llega pixelado y se revela solo cuando lo miras. Tócalo para verlo
+                    entero.</p>
+
+                <div class="galeria">
+                    <figure class="marco" role="button" tabindex="0" data-foto="img/1mes/foto1.jpeg"
+                        data-alt="Una mano enmarcando el atardecer sobre el mar">
+                        <canvas width="300" height="400"></canvas>
+                        <figcaption>
+                            <span class="num">01 — EL MAR</span>
+                            <p>«Siempre me preguntaré cómo te verás al frente del mar»</p>
+                            <span class="cargando">CARGANDO...</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="marco" role="button" tabindex="0" data-foto="img/1mes/foto2.jpeg"
+                        data-alt="Isabela de noche, con sus gafas">
+                        <canvas width="300" height="155"></canvas>
+                        <figcaption>
+                            <span class="num">02 — LA NOCHE</span>
+                            <p>«Qué bonito es verte todas las noches con esas gafas»</p>
+                            <span class="cargando">CARGANDO...</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="marco" role="button" tabindex="0" data-foto="img/1mes/foto3.jpeg"
+                        data-alt="Una videollamada de las nuestras">
+                        <canvas width="300" height="667"></canvas>
+                        <figcaption>
+                            <span class="num">03 — LA DISTANCIA</span>
+                            <p>«una niña medio melosa que todos los días me recuerda cuánto me quiere»</p>
+                            <span class="cargando">CARGANDO...</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="marco" role="button" tabindex="0" data-foto="img/1mes/foto4.jpeg"
+                        data-alt="Isabela frente al espejo, con su nombre en la pared">
+                        <canvas width="300" height="400"></canvas>
+                        <figcaption>
+                            <span class="num">04 — SU NOMBRE</span>
+                            <p>«esa niña tan especial, dueña de todo y nada a la vez»</p>
+                            <span class="cargando">CARGANDO...</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="marco" role="button" tabindex="0" data-foto="img/1mes/foto5.jpeg"
+                        data-alt="Los dos, uno al lado del otro">
+                        <canvas width="300" height="400"></canvas>
+                        <figcaption>
+                            <span class="num">05 — LOS DOS</span>
+                            <p>«no quiero perder ni un solo momento contigo»</p>
+                            <span class="cargando">CARGANDO...</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="marco" role="button" tabindex="0" data-foto="img/1mes/foto6.jpeg"
+                        data-alt="Isabela frente al espejo, con una luna encendida detrás">
+                        <canvas width="300" height="400"></canvas>
+                        <figcaption>
+                            <span class="num">06 — LA LUNA</span>
+                            <p>«mientras la luna ilumina tu cara»</p>
+                            <span class="cargando">CARGANDO...</span>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ COMBATE ══════════ -->
+        <section class="pantalla" id="reto">
+            <div class="caja aparece">
+                <h2 class="caja-titulo">COMBATE FINAL <span class="contador" id="contador">1/6</span></h2>
+                <p class="dialogo" id="dialogo" aria-live="polite"></p>
+                <div class="menu" id="menu"></div>
+                <p class="aviso" id="aviso" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <!-- ══════════ LA CARTA ══════════ -->
+        <section class="pantalla" id="carta">
+            <div class="caja carta-caja">
+                <h2 class="caja-titulo">CARTA DE UN MES</h2>
+
+                <div class="sobre-cerrado">
+                    <p style="margin:0">Este objeto está cerrado con llave.</p>
+                    <p class="candado">◄ GANA EL COMBATE PARA ABRIRLO ►</p>
+                </div>
+
+                <div class="pergamino">
+                    <p>10 de mayo del 2026</p>
+
+                    <p>Un nuevo año acompañados de muchos recuerdos, algunos más bonitos que otros quizás… pero siempre
+                        vuelves a caer en mis brazos. Tal parece que yo soy tu destino, tu laberinto sin salida… esa
+                        frase de la primera canción que me dedicaste y que, por alguna razón, se quedó grabada en mi
+                        mente.</p>
+
+                    <p>Hoy cumplimos 1 mes de novios. Un mes… sin contar esos 268 días, o 8 meses, 3 semanas y 4 días,
+                        donde poco a poco te fuiste metiendo en mi vida hasta convertirte en una parte imposible de
+                        ignorar.</p>
+
+                    <p>Toda la experiencia de este día va a ser única para mí. Estoy tan ansioso que escribo esto mucho
+                        tiempo antes, porque mi corazón simplemente no sabe quedarse quieto cuando se trata de ti. Podría
+                        decirte “gracias por todo” y “te quiero mucho”, pero siento que eso sería demasiado pequeño para
+                        todo lo que haces sentir en mí. Y si voy a hacer algo, quiero hacerlo bien, como siempre trato de
+                        hacerlo contigo.</p>
+
+                    <p>Todavía me pregunto cómo fue que entraste a este rígido corazón. No sé cómo lo hiciste… pero me
+                        alegra demasiado que lo hayas hecho. Porque ahora tengo la suerte de mirar a los ojos a una niña
+                        medio melosa que todos los días me recuerda cuánto me quiere, que me manda besos, que hace
+                        monachas solo por molestarme, y que aun así logra verse linda en cada gesto.</p>
+
+                    <p class="estrofa">
+                        Qué bonito es verte todas las noches con esas gafas.<br>
+                        Qué bonito es cuando me haces caso.<br>
+                        Qué bonito es cuando pones ese tonito de voz.<br>
+                        Qué bonitas son tus muestras de cariño sinceras.<br>
+                        Y qué bonito ha sido conocerte.
+                    </p>
+
+                    <p>Siempre he dicho que el tiempo pasa y no espera, pero hay algo de lo que estoy seguro como de nada
+                        más en esta vida: no quiero perder ni un solo momento contigo.</p>
+
+                    <p>En esta etapa de nuestra vida no nos queda mucho tiempo para vernos, y esa pequeña fecha de
+                        “jueves” vive como un cronómetro no solo en mi mente, sino también en mi corazón. A veces todavía
+                        no soporta la idea de que esa niña tan especial, dueña de todo y nada a la vez, no va a estar
+                        frente a mí de lunes a viernes.</p>
+
+                    <p>Por eso trato de disfrutar cada día al máximo, aunque a veces mis intentos no sean los más
+                        bonitos… jaja. Pero esos abrazos fuertes no son para molestarte; son la forma más sincera que
+                        tengo de demostrar cuánto te quiero conmigo y lo difícil que se me hace imaginar la distancia.</p>
+
+                    <p>Si supieran todo lo que hago contigo, todas esas muestras de cariño que a nadie más le doy,
+                        sentirían envidia todas esas personas que esperaron la oportunidad de poder robarme de tus
+                        brazos. Pero mis valores, mis sentimientos y todo lo que siento por ti fueron más fuertes que
+                        cualquier otra cosa.</p>
+
+                    <p>Hoy es solo un día más, pero no cualquier día. Hoy hace un mes me declaré… y ahora sí, ya no tengo
+                        nada más que buscar aparte de un futuro lleno de alegrías contigo. Me gusta saber que te gusta
+                        todo de mí, porque créeme que eso es completamente mutuo.</p>
+
+                    <p class="estrofa-mar">
+                        Siempre me preguntaré cómo te verás al frente del mar.<br>
+                        ¿Brillarás?<br>
+                        ¿Me deslumbrarás?<br>
+                        ¿Me perderé en tu marea?<br>
+                        ¿Me dejaré llevar por tus aguas?
+                    </p>
+
+                    <p>Y sé que ese momento va a llegar. Y cuando llegue, no voy a querer salir de ahí. Porque, ¿para qué
+                        luchar contra algo que solo me hace feliz?</p>
+
+                    <p>Si fuera por mí, estaría todo el día al lado de la mujer que más feliz me hace, viendo una de esas
+                        series que tanto menciona en las noches, mientras la luna ilumina tu cara y yo me quedo
+                        observando todos esos pequeños gestos que te hacen única… incluso esas caras de disgusto y esas
+                        monachas que haces solo por molestarme.</p>
+
+                    <p>Hoy cumplimos un mes.<br>
+                        Y sí… tal vez, si las cosas hubieran sido diferentes, serían cinco o seis meses. Pero
+                        sinceramente, me encantan las cosas tal y como van. El cariño, las experiencias, el compartir
+                        contigo, cada abrazo, cada conversación y cada momento vivido.</p>
+
+                    <p class="estrofa">
+                        Entonces sí, sí, sí, sí mi amor…<br>
+                        Qué bonito está siendo quererte.<br>
+                        Qué bonito está siendo vivir esto contigo.<br>
+                        Y qué bonito que seas mi primera novia.
+                    </p>
+
+                    <p class="firma">— CARLO</p>
+                    <p class="digito-boveda">PARA LA BÓVEDA — MES 1: <b>5</b></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ FINAL ══════════ -->
+        <section class="pantalla final">
+            <p class="completado">NIVEL 1<br>COMPLETADO</p>
+            <p style="margin:0;max-width:34ch">Tú dijiste que iba subiendo de nivel cada mes…</p>
+            <p class="pregunta-final">¿QUE SERA LA PROXIMA?</p>
+            <p class="creditos">
+                UN MES · UN SOLO EJEMPLAR<br>
+                HECHO POR CARLO<br>
+                PARA ISABELA
+            </p>
+            <a class="btn" href="index.html">VOLVER AL MENU</a>
+        </section>
+
+    </main>
+
+    <!-- ══════════ VISOR ══════════ -->
+    <div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Recuerdo ampliado">
+        <img id="visorImg" src="" alt="">
+        <div class="visor-fila">
+            <button class="btn" id="vPrev" type="button">◄</button>
+            <button class="btn" id="vCerrar" type="button">CERRAR</button>
+            <button class="btn" id="vSig" type="button">►</button>
+        </div>
+    </div>
+
+    <audio id="audio" src="music/airplane.mp3" preload="none" loop></audio>
+
+    <script src="js/un-mes-pixel.js"></script>
+</body>
+
+</html>

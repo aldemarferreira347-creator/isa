@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuestros Momentos ✨</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/momentos-cumpleanos.css">
+    <link rel="stylesheet" href="css/sistema.css">
+</head>
+<body class="tema-cumple">
+  <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+  <!-- ===== READY PROMPT ===== -->
+  <div id="ready-prompt">
+    <div class="ready-card">
+      <div class="deco-line">&#10022;</div>
+      <p class="ready-title" id="ready-text">¿Estás lista Mi Reina?</p>
+      <div class="ready-btns">
+        <button id="btn-ready-yes" class="ready-btn ready-btn-primary">Sí</button>
+        <button id="btn-ready-no" class="ready-btn">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== INTRO SEQUENCE ===== -->
+  <div id="intro-sequence">
+    <div class="intro-deco">&#10022;</div>
+    <div class="intro-msg">Recuerda que esta era la última parte que quedaba de mi regalo...</div>
+    <div class="intro-msg">Especialmente hecho para la hermosa mujer que aparece en las siguientes fotos...</div>
+    <div class="intro-msg">Recuerda nuestros momentos ✨</div>
+  </div>
+
+  <canvas id="star-canvas"></canvas>
+  <div class="nebula bl"></div>
+  <div class="nebula br"></div>
+
+  <div id="page">
+    <header>
+      <div class="deco-line">&#10022;</div>
+      <h1>Nuestros momentos</h1>
+      <p class="subtitle">cada foto, una historia que me hace sonre&#237;r</p>
+      <p class="subtitle">yo, solo quiero ser el "Te vez muy feliz con él" de tu Mamá</p>
+
+    </header>
+
+    <div id="gallery">
+      <div class="photo-card" data-idx="0">
+        <img src="img/cumpleanos/foto1.jpeg" alt="Momento 1" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">&#128269;</span></div>
+      </div>
+      <div class="photo-card" data-idx="1">
+        <img src="img/cumpleanos/foto2.jpeg" alt="Momento 2" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">&#128269;</span></div>
+      </div>
+      <div class="photo-card" data-idx="2">
+        <img src="img/cumpleanos/foto3.jpeg" alt="Momento 3" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">&#128269;</span></div>
+      </div>
+      <div class="photo-card" data-idx="3">
+        <img src="img/cumpleanos/foto4.jpeg" alt="Momento 4" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">&#128269;</span></div>
+      </div>
+      <div class="photo-card" data-idx="4">
+        <img src="img/cumpleanos/foto5.jpeg" alt="Momento 5" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">&#128269;</span></div>
+      </div>
+      <div class="photo-card" data-idx="5">
+        <img src="img/cumpleanos/foto6.jpeg" alt="Momento 6" loading="lazy">
+        <div class="overlay"><span class="overlay-icon">&#128269;</span></div>
+      </div>
+    </div>
+
+    <footer>
+      <a id="back-btn" href="carta-cumpleanos.html?letter=1">&#10022; Ir a la carta &#10022;</a>
+      <br><br>
+      &#10022; cada instante contigo vale una eternidad &#10022;
+    </footer>
+  </div>
+
+  <div id="lightbox">
+    <button id="lb-prev">&#8249;</button>
+    <img id="lb-img" src="" alt="Foto ampliada">
+    <button id="lb-next">&#8250;</button>
+    <button id="lb-close">&#10005;</button>
+  </div>
+
+  <div id="music-ctrl">
+    <span id="music-ctrl-icon"></span>
+    <div id="music-bars">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <span id="music-track-name" style="opacity:.6;font-size:10px;letter-spacing:2px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Carita Linda</span>
+  </div>
+
+  <audio id="bg-audio" src="music/5caritalinda.mp3" loop preload="auto"></audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/fx-engine.js"></script>
+  <script src="js/momentos-cumpleanos.js"></script>
+    <script src="js/fx-init.js"></script>
+</body>
+</html>

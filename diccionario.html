@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0612" />
+    <title>Diccionario Privado — Mes 11 §</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+    <link rel="stylesheet" href="css/diccionario.css">
+</head>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     MES 11 · 10 de marzo de 2027 — Diccionario Privado
+
+     LOS TEXTOS
+     Están en js/diccionario.js, en el array PALABRAS. Sólo hay una
+     entrada de ejemplo a propósito: bórrala en cuanto tengas la primera
+     palabra real y copia el mismo formato para las siguientes.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<body class="tema-diccionario">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="dc-hero">
+        <span class="dc-ceja reveal-up">Mes 11 · 10 de marzo de 2027</span>
+        <h1 class="dc-titulo reveal-up">Diccionario Privado</h1>
+        <p class="dc-sub reveal-up">
+            Toda pareja que dura acaba inventando un idioma propio. Casi
+            nadie lo escribe. Aquí están las palabras que sólo significan
+            algo entre nosotros dos.
+        </p>
+    </section>
+
+    <section class="dc-envoltorio" aria-label="Diccionario con buscador">
+        <div class="dc-buscador-fila">
+            <input type="search" class="dc-buscador" id="dcBuscador"
+                placeholder="Busca una palabra…" aria-label="Buscar en el diccionario">
+        </div>
+        <p class="dc-contador" id="dcContador"></p>
+        <ul class="dc-lista" id="dcLista"></ul>
+        <p class="dc-vacio" id="dcVacio" hidden></p>
+        <p class="dc-digito" id="dcDigito" hidden>Para La Bóveda — mes 11: <strong>3</strong></p>
+    </section>
+
+    <footer>
+        <p>Mes a mes, un poco más cerca.</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/diccionario.js"></script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,255 @@
+/* ══════════════════════════════════════════════════════════════════════
+   BOVEDA.CSS — el mes 12. El más oscuro y el menos redondeado de los
+   doce a propósito (ver .tema-boveda en sistema.css): esto es un
+   mecanismo, no una carta.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.bv-hero {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(84px, 16vw, 130px) clamp(20px, 6vw, 28px) clamp(20px, 5vw, 32px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--e2);
+}
+
+.bv-ceja {
+    font-size: var(--t-ceja);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--p-realce) 82%, #fff);
+}
+
+.bv-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: var(--t-h1);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -.012em;
+    text-wrap: balance;
+    background: linear-gradient(112deg,
+            var(--p-realce) 0%,
+            color-mix(in srgb, var(--p-realce) 55%, #fff) 40%,
+            var(--p-realce-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 18px color-mix(in srgb, var(--p-halo) 60%, transparent));
+}
+
+.bv-sub {
+    font-size: var(--t-cuerpo);
+    line-height: 1.75;
+    color: var(--p-tinta-2);
+    text-wrap: pretty;
+    max-width: 46ch;
+}
+
+.bv-envoltorio {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 6vw, 28px) clamp(56px, 11vw, 100px);
+}
+
+.bv-panel {
+    padding: clamp(24px, 5.5vw, 40px);
+    border-radius: var(--p-radio);
+    border: 1px solid var(--p-borde);
+    background:
+        linear-gradient(165deg,
+            var(--p-vidrio-alto) 0%,
+            var(--p-vidrio) 46%,
+            color-mix(in srgb, var(--p-fondo) 90%, transparent) 100%);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, #fff 7%, transparent) inset,
+        0 24px 54px -20px var(--p-sombra);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   LA CERRADURA — once casillas, una por mes
+   ══════════════════════════════════════════════════════════════════════ */
+.bv-cerradura-titulo {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--p-tinta);
+    margin-bottom: var(--e2);
+}
+
+.bv-slots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: var(--e3);
+}
+
+.bv-slot-grupo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.bv-slot-mes {
+    font-size: .62rem;
+    color: var(--p-tinta-2);
+    letter-spacing: .04em;
+}
+
+.bv-slot {
+    width: 38px;
+    height: 48px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid var(--p-borde);
+    background: color-mix(in srgb, var(--p-fondo) 60%, transparent);
+    color: var(--p-realce);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-variant-numeric: tabular-nums;
+    transition: border-color .3s var(--calma), box-shadow .3s var(--calma);
+}
+
+.bv-slot:focus-visible {
+    outline: none;
+    border-color: var(--p-borde-vivo);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--p-realce) 22%, transparent);
+}
+
+.bv-cerradura--tiembla {
+    animation: bv-tiembla .4s var(--calma);
+}
+
+@keyframes bv-tiembla {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-6px);
+    }
+
+    75% {
+        transform: translateX(6px);
+    }
+}
+
+.bv-abrir-fila {
+    display: flex;
+    justify-content: center;
+}
+
+.bv-abrir {
+    padding: 13px 40px;
+    border-radius: 999px;
+    border: 1px solid var(--p-borde-vivo);
+    background: linear-gradient(140deg, var(--p-realce), var(--p-realce-2));
+    color: #14100a;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: .95rem;
+    cursor: pointer;
+    transition: transform .32s var(--sal), box-shadow .35s var(--calma);
+}
+
+.bv-abrir:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px -12px var(--p-halo);
+}
+
+.bv-aviso {
+    text-align: center;
+    margin-top: var(--e2);
+    font-size: .85rem;
+    color: var(--p-realce-2);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   EL INTERIOR
+   ══════════════════════════════════════════════════════════════════════ */
+.bv-interior-titulo {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: color-mix(in srgb, var(--p-realce) 85%, #fff);
+    margin-bottom: var(--e3);
+    animation: bv-brilla .8s var(--sal);
+}
+
+@keyframes bv-brilla {
+    from {
+        opacity: 0;
+        transform: scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.bv-carta {
+    margin-bottom: var(--e3);
+    padding: var(--e3);
+    border-radius: calc(var(--p-radio) - 4px);
+    border: 1px dashed var(--p-borde-vivo);
+}
+
+.bv-carta-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.02rem;
+    color: color-mix(in srgb, var(--p-realce) 80%, #fff);
+    margin-bottom: 6px;
+}
+
+.bv-carta-texto {
+    font-size: .9rem;
+    line-height: 1.6;
+    color: var(--p-tinta-2);
+    white-space: pre-wrap;
+}
+
+.bv-capsula-fecha {
+    display: block;
+    margin-top: var(--e2);
+    font-size: .76rem;
+    color: var(--p-tinta-2);
+}
+
+.bv-capsula-vacia {
+    text-align: center;
+    padding: var(--e3);
+    color: var(--p-tinta-2);
+    font-size: .88rem;
+    font-style: italic;
+}
+
+.bv-cierre-final {
+    margin-top: var(--e4);
+    padding-top: var(--e4);
+    border-top: 1px solid var(--p-borde);
+    text-align: center;
+    font-size: var(--t-cuerpo);
+    line-height: 1.8;
+    color: var(--p-tinta);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .bv-cerradura--tiembla,
+    .bv-interior-titulo {
+        animation: none;
+    }
+}

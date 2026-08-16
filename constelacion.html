@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05060f" />
+    <title>Constelación — Mes 6 ✶</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+    <link rel="stylesheet" href="css/constelacion.css">
+</head>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     MES 6 · 10 de octubre de 2026 — Constelación
+
+     LOS TEXTOS
+     Están en js/constelacion.js. Cada figura tiene un `recuerdo`: mientras
+     esté vacío, la tarjeta que aparece al encenderla lo dice tal cual, sin
+     inventar nada. Escríbelo cuando quieras, figura por figura.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<body class="tema-constelacion">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <section class="cst-hero">
+        <span class="cst-ceja reveal-up">Mes 6 · 10 de octubre de 2026</span>
+        <h1 class="cst-titulo reveal-up">Constelación</h1>
+        <p class="cst-sub reveal-up">
+            Ocho figuras sueltas en el cielo. No significan nada hasta que
+            las unes en el orden correcto — entonces se encienden y sueltan
+            lo que guardaban.
+        </p>
+    </section>
+
+    <section class="cst-envoltorio" aria-label="Cielo con ocho constelaciones para formar">
+        <div class="cst-cielo">
+            <svg class="cst-svg" id="cstSvg" viewBox="0 0 900 600" aria-hidden="true"></svg>
+            <div class="cst-overlay" id="cstOverlay"></div>
+        </div>
+        <p class="cst-ayuda">Toca las estrellas en orden — de la más tenue a la que brilla un poco más.</p>
+        <p class="cst-contador" id="cstContador">0/8 constelaciones encendidas</p>
+    </section>
+
+    <section class="cst-registro" id="cstRegistro" hidden aria-label="Recuerdos encontrados">
+        <h2 class="cst-registro-titulo">Lo que ya se encendió</h2>
+        <ul class="cst-registro-lista" id="cstRegistroLista"></ul>
+        <div class="cst-cierre" id="cstCierre" hidden>
+            El cielo entero, encendido.
+            <em>Ocho figuras que ya estaban ahí — sólo hacía falta alguien que se tomara el trabajo de unirlas.</em>
+            <p class="cst-digito" id="cstDigito" hidden>Para La Bóveda — mes 6: <strong>2</strong></p>
+        </div>
+    </section>
+
+    <div class="petals-wrap" id="petals"></div>
+
+    <footer>
+        <p>Mes a mes, un poco más cerca.</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/constelacion.js"></script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

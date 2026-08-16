@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Pregunta 💛</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+    <link rel="stylesheet" href="css/pregunta.css">
+</head>
+
+<body class="tema-pregunta">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <!-- Falling petals -->
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="dcl-section" id="declarar">
+
+        <!-- Deco orbs -->
+        <div class="dcl-orb dcl-orb-1"></div>
+        <div class="dcl-orb dcl-orb-2"></div>
+        <div class="dcl-orb dcl-orb-3"></div>
+
+        <!-- Falling petals -->
+        <div class="dcl-petals" id="dclPetals"></div>
+
+        <!-- Acto I — el escritorio, en pixel art (js/pregunta-pixel.js) -->
+        <div class="pixel-escena reveal-zoom">
+            <div class="pixel-marco">
+                <canvas id="pixelPregunta" aria-hidden="true"></canvas>
+            </div>
+            <p class="pixel-pie">10 · 04 · 2026 — una vela, una carta</p>
+        </div>
+
+        <!-- Header -->
+        <div class="dcl-header reveal-up">
+            <p class="dcl-eyebrow">✦ 10 de abril de 2026 ✦</p>
+            <h2 class="dcl-title">Para Isabela<br>Quiñonez González</h2>
+            <p class="dcl-sub">Abre el sobre cuando estés lista… 💛</p>
+        </div>
+
+        <!-- Envelope -->
+        <div class="dcl-envelope-wrap reveal-zoom">
+            <div class="dcl-envelope" id="dclEnvelope" onclick="openEnvelope()">
+                <div class="dcl-env-body">
+                    <div class="dcl-env-flap"></div>
+                    <div class="dcl-seal-wrap">
+                        <div class="dcl-seal fx-beat">💛</div>
+                    </div>
+
+                    <!-- Letter inside -->
+                    <div class="dcl-letter-inner" id="dclLetterInner">
+                        <div class="dcl-paper">
+
+                            <div class="dcl-paper-top">
+                                <p class="dcl-paper-date">10 · 04 · 2026</p>
+                                <p class="dcl-paper-name">Isabela Quiñonez González</p>
+                            </div>
+
+                            <p class="dcl-p">
+                                No sabes aún cuánto esperé que llegara este momento…
+                                La gente dice que los amores van y vienen pero nunca creí en eso.
+                                Soy fiel creyente de que si de verdad quieres a esa persona
+                                es imposible superponer tu orgullo contra tu amor.
+                                Soy fiel creyente de que mi corazón no se equivoca,
+                                de que no me arrepentiré de todo esto ni en un millón de años,
+                                de que el mañana es un misterio, de que el pasado solo es algo pasajero
+                                y de que el hoy es un regalo — por eso se llama <em>presente</em>.
+                            </p>
+
+                            <p class="dcl-p">
+                                Y de que el mejor presente que tengo hoy es
+                                verte leyendo esto un <em>10 de abril del 2026</em>,
+                                mientras cada uno de nosotros tiene los sentimientos alborotados
+                                por no saber qué pasará.
+                            </p>
+
+                            <div class="dcl-divider"><span></span><i>💛</i><span></span></div>
+
+                            <p class="dcl-p">
+                                El día de hoy voy a abrir mi corazón a una de las únicas personas
+                                que realmente he amado — y esa eres tú,
+                                <em>Isabela Quiñonez González</em>.
+                                No a Isa, no a Isabelita, no a corazón ni a mi amor,
+                                no a mi niña, no a mi mujer, no a mi niña hermosa,
+                                no a mi crespa, no a mi luz de vida, no a mi vida,
+                                no a cosita ni mucho menos a niñita.
+                            </p>
+
+                            <p class="dcl-p">
+                                Como ya te lo he dicho muchas veces de tantas maneras diferentes,
+                                pero si es para ti nunca me cansaré de repetirlo.
+                            </p>
+
+                            <p class="dcl-p">
+                                Si alguna vez te preguntas por qué eres tú y no otra persona,
+                                podría decir simplemente que es porque te quiero, porque <em>te amo</em>.
+                                Pero la verdad es que contigo todo se siente diferente,
+                                todo se siente único como si muchas cosas fueran la primera vez
+                                que las experimento. Nunca tuve que compararte con nadie —
+                                simplemente fuiste tú. Desde el primer día que te vi
+                                me llamaste la atención.
+                            </p>
+
+                            <p class="dcl-p">
+                                Me gusta cómo eres, cómo me tratas, cuando eres cariñosa.
+                                Me gusta tu actitud, <em>tu sonrisa</em>, tus ojos, tu mirada,
+                                tu forma de caminar y esa manera tan bonita que tienes de amar.
+                                Me gusta cómo eres cuando estás sola conmigo.
+                                En resumen, me gustas porque eres tú,
+                                y por eso no quiero perderte. Te amo y nunca lo dudes.
+                            </p>
+
+                            <div class="dcl-divider"><span></span><i>🌟</i><span></span></div>
+
+                            <p class="dcl-p">
+                                Siempre te pienso y te extraño, desde los detalles más pequeños
+                                hasta los momentos más grandes que hemos compartido.
+                                Todo se volvió especial por el simple hecho de haber sido a tu lado.
+                            </p>
+
+                            <p class="dcl-p">
+                                A veces no entiendo del todo cómo llegamos hasta aquí otra vez,
+                                pero con cada intento que nos dimos fui más feliz que antes,
+                                y le doy gracias a Dios por seguir juntos hasta hoy.
+                            </p>
+
+                            <p class="dcl-p">
+                                No sabes cuánto te quiero, cuánto te extraño ni las ganas que tengo
+                                de volver a verte apenas te vas de mi lado, ni las ganas
+                                de volver a estar contigo abrazado, de escucharte,
+                                de mirarte a los ojos y perderme en tu mirada.
+                            </p>
+
+                            <p class="dcl-p">
+                                Nunca creí que solo verte pudiera hacerme sentir así,
+                                que escucharte cantar pudiera alegrarme tanto el corazón
+                                o que tu ausencia pudiera entristecerme.
+                                <em>Extrañarte no es debilidad</em>,
+                                es la prueba de lo importante que eres para mí.
+                            </p>
+
+                            <div class="dcl-divider"><span></span><i>💛</i><span></span></div>
+
+                            <p class="dcl-p">
+                                A pesar de todo lo que vivimos antes, los momentos difíciles
+                                hoy pesan menos, porque los recuerdos bonitos que compartimos
+                                han sido más fuertes. Por eso quiero que en este nuevo tiempo
+                                dejemos atrás lo malo y sigamos adelante
+                                <em>como dos enamorados</em>, como dos tontos enamorados.
+                            </p>
+
+                            <p class="dcl-p">
+                                Contigo abrí mi corazón de una forma que no creí posible.
+                                Gracias a ti volví a sentir cosas que pensé que había perdido.
+                                Cuando te miro, no me hace falta nada.
+                                Mi mente solo piensa en tenerte cerca,
+                                en volver a sentirte a mi lado
+                                y en cuidar eso tan bonito que hemos construido.
+                            </p>
+
+                            <p class="dcl-p">
+                                Tal vez nunca te lo dije así, pero tú eras parte de mi plan de vida:
+                                crecer juntos, acompañarnos y sanar juntos
+                                todo lo que la vida nos vaya poniendo.
+                            </p>
+
+                            <p class="dcl-p">
+                                <em>Mi amor por ti nunca será un peso que se tenga que soportar.</em>
+                                El amor real fluye, no es una carga.
+                            </p>
+
+                            <div class="dcl-divider"><span></span><i>❣️</i><span></span></div>
+
+                            <div class="dcl-proposal">
+                                <p class="dcl-proposal-title">✦ Yo te hago una propuesta ✦</p>
+                                <p class="dcl-p" style="margin-bottom:0;">
+                                    Quédate conmigo, para mí —
+                                    que tus sonrisas más puras sean cuando estás conmigo,
+                                    que tus <em>te quiero</em>, tus <em>te amo</em>, tus <em>te extraño</em>,
+                                    que tus pensamientos sean en cuánto quisieras verme de nuevo,
+                                    que tus malos momentos siempre me sean contados primero a mí,
+                                    que de tus problemas yo siempre sea el psicólogo,
+                                    que de tus paranoias yo sea el que te acompañe a liberarlas,
+                                    que de tus dudas yo sea la solución,
+                                    que de tus locuras yo sea el protagonista,
+                                    que de tus deseos internos yo sea la solución,
+                                    que <em>de tus dolores mis besos sean la cura</em>.
+                                </p>
+                            </div>
+
+                            <p class="dcl-p" style="margin-top:24px;">
+                                Siempre he dicho que nuestro futuro es incierto,
+                                pero desde el fondo de mi corazón solo quiero y espero
+                                que sea <em>a tu lado</em>.
+                            </p>
+
+                            <p class="dcl-p">
+                                Ahora te tengo la pregunta del año —
+                                tal vez muy tarde, tal vez en el momento adecuado,
+                                tal vez me estaba tardando mucho… pero eres mi primer todo,
+                                por lo que ando algo perdido todavía.
+                            </p>
+
+                            <p class="dcl-p">
+                                Tú quieres de ahora en adelante ser mi amiga,
+                                mi compañera de risas, mi mejor amiga,
+                                mi motivo de levantarme cada mañana,
+                                mi rayito de esperanza en las penumbras,
+                                la dueña de mis caricias,
+                                la dueña de mis sentimientos tanto los profundos como los superficiales,
+                                <em>el único ser en este mundo en experimentar mi alma pura…</em>
+                            </p>
+
+                            <div class="dcl-divider"><span></span><i>💛</i><span></span></div>
+
+                            <p class="dcl-p">
+                                Hoy no tengo tu manilla. Lo acepto. No es por olvido —
+                                hoy ni siquiera tengo mi anillo. Quiero que entiendas con eso
+                                que estoy dispuesto a cualquier decisión que tomes.
+                                Te quiero mucho, y esta es mi manera de decirte:
+                                <em>este soy yo</em>. Tú sabes todo lo que siento,
+                                y lo que sientes por mí.
+                            </p>
+
+                            <p class="dcl-p">
+                                En este momento no hay nada que nos marque,
+                                ningún <em>"esto es mío"</em> ni <em>"él es mío"</em>.
+                                Lo mismo que tú tampoco tienes mi manilla.
+                            </p>
+
+                            <p class="dcl-p">
+                                Lo que quiero ganar con esto es que acabemos de abrir
+                                nuestros corazones el uno al otro. Que esas palabras
+                                ahogadas por falta de un título se salven y puedan ser
+                                dichas desde el fondo del alma. Que todos esos secretos
+                                que aún quizás no nos contamos sean liberados
+                                para poder crecer juntos…
+                                <em>como una pareja formal</em>.
+                            </p>
+
+                            <div class="dcl-signature">
+                                <p class="dcl-signature-name">— Con todo mi amor, Carlo ❣️</p>
+                            </div>
+
+                        </div><!-- /dcl-paper -->
+                    </div><!-- /dcl-letter-inner -->
+
+                </div><!-- /dcl-env-body -->
+            </div><!-- /dcl-envelope -->
+
+            <p class="dcl-open-hint" id="dclHint">✦ toca el sello para abrir ✦</p>
+
+            <!-- Question card — appears after letter -->
+            <div class="dcl-question-wrap" id="dclQuestion">
+                <div class="dcl-question-card">
+                    <span class="dcl-q-emoji">💛</span>
+                    <p class="dcl-q-text">¿Te gustaría ser<br>mi novia?</p>
+                    <p class="dcl-q-sub">Tómate tu tiempo… no hay prisa 🌟</p>
+                    <div class="dcl-btns">
+                        <button class="dcl-btn dcl-btn-si" onclick="dclAnswer(true)">Sí 💛</button>
+                        <button class="dcl-btn dcl-btn-no" onclick="dclAnswer(false)">Todavía no 🌙</button>
+                    </div>
+
+                    <!-- Response SI -->
+                    <div class="dcl-response dcl-response-si" id="dclResSi">
+                        <span class="dcl-res-emoji">🌟💛🌟</span>
+                        <p class="dcl-res-title dcl-res-title-si">Eres mi novia ❣️</p>
+                        <p class="dcl-res-text">
+                            No sabes lo feliz que me haces con eso.<br>
+                            Prometo cuidarte, quererte y nunca dejar de demostrarte<br>
+                            lo importante que eres para mí.<br><br>
+                            <strong style="color:#f5c518;">Bienvenida a lo nuestro, mi niñita 💛</strong>
+                        </p>
+                    </div>
+
+                    <!-- Response NO -->
+                    <div class="dcl-response dcl-response-no" id="dclResNo">
+                        <span class="dcl-res-emoji">🌙</span>
+                        <p class="dcl-res-title dcl-res-title-no">Está bien…</p>
+                        <p class="dcl-res-text">
+                            entiendo tu respuesta. Todo lo que escribí sigue siendo verdad<br>
+                            sin importar tu respuesta.<br>
+                            Aquí estaré cuando estés lista 💛
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- /dcl-envelope-wrap -->
+    </section>
+
+    <button class="music-btn" id="musicBtn" title="Play / Pause">⏸️</button>
+
+    <footer>
+        <p>Hecho por Carlo</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/la-pregunta.js"></script>
+    <script src="js/pregunta-pixel.js"></script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

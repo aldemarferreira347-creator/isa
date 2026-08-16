@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050403" />
+    <title>La Bóveda — Mes 12 ⚿</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css">
+    <link rel="stylesheet" href="css/boveda.css">
+</head>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     MES 12 · 10 de abril de 2027 — La Bóveda
+
+     LOS DÍGITOS
+     Están en js/boveda.js, en DIGITOS_CORRECTOS. Los meses 5-11 ya
+     tienen el suyo escondido en su propia página. Los meses 1-4 siguen
+     en null — sin ellos esto no se puede terminar de abrir.
+
+     EL CIERRE FINAL
+     Es el texto de .bv-cierre-final, aquí abajo. Le falta lo último que
+     quieras decir sobre el año — a propósito no lo escribí yo.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<body class="tema-boveda">
+    <a href="index.html" class="back-btn">⬅ Volver al Menú</a>
+
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="bv-hero">
+        <span class="bv-ceja reveal-up">Mes 12 · 10 de abril de 2027</span>
+        <h1 class="bv-titulo reveal-up">La Bóveda</h1>
+        <p class="bv-sub reveal-up">
+            Once meses escondieron un dígito cada uno, sin avisar. Hace
+            falta recorrer el año entero de nuevo para reunirlos todos.
+            Ningún mes se puede saltar.
+        </p>
+    </section>
+
+    <section class="bv-envoltorio" aria-label="Cerradura de combinación de once dígitos">
+        <div class="bv-panel" id="bvCerradura">
+            <p class="bv-cerradura-titulo">Introduce los once dígitos</p>
+            <div class="bv-slots" id="bvSlots">
+                <!-- Los 11 <input> se generan a mano aquí para que cada uno lleve su número de mes -->
+                <div class="bv-slot-grupo"><span class="bv-slot-mes">1</span><input class="bv-slot" type="text"
+                        inputmode="numeric" maxlength="1" aria-label="Dígito del mes 1"></div>
+                <div class="bv-slot-grupo"><span class="bv-slot-mes">2</span><input class="bv-slot" type="text"
+                        inputmode="numeric" maxlength="1" aria-label="Dígito del mes 2"></div>
+                <div class="bv-slot-grupo"><span class="bv-slot-mes">3</span><input class="bv-slot" type="text"
+                        inputmode="numeric" maxlength="1" aria-label="Dígito del mes 3"></div>
+                <div class="bv-slot-grupo"><span class="bv-slot-mes">4</span><input class="bv-slot" type="text"
+                        inputmode="numeric" maxlength="1" aria-label="Dígito del mes 4"></div>
+                <div class="bv-slot-grupo"><span class="bv-slot-mes">5</span><input class="bv-slot" type="text"
+                        inputmode="numeric" maxlength="1" aria-label="Dígito del mes 5"></div>
+                <div class="bv-slot-grupo"><span class="bv-slot-mes">6</span><input class="bv-slot" type="text"
+                        inputmode="numeric" maxlength="1" aria-label="Dígito del mes 6"></div>
+                <div class="bv-slot-grupo"><span class="bv-slot-mes">7</span><input class="bv-slot" type="text"
+                        inputmode="numeric" maxlength="1" aria-label="Dígito del mes 7"></div>
+                <div class="bv-slot-grupo"><span class="bv-slot-mes">8</span><input class="bv-slot" type="text"
+                        inputmode="numeric" maxlength="1" aria-label="Dígito del mes 8"></div>
+                <div class="bv-slot-grupo"><span class="bv-slot-mes">9</span><input class="bv-slot" type="text"
+                        inputmode="numeric" maxlength="1" aria-label="Dígito del mes 9"></div>
+                <div class="bv-slot-grupo"><span class="bv-slot-mes">10</span><input class="bv-slot" type="text"
+                        inputmode="numeric" maxlength="1" aria-label="Dígito del mes 10"></div>
+                <div class="bv-slot-grupo"><span class="bv-slot-mes">11</span><input class="bv-slot" type="text"
+                        inputmode="numeric" maxlength="1" aria-label="Dígito del mes 11"></div>
+            </div>
+            <div class="bv-abrir-fila">
+                <button type="button" class="bv-abrir" id="bvAbrir">Abrir</button>
+            </div>
+            <p class="bv-aviso" id="bvAviso" hidden></p>
+        </div>
+
+        <div class="bv-panel" id="bvInterior" hidden>
+            <p class="bv-interior-titulo">Abierta.</p>
+
+            <div class="bv-carta" id="bvCapsulaTi" hidden>
+                <p class="bv-carta-titulo">Tu carta a ti misma, de hace tres meses</p>
+                <p class="bv-carta-texto"></p>
+            </div>
+            <div class="bv-carta" id="bvCapsulaMi" hidden>
+                <p class="bv-carta-titulo">Tu carta para mí</p>
+                <p class="bv-carta-texto"></p>
+                <span class="bv-capsula-fecha">Sellada el <span id="bvCapsulaFecha"></span></span>
+            </div>
+            <p class="bv-capsula-vacia" id="bvCapsulaVacia" hidden>
+                La cápsula del mes 9 no se llegó a sellar en este navegador, así que no hay nada que abrir aquí dentro.
+            </p>
+
+            <!-- Cierre final del año: Carlo escribe aquí el mensaje de cierre
+                 antes de que la bóveda pueda abrirse de verdad (mes 12,
+                 10 de abril de 2027). No dejar la nota de desarrollo visible
+                 para Isa: reemplazar el párrafo de abajo por el texto real. -->
+            <div class="bv-cierre-final" id="bvCierreFinal" hidden>
+                Doce meses, un año entero, y esto es lo único que faltaba decir:
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>El año entero, completo.</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/boveda.js"></script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>

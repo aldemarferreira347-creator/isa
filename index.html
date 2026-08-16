@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz Día de la Mujer 💜</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/sistema.css?v=2">
+    <link rel="stylesheet" href="css/meses.css">
+</head>
+
+<body class="tema-inicio">
+    <!-- Falling petals -->
+    <div class="petals-wrap" id="petals"></div>
+
+    <section class="hero">
+        <div class="fx-aurora"></div>
+        <div class="hero-badge"> 8 de Marzo · Día Internacional de la Mujer 🌼</div>
+        <h1 class="hero-title fx-shimmer">Feliz Día,<br>Isa ❣️</h1>
+        <p class="hero-sub">
+            Para ti, que con tu sonrisa iluminas hasta los días más ordinarios.
+            Hoy y siempre, celebro lo increíble que eres.
+        </p>
+        <div class="hero-date">★ 8 · 03 · 2026 ★</div>
+        <!-- El color de cada tarjeta (--c) es el del sitio al que lleva: al
+             entrar al destino, el color ya resulta familiar. Se declara aquí
+             y no por :nth-child para que reordenar el menú no descoloque
+             todos los tintes. -->
+        <div class="main-nav">
+            <a class="nav-card fx-shine fx-spot reveal-zoom" data-fx-manual href="buenas-noches.html"
+                style="--c:#c9b8ff">
+                <span class="nav-icon">🌙</span>
+                <span class="nav-title">Buenas Noches</span>
+                <span class="nav-desc">Un dulce mensaje antes de dormir.</span>
+            </a>
+            <a class="nav-card fx-shine fx-spot reveal-zoom" data-fx-manual href="carta-de-promesa.html"
+                style="--c:#ff5f93">
+                <span class="nav-icon">💌</span>
+                <span class="nav-title">Carta de Promesa</span>
+                <span class="nav-desc">Una promesa de amor para toda la vida.</span>
+            </a>
+            <a class="nav-card fx-shine fx-spot reveal-zoom" data-fx-manual href="romantico.html"
+                style="--c:#ffb3d1">
+                <span class="nav-icon">💕</span>
+                <span class="nav-title">Romántico</span>
+                <span class="nav-desc">Nuestros recuerdos y fechas inolvidables.</span>
+            </a>
+            <a class="nav-card fx-shine fx-spot reveal-zoom" data-fx-manual href="dedicatoria.html"
+                style="--c:#ffe044">
+                <span class="nav-icon">✨</span>
+                <span class="nav-title">Dedicatoria 8M</span>
+                <span class="nav-desc">Para la mujer más increíble de todas.</span>
+            </a>
+            <a class="nav-card fx-shine fx-spot reveal-zoom" data-fx-manual href="flores-amarillas.html"
+                style="--c:#ffd11a">
+                <span class="nav-icon">🌻</span>
+                <span class="nav-title">Flores Amarillas</span>
+                <span class="nav-desc">Un detalle único pensado para ti.</span>
+            </a>
+            <a class="nav-card fx-shine fx-spot reveal-zoom" data-fx-manual href="carta-de-navidad.html"
+                style="--c:#69db7c">
+                <span class="nav-icon">🎄</span>
+                <span class="nav-title">Carta de Navidad</span>
+                <span class="nav-desc">Un mensaje muy especial para estas fechas.</span>
+            </a>
+            <a class="nav-card fx-shine fx-spot reveal-zoom" data-fx-manual href="la-pregunta.html"
+                style="--c:#f5c518">
+                <span class="nav-icon">💛</span>
+                <span class="nav-title">La Pregunta</span>
+                <span class="nav-desc">Algo que lleva mucho tiempo esperando ser dicho.</span>
+            </a>
+            <a id="navCumple" class="nav-card fx-shine fx-spot reveal-zoom" data-fx-manual href="momentos-cumpleanos.html"
+                style="--c:#ff9b4a">
+                <span class="nav-icon">🎂</span>
+                <span class="nav-title">Cumpleaños</span>
+                <span class="nav-desc">Nuestros momentos y una carta muy especial para tu día.</span>
+            </a>
+            <a class="nav-card fx-shine fx-spot reveal-zoom" data-fx-manual href="1agosto/index.html"
+                style="--c:#7fd4ff">
+                <span class="nav-icon">🪴</span>
+                <span class="nav-title">1 de Agosto</span>
+                <span class="nav-desc">Un jardín de recuerdos para revivir juntos.</span>
+            </a>
+            <!-- Los regalos de cada día 10 ya no viven aquí: tienen su propio
+                 hilo más abajo. Esta tarjeta es sólo la puerta. -->
+            <a class="nav-card fx-shine fx-spot reveal-zoom" data-fx-manual href="#meses" style="--c:#ffd75e">
+                <span class="nav-icon">🗓️</span>
+                <span class="nav-title">Mes a Mes</span>
+                <span class="nav-desc">Un regalo cada día 10. El año entero, en un solo hilo.</span>
+            </a>
+
+            <!-- 👁 CONTADOR DE VISITAS -->
+            <div class="visit-card reveal-zoom" data-fx-manual id="visitCard">
+                <span class="visit-icon">👁️</span>
+                <span class="visit-title">Visitas</span>
+                <span class="visit-number" id="visitCount">
+                    <span class="visit-loading-num">···</span>
+                </span>
+                <span class="visit-label">veces que has entrado</span>
+                <div class="visit-dots">
+                    <span class="visit-dot"></span>
+                    <span class="visit-dot"></span>
+                    <span class="visit-dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ MES A MES ══════════
+         El contenido lo dibuja js/meses.js a partir de un solo array.
+         Para abrir un mes nuevo NO se toca este HTML: se edita ese array. -->
+    <section class="meses" id="meses" aria-labelledby="mesesTitulo">
+        <button class="meses-cab fx-spot" type="button" aria-expanded="false" aria-controls="mesesPanel">
+            <span class="meses-cab-txt">
+                <span class="meses-ceja">Un regalo cada día 10</span>
+                <span class="meses-titulo" id="mesesTitulo">Mes a Mes</span>
+                <span class="meses-sub">Cada mes juntos tiene su propio regalo. Este es el hilo completo, desde el
+                    primero hasta el año.</span>
+                <span class="meses-proximo"></span>
+            </span>
+            <span class="meses-anillo">
+                <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                    <defs>
+                        <linearGradient id="mesesArco" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="var(--p-realce)" />
+                            <stop offset="100%" stop-color="var(--p-realce-2)" />
+                        </linearGradient>
+                    </defs>
+                    <circle class="meses-anillo-fondo" cx="50" cy="50" r="44" />
+                    <circle class="meses-anillo-trazo" cx="50" cy="50" r="44" />
+                </svg>
+                <span class="meses-cuenta"></span>
+                <span class="meses-flecha" aria-hidden="true">▼</span>
+            </span>
+        </button>
+
+        <div class="meses-panel" id="mesesPanel">
+            <div>
+                <!-- <ol> y no <div>: son doce cosas en un orden que importa.
+                     Cada <li> es una fila y lleva encima los dos tramos de hilo. -->
+                <ol class="meses-hilo"></ol>
+            </div>
+        </div>
+
+        <noscript>
+            <div class="meses-sinjs">
+                <a href="un-mes.html">Mes 1 · Un Mes Juntos</a><br>
+                <a href="mes-2.html">Mes 2 · Lo Que Se Abraza</a><br>
+                <a href="el-camino/index.html">Mes 4 · El Camino a Ti</a>
+            </div>
+        </noscript>
+    </section>
+
+    <div id="welcomeOverlay" class="welcome-overlay">
+        <div class="welcome-box">
+            <span class="welcome-emoji">✨</span>
+            <h1>Hola niña ❣️<br>bienvenida</h1>
+            <p class="welcome-sub">Hay un detalle especial preparado solo para ti</p>
+            <button id="btnEntrar" class="btn-entrar"><span>Entrar al regalo</span></button>
+        </div>
+    </div>
+
+    <!-- Elegir entrada de Cumpleaños: El Principito (externo) o La Carta (ruta normal) -->
+    <div id="cumpleModal" class="cumple-modal" aria-hidden="true">
+        <div class="cumple-modal-caja" role="dialog" aria-modal="true" aria-labelledby="cumpleModalTitulo">
+            <button type="button" class="cumple-modal-cerrar" id="cumpleModalCerrar" aria-label="Cerrar">✕</button>
+            <p class="cumple-modal-ceja">🎂 Cumpleaños</p>
+            <h2 id="cumpleModalTitulo" class="cumple-modal-titulo">¿Qué quieres abrir primero?</h2>
+            <div class="cumple-modal-opciones">
+                <a class="cumple-modal-op" id="cumpleOpPrincipito" href="https://principito-isabela.vercel.app/">
+                    <span class="cumple-modal-op-icono">✨</span>
+                    <span class="cumple-modal-op-titulo">El Principito</span>
+                </a>
+                <a class="cumple-modal-op" id="cumpleOpCarta" href="momentos-cumpleanos.html">
+                    <span class="cumple-modal-op-icono">💌</span>
+                    <span class="cumple-modal-op-titulo">La Carta</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Hecho por Carlo</p>
+    </footer>
+
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/home.js?v=2"></script>
+    <script src="js/meses.js?v=2"></script>
+    <script src="js/fx-init.js"></script>
+</body>
+
+</html>
