@@ -380,7 +380,7 @@ main {
     position: relative;
     break-inside: avoid;
     -webkit-column-break-inside: avoid;
-    margin-bottom: clamp(14px, 2.4vw, 24px);
+    margin: 0 0 clamp(14px, 2.4vw, 24px) 0;
     padding: 0;
     background: var(--noche2);
     border: var(--px) solid var(--crema);
@@ -388,6 +388,7 @@ main {
     cursor: pointer;
     display: block;
     width: 100%;
+    max-width: 100%;
     text-align: left;
     font: inherit;
     color: inherit;
@@ -775,7 +776,15 @@ main {
     }
 
     .galeria {
-        column-count: 1;
+        column-count: unset;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .marco {
+        margin-bottom: 0;
+        max-width: 100%;
     }
 
     .op {

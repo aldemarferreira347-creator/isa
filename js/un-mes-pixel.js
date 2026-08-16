@@ -424,18 +424,28 @@
     marcos.forEach(function (m, i) {
         var cv = m.querySelector('canvas');
         var img = new Image();
-        img.src = m.dataset.foto;
         var ficha = { cv: cv, img: img, listo: false, revelado: false, aviso: m.querySelector('.cargando') };
         fotos.push(ficha);
 
-        img.onload = function () {
+        function alCargar() {
+            if (ficha.listo) return;
             cv.width = 300;
-            cv.height = Math.round(300 * img.naturalHeight / img.naturalWidth);
+            cv.height = Math.round(300 * (img.naturalHeight || 400) / (img.naturalWidth || 300));
             ficha.listo = true;
             if (ficha.aviso) ficha.aviso.remove();
             pintar(cv, img, PASOS[0], false);
             if (ficha.pedido) revelar(ficha);
+        }
+
+        img.onload = alCargar;
+        img.onerror = function () {
+            ficha.listo = true;
+            if (ficha.aviso) ficha.aviso.textContent = 'ERROR';
         };
+        img.src = m.dataset.foto;
+        if (img.complete && img.naturalWidth > 0) {
+            alCargar();
+        }
     });
 
     function revelar(f) {
@@ -467,13 +477,13 @@
     } else {
         var ojo = new IntersectionObserver(function (ent) {
             ent.forEach(function (x) {
-                if (!x.isIntersecting) return;
+                if (!x.isIntersecting && x.intersectionRatio <= 0) return;
                 x.target.classList.add('visto');
                 var idx = marcos.indexOf(x.target);
                 if (idx > -1) revelar(fotos[idx]);
                 ojo.unobserve(x.target);
             });
-        }, { threshold: .25 });
+        }, { threshold: [0, 0.02, 0.05], rootMargin: '60px 0px 60px 0px' });
         Array.prototype.forEach.call(mirones, function (el) { ojo.observe(el); });
         marcos.forEach(function (m) { ojo.observe(m); });
     }
