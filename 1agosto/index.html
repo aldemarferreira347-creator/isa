@@ -2,6 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <script>
+    // Asegurar que rutas como /1agosto tengan barra final /1agosto/ para que los recursos relativos no den 404
+    if (!window.location.pathname.endsWith('/') && !window.location.pathname.endsWith('.html')) {
+      window.location.replace(window.location.pathname + '/' + window.location.search + window.location.hash);
+    }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#6C4A78">
   <title>Jardín de Recuerdos 🌻</title>
@@ -12,6 +18,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <a href="../index.html" class="back-btn">⬅ Volver al Menú</a>
 
   <!-- ═══════ Biblioteca de flores vectoriales (símbolos SVG reutilizables) ═══════ -->
   <svg id="defs-flores" aria-hidden="true" focusable="false">

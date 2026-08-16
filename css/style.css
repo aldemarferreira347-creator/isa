@@ -1701,21 +1701,17 @@
             position: absolute;
             background: #fff;
             border-radius: 50%;
+            /* Solo opacity: no provoca paint, solo composite.
+               La escala se elimina — multiplicar 120 elementos
+               por scale() en cada frame es el principal culpable
+               de la caída de FPS. */
             animation: bnTwinkle ease-in-out infinite;
+            will-change: opacity;
         }
 
         @keyframes bnTwinkle {
-
-            0%,
-            100% {
-                opacity: 0.15;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.4);
-            }
+            0%, 100% { opacity: 0.08; }
+            50%       { opacity: 0.85; }
         }
 
         /* ── Moon ── */
@@ -1727,8 +1723,21 @@
             height: 70px;
             background: radial-gradient(circle at 35% 35%, #fff9e6, #f5d87a);
             border-radius: 50%;
+            /* box-shadow fijo — no anima. El halo animado se hace
+               con un pseudo-elemento que solo cambia opacity. */
             box-shadow: 0 0 40px rgba(245, 216, 122, .55), 0 0 80px rgba(245, 216, 122, .2);
+            will-change: opacity;
+        }
+
+        /* Halo pulsante: solo opacity — GPU composite, sin layout */
+        .bn-moon::before {
+            content: '';
+            position: absolute;
+            inset: -30px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245,216,122,.22) 0%, rgba(245,216,122,0) 70%);
             animation: moonGlow 4s ease-in-out infinite;
+            will-change: opacity;
         }
 
         .bn-moon::after {
@@ -1743,15 +1752,8 @@
         }
 
         @keyframes moonGlow {
-
-            0%,
-            100% {
-                box-shadow: 0 0 40px rgba(245, 216, 122, .55), 0 0 80px rgba(245, 216, 122, .2);
-            }
-
-            50% {
-                box-shadow: 0 0 60px rgba(245, 216, 122, .75), 0 0 120px rgba(245, 216, 122, .35);
-            }
+            0%, 100% { opacity: .6; }
+            50%       { opacity: 1; }
         }
 
         /* ── Header ── */
@@ -1951,12 +1953,14 @@
         }
 
         .bn-poem-inner {
-            background: linear-gradient(135deg, rgba(60, 30, 100, 0.45), rgba(20, 10, 50, 0.55));
+            background: linear-gradient(135deg, rgba(60, 30, 100, 0.72), rgba(20, 10, 50, 0.82));
             border: 1px solid rgba(167, 139, 218, 0.3);
             border-radius: 24px;
             padding: 40px 36px;
             text-align: center;
-            backdrop-filter: blur(12px);
+            /* backdrop-filter eliminado: es de los filtros más
+               caros en GPU — fuerza rasterizar todo lo de detrás
+               en cada frame. El fondo más opaco lo reemplaza. */
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
@@ -2106,18 +2110,21 @@
             font-size: 1rem;
         }
 
-        /* shooting star */
+        /* shooting star — translateX en vez de left:
+           left dispara reflow completo en cada fotograma;  
+           translateX vive en el compositor, cero reflow. */
         .bn-shoot {
             position: absolute;
             top: 15%;
-            left: -10%;
+            left: 0;
             width: 180px;
             height: 2px;
             background: linear-gradient(90deg, transparent, #fff, transparent);
             border-radius: 2px;
             opacity: 0;
             animation: shootStar 8s ease-in-out infinite;
-            transform: rotate(-25deg);
+            transform: rotate(-25deg) translateX(-120vw);
+            will-change: transform, opacity;
         }
 
         .bn-shoot:nth-child(2) {
@@ -2133,24 +2140,10 @@
         }
 
         @keyframes shootStar {
-            0% {
-                opacity: 0;
-                left: -10%;
-            }
-
-            5% {
-                opacity: 1;
-            }
-
-            30% {
-                opacity: 0;
-                left: 110%;
-            }
-
-            100% {
-                opacity: 0;
-                left: 110%;
-            }
+            0%   { opacity: 0;   transform: rotate(-25deg) translateX(-20vw); }
+            5%   { opacity: 1; }
+            30%  { opacity: 0;   transform: rotate(-25deg) translateX(120vw); }
+            100% { opacity: 0;   transform: rotate(-25deg) translateX(120vw); }
         }
 
 /* ══ DECLARAR / LA PREGUNTA ══ */
