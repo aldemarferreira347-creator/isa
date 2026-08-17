@@ -309,7 +309,7 @@
 
   /* ------------------------------------------------------------------ NOCHE */
   escenas.noche = (function () {
-    let luna, nubes = [], estrellas = [], spEstrella, spNube1, spNube2;
+    let luna, estrellas = [], spEstrella;
     let lunaPropia = null, spHalo;      // luna que ya trae la página
     const N = flojo ? 60 : 110;
 
@@ -328,8 +328,6 @@
         spHalo = halo('198,214,255', 0.22);
         luna = lunaPropia ? null : spriteLuna(Math.max(26, Math.min(W, H) * 0.055));
         spEstrella = halo('222,232,255');
-        spNube1 = spriteNube('150,168,215', 7717);
-        spNube2 = spriteNube('120,138,190', 3331);
         estrellas = [];
         for (let i = 0; i < N; i++) {
           estrellas.push({
@@ -337,14 +335,6 @@
             r: Math.pow(Math.random(), 2.4) * 1.9 + 0.35,
             b: 0.18 + Math.random() * 0.72,
             f: Math.random() * 6.28, v: rnd(0.5, 2.1)
-          });
-        }
-        nubes = [];
-        for (let i = 0; i < (flojo ? 3 : 6); i++) {
-          nubes.push({
-            x: rnd(-0.4, 1.2) * W, y: rnd(0.04, 0.62) * H,
-            e: rnd(1.4, 3.4), v: rnd(0.05, 0.20) * (i % 2 ? 1 : -1),
-            a: rnd(0.35, 0.9), sp: i % 2 ? spNube1 : spNube2
           });
         }
       },
@@ -371,16 +361,6 @@
           if (s.b > 0.7) estampa(spEstrella, s.x, s.y, s.r * 8, a * 0.35);
           ctx.fillStyle = 'rgba(235,242,255,' + a.toFixed(3) + ')';
           ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.283); ctx.fill();
-        }
-
-        for (let i = 0; i < nubes.length; i++) {
-          const n = nubes[i];
-          n.x += n.v * dt * amp;
-          const anc = 320 * n.e, alt = 130 * n.e;
-          if (n.x > W + anc) n.x = -anc; else if (n.x < -anc) n.x = W + anc;
-          ctx.globalAlpha = n.a;
-          ctx.drawImage(n.sp, n.x - anc / 2, n.y - alt / 2, anc, alt);
-          ctx.globalAlpha = 1;
         }
       }
     };
