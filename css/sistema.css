@@ -786,6 +786,147 @@ em {
     opacity: .82;
 }
 
+/* ── TARJETA DESTACADA: LA ENTREGA FINAL ── */
+.nav-card--destacada {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 28px;
+    background: linear-gradient(135deg, rgba(38, 20, 32, 0.85) 0%, rgba(18, 9, 22, 0.95) 100%);
+    border: 1.5px solid rgba(246, 200, 112, 0.45);
+    border-radius: var(--p-radio);
+    box-shadow: 0 14px 40px -10px rgba(0, 0, 0, 0.65), 0 0 30px -5px rgba(246, 200, 112, 0.25);
+    position: relative;
+    overflow: hidden;
+    gap: 22px;
+    text-align: left;
+    text-decoration: none;
+}
+
+.nav-card--destacada::after {
+    display: none !important;
+}
+
+.nav-card--destacada::before {
+    background: linear-gradient(180deg, #ff5983, #f6c870, #ff5983);
+    width: 4px;
+}
+
+.nav-card--destacada:hover {
+    border-color: #f6c870;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8), 0 0 45px rgba(246, 200, 112, 0.45);
+    transform: translateY(-4px) scale(1.01);
+}
+
+.destacada-disco-box {
+    position: relative;
+    flex-shrink: 0;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #1f1a20, #0a070c);
+    border: 2px solid rgba(246, 200, 112, 0.6);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), 0 0 15px rgba(246, 200, 112, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nav-card--destacada:hover .destacada-disco-box {
+    transform: rotate(180deg) scale(1.08);
+}
+
+.destacada-disco-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.destacada-disco-centro {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f6c870, #966b16);
+    border: 2px solid #000;
+    z-index: 2;
+}
+
+.destacada-cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-grow: 1;
+}
+
+.destacada-badge {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #f6c870;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.destacada-titulo {
+    font-size: clamp(1.3rem, 3.2vw, 1.65rem);
+    color: #fff;
+    margin: 0;
+}
+
+.destacada-desc {
+    font-size: 0.88rem;
+    color: var(--p-tinta-2);
+    max-width: 58ch;
+    line-height: 1.5;
+}
+
+.destacada-cta {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, rgba(246, 200, 112, 0.18), rgba(255, 89, 131, 0.18));
+    border: 1px solid rgba(246, 200, 112, 0.45);
+    border-radius: 999px;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: all 0.3s ease;
+}
+
+.nav-card--destacada:hover .destacada-cta {
+    background: linear-gradient(135deg, #f6c870, #e09f3e);
+    color: #1a0f05;
+    box-shadow: 0 4px 20px rgba(246, 200, 112, 0.5);
+    transform: translateX(4px);
+}
+
+@media (max-width: 680px) {
+    .nav-card--destacada {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px;
+        align-items: center;
+    }
+    .destacada-cuerpo {
+        align-items: center;
+    }
+    .destacada-cta {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 /* Contador de visitas: es una ficha, no una puerta. Se distingue. */
 .visit-card {
     --c: var(--p-realce);
@@ -975,8 +1116,8 @@ em {
    retrocede al pasar y el marco se enciende con el color de la página.
    ══════════════════════════════════════════════════════════════════════ */
 .back-btn {
-    top: clamp(14px, 3vw, 22px);
-    left: clamp(14px, 3vw, 22px);
+    top: max(clamp(14px, 3vw, 22px), calc(env(safe-area-inset-top) + 10px));
+    left: max(clamp(14px, 3vw, 22px), calc(env(safe-area-inset-left) + 10px));
     padding: 10px 20px 10px 16px;
     /* Con el relleno solo se quedaba en 42 px de alto, y en pantallas
        estrechas bajaba de 40. Es el único camino de vuelta que hay en cada
@@ -1089,7 +1230,7 @@ em {
     .tema-dedicatoria, .tema-girasol, .tema-pregunta, .tema-navidad, .tema-mes2,
     .tema-radio, .tema-constelacion, .tema-receta, .tema-mapa, .tema-capsula,
     .tema-horas, .tema-diccionario, .tema-boveda) footer {
-    padding: var(--e6) var(--e3) var(--e5);
+    padding: var(--e6) var(--e3) max(var(--e5), calc(env(safe-area-inset-bottom) + 24px));
     border-top: 0;
     color: var(--p-tinta-2);
     font-size: .78rem;

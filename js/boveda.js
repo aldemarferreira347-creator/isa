@@ -20,7 +20,7 @@
 const DIGITOS_CORRECTOS = [
     '5',  // mes 1 — Un Mes Juntos (al final de la carta, tras ganar el combate)
     '8',  // mes 2 — Lo Que Se Abraza (en la carta final, tras abrir los dos objetos)
-    null, // mes 3 — pendiente: todavía no tiene página
+    '3',  // mes 3 — El Principito
     '0',  // mes 4 — El Camino a Ti (en la carta final, tras el último capítulo)
     '7',  // mes 5 — La Radio de Nosotros (las 18 estaciones)
     '2',  // mes 6 — Constelación (las 8 figuras)
@@ -93,6 +93,7 @@ const LS_CAPSULA = 'm9_capsula';
         if (correcto) {
             try { localStorage.setItem(LS_ABIERTA, '1'); } catch (e) { /* modo privado */ }
             pintarInterior();
+            notificarAperturaBoveda();
         } else {
             aviso.textContent = 'Esa combinación no es. Revisa mes por mes — cada uno esconde el suyo.';
             aviso.hidden = false;
@@ -116,6 +117,28 @@ const LS_CAPSULA = 'm9_capsula';
     });
 
     btnAbrir.addEventListener('click', intentarAbrir);
+
+    let notificadoBoveda = false;
+    function notificarAperturaBoveda() {
+        if (notificadoBoveda) return;
+        notificadoBoveda = true;
+        if (typeof enviarNotificacion === 'function') {
+            enviarNotificacion('🔐 ¡Isa ha abierto La Bóveda final! (Mes 12)', {
+                'Evento': 'Bóveda Desbloqueada',
+                'Mensaje': 'Isa ha completado y abierto el cofre final con el cierre de los 12 meses.'
+            });
+        }
+    }
+
+    const btnAbrirDirecto = document.getElementById('bvAbrirDirecto');
+    if (btnAbrirDirecto) {
+        btnAbrirDirecto.addEventListener('click', () => {
+            slots.forEach((s, idx) => s.value = DIGITOS_CORRECTOS[idx]);
+            try { localStorage.setItem(LS_ABIERTA, '1'); } catch (e) {}
+            pintarInterior();
+            notificarAperturaBoveda();
+        });
+    }
 
     try {
         if (localStorage.getItem(LS_ABIERTA) === '1') pintarInterior();

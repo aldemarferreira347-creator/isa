@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="img/corazon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>La Entrega Final 🎶 | Para Isabela ❣️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fx.css">
+    <link rel="stylesheet" href="css/fx-engine.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/sistema.css?v=2">
+    <link rel="stylesheet" href="css/entrega-final.css">
+</head>
+
+<body class="tema-entrega-final">
+    <!-- Capa de pétalos ambientales -->
+    <div class="petals-wrap" id="petals"></div>
+
+    <!-- Resplandor estelar de fondo -->
+    <div class="entrega-bg-glow"></div>
+
+    <!-- Navegación superior -->
+    <header class="entrega-header">
+        <a href="index.html" class="entrega-back">⬅ Volver al Menú</a>
+        <div class="entrega-tag-header">✦ CAPÍTULO FINAL ✦</div>
+    </header>
+
+    <!-- Encabezado Hero -->
+    <section class="entrega-hero">
+        <span class="entrega-ceja">Para el amor de mi vida</span>
+        <h1 class="entrega-titulo">La Entrega Final</h1>
+        <p class="entrega-subtitulo">
+            Hay canciones que explican lo que las palabras solas jamás alcanzarían a decir.
+            Dale al play, escucha nuestra melodía y lee esta carta pensada solo para ti.
+        </p>
+    </section>
+
+    <!-- Contenedor Principal: Reproductor Tocadiscos + Carta -->
+    <main class="entrega-container">
+        <!-- COLUMNA 1: Giradiscos y Reproductor -->
+        <section class="entrega-player-card" aria-label="Reproductor de Vinilo">
+            <div class="turntable-plinth">
+                <div class="turntable-platter">
+                    <!-- Disco de vinilo con foto de pareja al centro -->
+                    <div class="turntable-vinyl" id="turntableVinyl">
+                        <div class="vinyl-label">
+                            <img src="img/foto1.jpeg" id="vinylPhoto" alt="Recuerdo juntos">
+                            <div class="vinyl-center-spindle"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brazo fonocaptor realista -->
+                <div class="turntable-tonearm-wrap" id="turntableTonearm">
+                    <div class="tonearm-base"></div>
+                    <div class="tonearm-rod"></div>
+                </div>
+            </div>
+
+            <!-- Datos de la canción -->
+            <div class="player-track-info">
+                <span class="player-tag">Nuestra Canción 🎵</span>
+                <h2 class="player-title">Tu Cárcel</h2>
+                <div class="player-artist">Los Enanitos Verdes</div>
+            </div>
+
+            <!-- Mini ecualizador -->
+            <div class="player-equalizer" id="playerEqualizer">
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+            </div>
+
+            <!-- Barra de progreso -->
+            <div class="player-timeline-wrap">
+                <div class="player-scrubber-track" id="scrubberTrack" title="Adelantar / Retroceder">
+                    <div class="player-scrubber-fill" id="scrubberFill"></div>
+                </div>
+                <div class="player-time-display">
+                    <span id="timeCurrent">0:00</span>
+                    <span id="timeTotal">--:--</span>
+                </div>
+            </div>
+
+            <!-- Controles principales -->
+            <div class="player-controls">
+                <button type="button" class="ctrl-btn ctrl-btn-skip" id="btnRewind" title="Retroceder 10 segundos">⏮ 10s</button>
+                <button type="button" class="ctrl-btn-play" id="btnPlay" aria-label="Reproducir">
+                    <span id="playIcon">▶</span>
+                </button>
+                <button type="button" class="ctrl-btn ctrl-btn-skip" id="btnForward" title="Adelantar 10 segundos">10s ⏭</button>
+            </div>
+
+            <!-- Barra inferior: Volumen y Galería de Fotos -->
+            <div class="player-bottom-bar">
+                <div class="player-vol-wrap">
+                    <button type="button" class="vol-btn" id="btnMute" title="Silenciar">🔊</button>
+                    <input type="range" class="vol-slider" id="volSlider" min="0" max="1" step="0.05" value="0.8" title="Volumen">
+                </div>
+                <button type="button" class="photo-cycle-btn" id="btnCyclePhoto" title="Ver otra foto en el vinilo">
+                    <span>📷</span> Cambiar foto
+                </button>
+            </div>
+
+            <!-- Audio nativo -->
+            <audio id="finalAudio" src="music/Los%20Enanitos%20Verdes%20-%20Tu%20C%C3%A1rcel%20(Lyrics).mp4" preload="metadata"></audio>
+        </section>
+
+        <!-- COLUMNA 2: Carta Poética de Amor -->
+        <section class="entrega-carta-card" aria-label="Carta para Isabela">
+            <!-- Estado 1: Sobre cerrado con sello de lacre -->
+            <div class="carta-envoltorio-sellado" id="cartaSellada">
+                <button type="button" class="sello-cera-btn" id="btnRomperSello" title="Romper sello de lacre">
+                    <span>⚜️</span>
+                </button>
+                <div class="sello-texto-hint">Toca el sello para abrir la carta</div>
+                <div class="sello-subhint">O reproduce la música y se desplegará suavemente ante ti</div>
+            </div>
+
+            <!-- Estado 2: Pergamino desplegado con carta -->
+            <article class="carta-pergamino" id="cartaPergamino">
+                <div class="carta-esquina tl"></div>
+                <div class="carta-esquina tr"></div>
+                <div class="carta-esquina bl"></div>
+                <div class="carta-esquina br"></div>
+
+                <div class="carta-header">
+                    <div>
+                        <h2 class="carta-destinatario">Para Isabela ❣️</h2>
+                        <div class="carta-fecha">Nuestra historia · Con amor infinito</div>
+                    </div>
+                    <button type="button" class="btn-editar-carta" id="btnEditarCarta" title="Personalizar texto de la carta">
+                        ✏️ Personalizar carta
+                    </button>
+                </div>
+
+                <div class="carta-cuerpo" id="cartaTextoCuerpo">
+                    <!-- Se rellena dinámicamente desde js/entrega-final.js -->
+                </div>
+
+                <div class="carta-pie">
+                    <div>
+                        <div class="carta-despedida">Siempre tuyo,</div>
+                        <div class="carta-firma">Carlo ❣️</div>
+                    </div>
+                    <div class="carta-sello-icono">⚜️</div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Modal para editar la carta libremente -->
+    <div class="carta-modal-overlay" id="cartaModal" aria-hidden="true">
+        <div class="carta-modal-caja" role="dialog" aria-labelledby="modalTitulo">
+            <h3 class="carta-modal-titulo" id="modalTitulo">✍️ Personalizar tu carta para Isabela</h3>
+            <p style="font-size:0.85rem;color:var(--p-tinta-2);margin:0;">
+                Escribe o pega aquí tus palabras. Se guardarán en este navegador para cuando ella lo abra.
+            </p>
+            <textarea class="carta-textarea" id="modalTextarea" placeholder="Escribe tu carta aquí..."></textarea>
+            <div class="carta-modal-btns">
+                <button type="button" class="btn-modal btn-modal-restablecer" id="btnModalRestablecer">Restablecer original</button>
+                <button type="button" class="btn-modal btn-modal-cancelar" id="btnModalCancelar">Cancelar</button>
+                <button type="button" class="btn-modal btn-modal-guardar" id="btnModalGuardar">Guardar carta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts del ecosistema -->
+    <script src="js/fx-engine.js"></script>
+    <script src="js/ambiente.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/notificaciones.js"></script>
+    <script src="js/entrega-final.js"></script>
+</body>
+
+</html>

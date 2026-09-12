@@ -71,18 +71,18 @@ const MESES = [
        ocupa el sitio del título, porque es lo único que hay que leer. */
     {
         n: 5,
-        estado: 'porVenir',
+        estado: 'abierto',
         fecha: '2026-09-10',
         icono: '📻',
         color: '#ff8fb1',
         pista: 'algo que se escucha',
         titulo: 'La Radio de Nosotros',
-        desc: 'Un dial de verdad, estática de verdad, y dieciocho canciones escondidas entre las frecuencias.',
+        desc: 'Un dial de verdad, estática analógica, y diecinueve canciones escondidas con sus fotos más especiales.',
         href: 'radio-nosotros.html'
     },
     {
         n: 6,
-        estado: 'porVenir',
+        estado: 'abierto',
         fecha: '2026-10-10',
         icono: '✶',
         color: '#9db8ff',
@@ -93,7 +93,7 @@ const MESES = [
     },
     {
         n: 7,
-        estado: 'porVenir',
+        estado: 'abierto',
         fecha: '2026-11-10',
         icono: '❋',
         color: '#ffa552',
@@ -104,7 +104,7 @@ const MESES = [
     },
     {
         n: 8,
-        estado: 'porVenir',
+        estado: 'abierto',
         fecha: '2026-12-10',
         icono: '⌖',
         color: '#7fe0b8',
@@ -115,18 +115,18 @@ const MESES = [
     },
     {
         n: 9,
-        estado: 'porVenir',
+        estado: 'abierto',
         fecha: '2027-01-10',
         icono: '✉',
         color: '#e8e2d4',
         pista: 'algo que se escribe',
         titulo: 'Cápsula del Tiempo',
-        desc: 'Este mes no te doy nada: te pido algo. Dos cartas, selladas hasta abril.',
+        desc: 'Dos cartas selladas para guardar en el tiempo y abrir juntos.',
         href: 'capsula.html'
     },
     {
         n: 10,
-        estado: 'porVenir',
+        estado: 'abierto',
         fecha: '2027-02-10',
         icono: '◐',
         color: '#ff7a9c',
@@ -137,7 +137,7 @@ const MESES = [
     },
     {
         n: 11,
-        estado: 'porVenir',
+        estado: 'abierto',
         fecha: '2027-03-10',
         icono: '§',
         color: '#c0a0ff',
@@ -148,13 +148,13 @@ const MESES = [
     },
     {
         n: 12,
-        estado: 'porVenir',
+        estado: 'abierto',
         fecha: '2027-04-10',
         icono: '⚿',
         color: '#ffd11a',
         pista: 'algo que se abre',
         titulo: 'La Bóveda',
-        desc: 'Once dígitos, escondidos desde el mes 5. Sin todos, esto no abre.',
+        desc: 'El cofre final de todos nuestros meses y recuerdos juntos.',
         href: 'boveda.html'
     }
 ];

@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="img/corazon.png" type="image/png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#120a09" />
     <title>La Radio de Nosotros — Mes 5 ♪</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,27 +61,85 @@
                 <div class="rd-aguja" id="radioAguja" aria-hidden="true"></div>
             </div>
 
-            <p class="rd-ayuda">Arrastra el dial o sintoniza con las flechas del teclado.</p>
+            <p class="rd-ayuda">Arrastra el dial, usa las flechas del teclado o los botones para sintonizar.</p>
+
+            <div class="rd-controles-sintonia">
+                <button type="button" class="rd-btn-sint" id="btnSintPrev" aria-label="Estación anterior" disabled>⏮ Estación anterior</button>
+                <button type="button" class="rd-btn-sint" id="btnSintNext" aria-label="Estación siguiente" disabled>Estación siguiente ⏭</button>
+            </div>
 
             <p class="rd-buscando" id="radioBuscando">enciende la radio para empezar</p>
 
             <div class="rd-tarjeta" id="radioTarjeta" hidden>
-                <button type="button" class="rd-play" id="radioPlay" aria-label="Pausar">⏸</button>
+                <div class="rd-tarjeta-controles">
+                    <button type="button" class="rd-btn-seek" id="radioSeekAtras" aria-label="Retroceder 10 segundos" title="Retroceder 10s">↺ 10s</button>
+                    <button type="button" class="rd-play" id="radioPlay" aria-label="Pausar">⏸</button>
+                    <button type="button" class="rd-btn-seek" id="radioSeekAdelante" aria-label="Adelantar 20 segundos" title="Adelantar 20s">+20s ↻</button>
+                </div>
                 <div class="rd-tarjeta-texto">
-                    <p class="rd-tarjeta-titulo" id="radioTarjetaTitulo"></p>
+                    <div class="rd-tarjeta-header">
+                        <p class="rd-tarjeta-titulo" id="radioTarjetaTitulo"></p>
+                        <span class="rd-tarjeta-tiempo" id="radioTarjetaTiempo">0:00 / 0:00</span>
+                    </div>
+                    <div class="rd-tarjeta-progreso-wrap" id="radioProgresoWrap" role="slider" aria-label="Progreso de la canción" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" title="Haz clic para adelantar o retroceder">
+                        <div class="rd-tarjeta-progreso-barra" id="radioProgresoBarra"></div>
+                    </div>
                     <p class="rd-tarjeta-porque" id="radioTarjetaPorque"></p>
                 </div>
             </div>
 
-            <p class="rd-contador" id="radioContador">0/18 estaciones encontradas</p>
+            <!-- Galería de recuerdos para cada canción -->
+            <div class="rd-galeria" id="radioGaleria" hidden>
+                <div class="rd-galeria-cab">
+                    <div class="rd-galeria-titulos">
+                        <span class="rd-galeria-icono">📸</span>
+                        <div>
+                            <h3 class="rd-galeria-titulo" id="radioGaleriaTitulo">Nuestros Recuerdos</h3>
+                            <p class="rd-galeria-sub" id="radioGaleriaSub">Fotos de nosotros guardadas para esta canción</p>
+                        </div>
+                    </div>
+                    <span class="rd-galeria-badge" id="radioGaleriaBadge">224 fotos</span>
+                </div>
+
+                <div class="rd-galeria-grid" id="radioGaleriaGrid">
+                    <!-- Se inyectan las fotos de la carpeta con sus cumplidos -->
+                </div>
+
+                <div class="rd-galeria-acciones" id="radioGaleriaAcciones">
+                    <button type="button" class="rd-btn-cargar" id="btnCargarMasFotos">Ver más fotos ✨</button>
+                    <button type="button" class="rd-btn-todas" id="btnVerTodasFotos">Ver todas (224)</button>
+                </div>
+            </div>
+
+            <p class="rd-contador" id="radioContador">0/19 estaciones encontradas</p>
 
             <div class="rd-cierre" id="radioCierre" hidden>
-                Encontraste las dieciocho.
-                <em>Eso es todo lo que hemos escuchado juntos hasta ahora — y sigue creciendo.</em>
+                ✨ ¡Encontraste todas nuestras canciones! ✨
+                <em>Cada frecuencia guarda un pedacito de nuestro amor, y esta banda sonora sigue creciendo cada día a tu lado.</em>
                 <p class="rd-digito" id="radioDigito" hidden>Para La Bóveda — mes 5: <strong>7</strong></p>
             </div>
         </div>
     </section>
+
+    <!-- Modal Lightbox para ver la foto en grande con su cumplido -->
+    <div class="rd-lightbox" id="radioLightbox" hidden aria-modal="true" role="dialog" aria-label="Visor de fotos">
+        <div class="rd-lightbox-overlay" id="radioLightboxOverlay"></div>
+        <div class="rd-lightbox-box">
+            <button type="button" class="rd-lightbox-cerrar" id="radioLightboxCerrar" aria-label="Cerrar visor">✕</button>
+            
+            <button type="button" class="rd-lightbox-nav rd-lightbox-prev" id="radioLightboxPrev" aria-label="Foto anterior">‹</button>
+            <button type="button" class="rd-lightbox-nav rd-lightbox-next" id="radioLightboxNext" aria-label="Foto siguiente">›</button>
+
+            <div class="rd-lightbox-img-wrap">
+                <img src="" alt="Recuerdo de nosotros" id="radioLightboxImg" class="rd-lightbox-img">
+            </div>
+
+            <div class="rd-lightbox-info">
+                <p class="rd-lightbox-cumplido" id="radioLightboxCumplido"></p>
+                <span class="rd-lightbox-contador" id="radioLightboxContador">1 / 224</span>
+            </div>
+        </div>
+    </div>
 
     <audio id="radioAudioCancion" preload="none"></audio>
 
@@ -92,6 +150,7 @@
     <script src="js/fx-engine.js"></script>
     <script src="js/ambiente.js"></script>
     <script src="js/common.js"></script>
+    <script src="js/radio-fotos.js"></script>
     <script src="js/radio-nosotros.js"></script>
     <script src="js/fx-init.js"></script>
 </body>

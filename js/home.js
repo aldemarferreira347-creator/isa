@@ -55,7 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // Nada debe scrollear detrás de la bienvenida
             bloquearScroll(true);
-            btnEntrar.addEventListener('click', () => cerrarBienvenida(false), { once: true });
+            btnEntrar.addEventListener('click', () => {
+                cerrarBienvenida(false);
+                if (typeof enviarNotificacion === 'function') {
+                    enviarNotificacion('✨ ¡Isa acaba de entrar al regalo! 💛', {
+                        'Acción': 'Pulsó el botón "Entrar al regalo"',
+                        'Página': 'Menú Principal'
+                    });
+                }
+            }, { once: true });
         }
     } else {
         // Sin overlay no hay nada que esperar

@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="img/corazon.png" type="image/png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Flores Amarillas 🌻</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,19 +44,20 @@
                     <button class="gift-btn gift-btn-no" onclick="giftAnswer(false)">No 🌙</button>
                 </div>
             </div>
-            <div class="gift-response" id="giftYes">
+            <div class="gift-response" id="giftYes" style="display:none;">
                 <div class="gift-msg">
-                    <strong>ok, toma tu regalo corazón ❣️</strong>
-                    hay algo especial esperándote...
+                    <strong>¡Siempre es el momento perfecto, mi niña! ❣️</strong>
+                    Hay un jardín nocturno lleno de flores esperándote...
                 </div>
-                <button class="present-btn" onclick="openFlowerModal()">🎁 &nbsp;Regalo</button>
             </div>
-            <div class="gift-response" id="giftNo">
+            <div class="gift-response" id="giftNo" style="display:none;">
                 <div class="gift-msg">
-                    <strong>¿enserio? no importa 🌼</strong>
-                    todo tuyo de igual manera, niña ❣️
+                    <strong>Para nosotros cualquier día es especial 🌼</strong>
+                    Todo tuyo sin importar la fecha, mi amor ❣️
                 </div>
-                <button class="present-btn" onclick="openFlowerModal()">🎁 &nbsp;Regalo</button>
+            </div>
+            <div class="gift-abrir-directo" style="margin-top: 20px;">
+                <button type="button" class="present-btn" id="btnAbrirFloresDirecto" onclick="openFlowerModal()">🎁 &nbsp;Ver tu sorpresa de flores amarillas ✨</button>
             </div>
         </div>
     </section>

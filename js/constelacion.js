@@ -1,64 +1,119 @@
-/* ══════════════════════════════════════════════════════════════════════
+﻿/* ══════════════════════════════════════════════════════════════════════
    CONSTELACION.JS — Mes 6 · Constelación.
-
-   El verbo de este mes es DIBUJAR. Ocho figuras sueltas en el cielo, cada
-   una hecha de puntos que no significan nada hasta que alguien los une en
-   el orden correcto. Al cerrar una, se enciende y suelta el recuerdo que
-   guardaba dentro.
-
-   ── LO ÚNICO QUE HAY QUE EDITAR ──────────────────────────────────────
-   Cada figura tiene un campo `recuerdo`. Mientras esté vacío, la tarjeta
-   lo dice tal cual al abrirse — igual que el `porque` de la radio del mes
-   5. El `titulo` ya está puesto como disparador; puedes cambiarlo si
-   quieres que diga otra cosa.
+   Las constelaciones en el cielo forman la frase:
+   "TE AMO MI NIÑA ❣️"
    ══════════════════════════════════════════════════════════════════════ */
 
-// Lienzo de referencia: todo punto vive en este sistema de coordenadas y
-// se convierte a porcentaje al pintar, así que cambiar VIEW_W/H a mitad
-// de camino no rompe nada.
 const VIEW_W = 900;
 const VIEW_H = 600;
 
 const CONSTELACIONES = [
     {
-        titulo: 'El Primer Mensaje',
-        recuerdo: '',
-        puntos: [[40, 120], [85, 70], [125, 110], [160, 60], [180, 130]]
+        titulo: 'TE — El Comienzo',
+        recuerdo: 'Donde empezó a escribirse toda nuestra historia. Una palabra tan pequeña que hoy guarda todo lo que soy contigo.',
+        puntos: [
+            [45, 90], [85, 90], [125, 90],
+            [85, 150], [85, 215],
+            [160, 215], [210, 215],
+            [160, 150], [200, 150],
+            [160, 90], [210, 90]
+        ],
+        lineas: [
+            [0, 1], [1, 2], [1, 3], [3, 4],
+            [5, 6], [5, 7], [7, 8], [7, 9], [9, 10]
+        ]
     },
     {
-        titulo: 'La Primera Vez que Reímos',
-        recuerdo: '',
-        puntos: [[275, 140], [315, 80], [365, 100], [395, 50]]
+        titulo: 'A — Tus Risas',
+        recuerdo: 'Esa risa tuya que ilumina hasta el día más oscuro y que se convirtió en mi sonido favorito del mundo.',
+        puntos: [
+            [285, 215], [315, 150], [345, 85], [375, 150], [405, 215]
+        ],
+        lineas: [
+            [0, 1], [1, 2], [2, 3], [3, 4], [1, 3]
+        ]
     },
     {
-        titulo: 'El Lugar al que Siempre Volvemos',
-        recuerdo: '',
-        puntos: [[495, 90], [530, 130], [570, 80], [610, 120], [640, 70]]
+        titulo: 'M — Mi Refugio',
+        recuerdo: 'Ese lugar seguro que encuentro cada vez que te miro, donde el mundo entero se apaga y solo quedamos los dos.',
+        puntos: [
+            [475, 215], [475, 150], [475, 85],
+            [545, 155],
+            [615, 85], [615, 150], [615, 215]
+        ],
+        lineas: [
+            [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6]
+        ]
     },
     {
-        titulo: 'Lo que Nadie Más Sabe',
-        recuerdo: '',
-        puntos: [[725, 150], [760, 100], [805, 140], [845, 90]]
+        titulo: 'O — Nuestros Secretos',
+        recuerdo: 'Cada mirada cómplice, cada broma nuestra y cada detalle que solo tú y yo comprendemos.',
+        puntos: [
+            [755, 85], [805, 105], [825, 150], [805, 195],
+            [755, 215], [705, 195], [685, 150], [705, 105]
+        ],
+        lineas: [
+            [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 0]
+        ]
     },
     {
-        titulo: 'El Día que Todo Cambió',
-        recuerdo: '',
-        puntos: [[40, 380], [80, 430], [120, 390], [155, 440], [180, 380]]
+        titulo: 'MI — La Certeza',
+        recuerdo: 'El momento exacto en que mi corazón supo que eras tú, sin dudas y para siempre.',
+        puntos: [
+            [45, 475], [45, 410], [45, 345],
+            [85, 410],
+            [125, 345], [125, 410], [125, 475],
+            [175, 475], [175, 410], [175, 345]
+        ],
+        lineas: [
+            [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6],
+            [7, 8], [8, 9]
+        ]
     },
     {
-        titulo: 'La Canción que Nos Encontró',
-        recuerdo: '',
-        puntos: [[280, 430], [320, 370], [365, 410], [400, 360]]
+        titulo: 'NI — Nuestra Canción',
+        recuerdo: 'Cada melodía que suena y de repente tiene tu nombre, tu esencia y tu recuerdo.',
+        puntos: [
+            [255, 475], [255, 410], [255, 345],
+            [290, 410],
+            [325, 475], [325, 410], [325, 345],
+            [375, 475], [375, 410], [375, 345]
+        ],
+        lineas: [
+            [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6],
+            [7, 8], [8, 9]
+        ]
     },
     {
-        titulo: 'El Miedo que Ya No Está',
-        recuerdo: '',
-        puntos: [[495, 400], [535, 440], [575, 390], [615, 430], [640, 370]]
+        titulo: 'ÑA — Tu Paz',
+        recuerdo: 'La tranquilidad tan bonita que me da tenerte en mi vida, sabiendo que caminamos juntos.',
+        puntos: [
+            [450, 475], [450, 365], [485, 420],
+            [520, 475], [520, 365],
+            [515, 335], [485, 325], [455, 335],
+            [570, 475], [595, 420], [620, 365],
+            [645, 420], [670, 475]
+        ],
+        lineas: [
+            [0, 1], [1, 2], [2, 3], [3, 4],
+            [7, 6], [6, 5],
+            [8, 9], [9, 10], [10, 11], [11, 12], [9, 11]
+        ]
     },
     {
-        titulo: 'Lo que Viene',
-        recuerdo: '',
-        puntos: [[725, 420], [765, 370], [805, 420], [845, 380]]
+        titulo: '❣️ — Lo Que Viene (Para Siempre)',
+        recuerdo: 'Todo el amor del universo entero, cada sueño que construiremos y una vida entera a tu lado. Te amo, mi niña.',
+        puntos: [
+            [795, 435],
+            [750, 395], [745, 355], [770, 340],
+            [795, 365],
+            [820, 340], [845, 355], [840, 395],
+            [795, 475]
+        ],
+        lineas: [
+            [0, 1], [1, 2], [2, 3], [3, 4],
+            [4, 5], [5, 6], [6, 7], [7, 0]
+        ]
     }
 ];
 
@@ -87,9 +142,6 @@ const LS_CONST = 'm6_constelaciones_hechas';
         catch (e) { /* modo privado */ }
     }
 
-    /* ── Polvo de fondo: estrellas puramente decorativas, generadas con un
-       generador con semilla fija para que el cielo no cambie de forma en
-       cada visita. ── */
     function prng(semilla) {
         let s = semilla;
         return function () {
@@ -103,7 +155,7 @@ const LS_CONST = 'm6_constelaciones_hechas';
     function pintarPolvo() {
         const azar = prng(19870);
         const frag = document.createDocumentFragment();
-        for (let i = 0; i < 130; i++) {
+        for (let i = 0; i < 140; i++) {
             const c = document.createElementNS(NS, 'circle');
             c.setAttribute('cx', (azar() * VIEW_W).toFixed(1));
             c.setAttribute('cy', (azar() * VIEW_H).toFixed(1));
@@ -118,10 +170,6 @@ const LS_CONST = 'm6_constelaciones_hechas';
         svg.appendChild(frag);
     }
 
-    /* ── Cada figura: líneas (ocultas hasta que se dibujan) + estrellas
-       visuales en el SVG, y botones reales encima para el clic/toque/
-       teclado — así toda la mecánica es accesible sin depender de un
-       gesto de arrastre que un lector de pantalla no puede reproducir. ── */
     const progreso = CONSTELACIONES.map(() => 0);
 
     function pintarFigura(ci) {
@@ -130,23 +178,31 @@ const LS_CONST = 'm6_constelaciones_hechas';
         g.setAttribute('class', 'cst-figura');
         g.dataset.c = ci;
 
-        for (let j = 0; j < fig.puntos.length - 1; j++) {
-            const [x1, y1] = fig.puntos[j];
-            const [x2, y2] = fig.puntos[j + 1];
+        const lineasDef = fig.lineas || fig.puntos.slice(0, -1).map((_, j) => [j, j + 1]);
+        lineasDef.forEach(([p1, p2], j) => {
+            const [x1, y1] = fig.puntos[p1];
+            const [x2, y2] = fig.puntos[p2];
             const linea = document.createElementNS(NS, 'line');
             linea.setAttribute('x1', x1); linea.setAttribute('y1', y1);
             linea.setAttribute('x2', x2); linea.setAttribute('y2', y2);
             linea.setAttribute('class', 'cst-linea');
-            linea.dataset.c = ci; linea.dataset.seg = j;
+            linea.dataset.c = ci;
+            linea.dataset.p1 = p1;
+            linea.dataset.p2 = p2;
+            linea.dataset.seg = j;
             g.appendChild(linea);
-        }
+        });
 
         fig.puntos.forEach(([x, y], j) => {
             const estrella = document.createElementNS(NS, 'circle');
-            estrella.setAttribute('cx', x); estrella.setAttribute('cy', y);
-            estrella.setAttribute('r', 3.4);
+            estrella.setAttribute('cx', x);
+            estrella.setAttribute('cy', y);
+            const rBase = 3.2 + (j / Math.max(1, fig.puntos.length - 1)) * 1.5;
+            estrella.setAttribute('r', rBase.toFixed(1));
             estrella.setAttribute('class', 'cst-estrella-visual');
-            estrella.dataset.c = ci; estrella.dataset.idx = j;
+            estrella.dataset.c = ci;
+            estrella.dataset.idx = j;
+            estrella.style.opacity = (0.5 + (j / Math.max(1, fig.puntos.length - 1)) * 0.4).toFixed(2);
             g.appendChild(estrella);
 
             const boton = document.createElement('button');
@@ -154,14 +210,31 @@ const LS_CONST = 'm6_constelaciones_hechas';
             boton.className = 'cst-boton';
             boton.style.left = `${(x / VIEW_W) * 100}%`;
             boton.style.top = `${(y / VIEW_H) * 100}%`;
-            boton.dataset.c = ci; boton.dataset.idx = j;
+            boton.dataset.c = ci;
+            boton.dataset.idx = j;
             boton.setAttribute('aria-label',
-                `Estrella ${j + 1} de ${fig.puntos.length} de una figura todavía sin formar`);
+                `Estrella ${j + 1} de ${fig.puntos.length} de la figura ${fig.titulo}`);
             boton.addEventListener('click', () => tocarEstrella(ci, j));
             overlay.appendChild(boton);
         });
 
         svg.appendChild(g);
+    }
+
+    function actualizarSiguienteEstrella() {
+        svg.querySelectorAll('.cst-estrella-visual--proxima').forEach(e => {
+            e.classList.remove('cst-estrella-visual--proxima');
+        });
+
+        for (let ci = 0; ci < CONSTELACIONES.length; ci++) {
+            if (!hechas.has(ci)) {
+                const proxIdx = progreso[ci];
+                if (proxIdx < CONSTELACIONES[ci].puntos.length) {
+                    const e = svg.querySelector(`.cst-estrella-visual[data-c="${ci}"][data-idx="${proxIdx}"]`);
+                    if (e) e.classList.add('cst-estrella-visual--proxima');
+                }
+            }
+        }
     }
 
     function marcarHecha(ci, sinAnimar) {
@@ -171,14 +244,15 @@ const LS_CONST = 'm6_constelaciones_hechas';
             b.classList.add('cst-boton--hecha');
             b.setAttribute('aria-label', `${CONSTELACIONES[ci].titulo} — ya encendida`);
         });
+        svg.querySelectorAll(`.cst-linea[data-c="${ci}"]`).forEach(l => {
+            l.classList.add('cst-linea--on');
+        });
         if (sinAnimar && g) g.classList.add('cst-figura--instantanea');
     }
 
     function tocarEstrella(ci, idx) {
-        if (hechas.has(ci)) return; // ya está encendida, no hay nada más que hacer
+        if (hechas.has(ci)) return;
         if (idx !== progreso[ci]) {
-            // No es la siguiente de la secuencia: un pequeño gesto de «no
-            // todavía», nunca un error — no hay forma de fallar aquí.
             const b = overlay.querySelector(`.cst-boton[data-c="${ci}"][data-idx="${idx}"]`);
             if (b && !REDUCIDO) {
                 b.classList.remove('cst-boton--toca');
@@ -190,15 +264,23 @@ const LS_CONST = 'm6_constelaciones_hechas';
 
         const estrella = svg.querySelector(`.cst-estrella-visual[data-c="${ci}"][data-idx="${idx}"]`);
         const boton = overlay.querySelector(`.cst-boton[data-c="${ci}"][data-idx="${idx}"]`);
-        if (estrella) estrella.classList.add('cst-estrella-visual--on');
+        if (estrella) {
+            estrella.classList.add('cst-estrella-visual--on');
+            estrella.classList.remove('cst-estrella-visual--proxima');
+            estrella.style.opacity = '1';
+        }
         if (boton) boton.classList.add('cst-boton--on');
 
-        if (idx > 0) {
-            const linea = svg.querySelector(`.cst-linea[data-c="${ci}"][data-seg="${idx - 1}"]`);
-            if (linea) linea.classList.add('cst-linea--on');
-        }
+        svg.querySelectorAll(`.cst-linea[data-c="${ci}"]`).forEach(linea => {
+            const p1 = parseInt(linea.dataset.p1, 10);
+            const p2 = parseInt(linea.dataset.p2, 10);
+            if ((p1 === idx && p2 <= idx) || (p2 === idx && p1 <= idx)) {
+                linea.classList.add('cst-linea--on');
+            }
+        });
 
         progreso[ci] = idx + 1;
+        actualizarSiguienteEstrella();
 
         if (progreso[ci] === CONSTELACIONES[ci].puntos.length) {
             hechas.add(ci);
@@ -227,9 +309,14 @@ const LS_CONST = 'm6_constelaciones_hechas';
         contador.textContent = `${hechas.size}/${CONSTELACIONES.length} constelaciones encendidas`;
         if (hechas.size === CONSTELACIONES.length && cierre) {
             cierre.hidden = false;
-            // Dígito del mes 6 para La Bóveda. Ver js/boveda.js.
             const digito = document.getElementById('cstDigito');
             if (digito) digito.hidden = false;
+            if (typeof enviarNotificacion === 'function') {
+                enviarNotificacion('✨ ¡Isa completó la Constelación! (Mes 6)', {
+                    'Frase revelada': 'TE AMO MI NIÑA ❣️',
+                    'Detalle': 'Ha iluminado el cielo formando la frase completa.'
+                });
+            }
         }
     }
 
@@ -237,15 +324,20 @@ const LS_CONST = 'm6_constelaciones_hechas';
     pintarPolvo();
     CONSTELACIONES.forEach((_, ci) => pintarFigura(ci));
 
-    // Restaurar lo ya encontrado en visitas anteriores, sin repetir la
-    // animación de encendido ni el orden de descubrimiento.
     [...hechas].forEach(ci => {
-        progreso[ci] = CONSTELACIONES[ci].puntos.length;
-        svg.querySelectorAll(`.cst-linea[data-c="${ci}"]`).forEach(l => l.classList.add('cst-linea--on'));
-        svg.querySelectorAll(`.cst-estrella-visual[data-c="${ci}"]`).forEach(e => e.classList.add('cst-estrella-visual--on'));
-        overlay.querySelectorAll(`.cst-boton[data-c="${ci}"]`).forEach(b => b.classList.add('cst-boton--on'));
-        marcarHecha(ci, true);
-        revelar(ci);
+        if (ci < CONSTELACIONES.length) {
+            progreso[ci] = CONSTELACIONES[ci].puntos.length;
+            svg.querySelectorAll(`.cst-linea[data-c="${ci}"]`).forEach(l => l.classList.add('cst-linea--on'));
+            svg.querySelectorAll(`.cst-estrella-visual[data-c="${ci}"]`).forEach(e => {
+                e.classList.add('cst-estrella-visual--on');
+                e.style.opacity = '1';
+            });
+            overlay.querySelectorAll(`.cst-boton[data-c="${ci}"]`).forEach(b => b.classList.add('cst-boton--on'));
+            marcarHecha(ci, true);
+            revelar(ci);
+        }
     });
+
+    actualizarSiguienteEstrella();
     actualizarContador();
 })();

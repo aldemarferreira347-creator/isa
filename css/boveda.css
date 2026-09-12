@@ -148,10 +148,12 @@
 .bv-abrir-fila {
     display: flex;
     justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 .bv-abrir {
-    padding: 13px 40px;
+    padding: 13px 32px;
     border-radius: 999px;
     border: 1px solid var(--p-borde-vivo);
     background: linear-gradient(140deg, var(--p-realce), var(--p-realce-2));
@@ -166,6 +168,41 @@
 .bv-abrir:hover {
     transform: translateY(-3px);
     box-shadow: 0 14px 34px -12px var(--p-halo);
+}
+
+.bv-abrir--directo {
+    background: linear-gradient(140deg, #9db8ff, #c0a0ff);
+    color: #0b0b14;
+    border-color: #c0a0ff;
+}
+
+.bv-abrir--directo:hover {
+    box-shadow: 0 14px 34px -12px rgba(192, 160, 255, 0.4);
+}
+
+@media (max-width: 520px) {
+    .bv-slots {
+        gap: 5px;
+    }
+    .bv-slot {
+        width: 32px;
+        height: 42px;
+        font-size: 1.05rem;
+    }
+    .bv-abrir {
+        padding: 11px 22px;
+        font-size: .88rem;
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 380px) {
+    .bv-slot {
+        width: 27px;
+        height: 38px;
+        font-size: .95rem;
+    }
 }
 
 .bv-aviso {

@@ -598,3 +598,175 @@ footer {
         max-width: 1000px;
     }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   ESPECÍFICO IPHONE 16 / IOS SAFARI (393px × 852px / 430px × 932px)
+   Dynamic Island (top: ~59px), Home Indicator (bottom: ~34px), DPR 3
+   ══════════════════════════════════════════════════════════════════════ */
+@supports (-webkit-touch-callout: none) {
+    html {
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        background-color: var(--p-fondo, #0b0713);
+    }
+}
+
+/* Evitar retraso de 300ms al pulsar y tap highlight gris en iOS */
+button,
+a,
+input,
+[role="button"],
+.nav-card,
+.mes,
+.rd-btn-seek,
+.present-btn {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Feedback físico táctil estilo Apple (press instantáneo con spring suave) */
+@media (hover: none) and (pointer: coarse) {
+    .nav-card:active,
+    .mes:active,
+    .gift-btn:active,
+    .present-btn:active,
+    .rd-btn-seek:active,
+    .rd-play:active,
+    .rd-btn-sint:active,
+    .bv-abrir:active,
+    .back-btn:active,
+    .music-btn:active {
+        transform: scale(0.96) !important;
+        transition: transform 90ms cubic-bezier(0.2, 0.9, 0.3, 1) !important;
+    }
+}
+
+/* Alturas dinámicas en Safari iOS para evitar cortes por la barra de navegación */
+.hero,
+.welcome-overlay,
+.flower-modal,
+.rd-lightbox,
+.canvas-container {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* Adaptaciones fluidas para la pantalla de iPhone 16 (390px - 440px) */
+@media screen and (max-width: 440px) {
+    /* Safe areas para barra Dynamic Island y Home Indicator */
+    .back-btn {
+        top: max(14px, calc(env(safe-area-inset-top) + 8px));
+        left: max(14px, calc(env(safe-area-inset-left) + 8px));
+    }
+
+    .music-btn {
+        bottom: max(18px, calc(env(safe-area-inset-bottom) + 12px));
+        right: max(18px, calc(env(safe-area-inset-right) + 12px));
+    }
+
+    footer {
+        padding-bottom: max(32px, calc(env(safe-area-inset-bottom) + 20px));
+    }
+
+    /* Menú principal en iPhone 16 */
+    .main-nav {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+        padding: 0 4px;
+    }
+
+    .nav-card {
+        padding: 16px 12px;
+        border-radius: 18px;
+    }
+
+    .nav-icon {
+        font-size: 2.2rem;
+    }
+
+    .nav-title {
+        font-size: 1.05rem;
+    }
+
+    .nav-desc {
+        font-size: .75rem;
+        line-height: 1.35;
+    }
+
+    /* Modal de flores en iPhone 16 */
+    .flower-modal {
+        padding: max(16px, calc(env(safe-area-inset-top) + 8px)) 16px max(24px, calc(env(safe-area-inset-bottom) + 16px)) 16px;
+        box-sizing: border-box;
+    }
+
+    .flower-modal #flowerAnimationCanvas {
+        max-height: calc(100dvh - 110px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        width: 100%;
+        height: auto;
+    }
+
+    .modal-close {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 12px;
+        padding: 12px 28px;
+        font-size: .88rem;
+    }
+
+    /* La Bóveda en iPhone 16 */
+    .bv-slots {
+        gap: 6px;
+        max-width: 340px;
+        margin: 0 auto 20px auto;
+    }
+
+    .bv-slot {
+        width: 32px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
+
+    .bv-abrir {
+        min-height: 44px;
+    }
+
+    /* La Radio en iPhone 16 */
+    .rd-dial {
+        height: 54px;
+    }
+
+    .rd-tarjeta-controles {
+        gap: 10px;
+    }
+
+    .rd-btn-seek {
+        min-height: 38px;
+        padding: 8px 12px;
+        font-size: .74rem;
+    }
+
+    .rd-play {
+        width: 52px;
+        height: 52px;
+        font-size: 1.25rem;
+    }
+
+    .rd-lightbox-box {
+        max-height: calc(96dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        width: 95%;
+        padding: 16px 12px;
+    }
+
+    .rd-lightbox-img-wrap {
+        max-height: 48dvh;
+    }
+
+    .rd-lightbox-img {
+        max-height: 48dvh;
+    }
+}

@@ -13,11 +13,53 @@
 
 const PALABRAS = [
     {
-        palabra: 'Ejemplo',
-        categoria: 'sust.',
-        definicion: 'Borra esta entrada y escribe aquí la primera palabra de verdad — un apodo, una palabra mal dicha que se quedó, cualquier cosa que sólo signifique algo entre ustedes dos.',
-        ejemplo: '«Así se ve una entrada terminada.»',
-        fecha: ''
+        palabra: 'Persona Favorita',
+        categoria: 'sust. propio',
+        definicion: 'La única persona en el universo entero con la que todo cobra sentido, donde el tiempo vuela y la vida se siente ligera y en calma.',
+        ejemplo: '«De ocho mil millones de personas, tú eres y siempre serás mi persona favorita.»',
+        fecha: '16 de agosto de 2025'
+    },
+    {
+        palabra: 'Mi niña',
+        categoria: 'sust. f.',
+        definicion: 'Forma cariñosa y tierna de llamarte cuando quiero cuidarte, abrazarte y recordarte lo inmensamente valiosa que eres para mí.',
+        ejemplo: '«Te amo con todo mi corazón, mi niña bonita.»',
+        fecha: 'Siempre'
+    },
+    {
+        palabra: 'Mon Amour',
+        categoria: 'expresión',
+        definicion: 'Nuestra canción especial, ese momento íntimo donde cerramos los ojos y solo existimos los dos al ritmo de la melodía.',
+        ejemplo: '«Mon amour, eres el detalle más lindo que la vida me dio.»',
+        fecha: 'Estación 108.0 FM'
+    },
+    {
+        palabra: 'Abrazo refugio',
+        categoria: 'sust. m.',
+        definicion: 'El instante en que me pegas a tu pecho o escondo mi cara en tu cuello y el mundo entero deja de doler o de preocupar.',
+        ejemplo: '«Necesito uno de esos abrazos refugio que solo tú sabes dar.»',
+        fecha: 'Nuestros días'
+    },
+    {
+        palabra: 'Girasol',
+        categoria: 'sust. m.',
+        definicion: 'Símbolo de luz, constancia y amor eterno. La flor que busca el sol tal como mi corazón te busca a ti en cada amanecer.',
+        ejemplo: '«Un jardín entero de girasoles florece cada vez que sonríes.»',
+        fecha: '21 de septiembre'
+    },
+    {
+        palabra: 'Complicidad',
+        categoria: 'sust. f.',
+        definicion: 'Mirarnos a los ojos desde el otro lado de la habitación y saber exactamente lo que el otro está pensando sin decir una sola palabra.',
+        ejemplo: '«Esa risa cómplice que solo nosotros entendemos.»',
+        fecha: 'Cada segundo'
+    },
+    {
+        palabra: 'Promesa',
+        categoria: 'sust. f.',
+        definicion: 'El compromiso sincero de cuidarte, respetarte, apoyarte en cada uno de tus sueños y amarte con paciencia y verdad cada día de mi vida.',
+        ejemplo: '«Una promesa que no se desgasta con los años, sino que se hace más fuerte.»',
+        fecha: 'Para siempre'
     }
 ];
 

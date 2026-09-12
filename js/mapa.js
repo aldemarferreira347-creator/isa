@@ -15,14 +15,14 @@ const LIENZO_W = 1400;
 const LIENZO_H = 980;
 
 const CHINCHETAS = [
-    { tipo: 'vivida', x: 260, y: 620, nombre: '', historia: '' },
-    { tipo: 'vivida', x: 520, y: 340, nombre: '', historia: '' },
-    { tipo: 'vivida', x: 840, y: 560, nombre: '', historia: '' },
-    { tipo: 'vivida', x: 1080, y: 260, nombre: '', historia: '' },
-    { tipo: 'futura', x: 400, y: 830, destino: '' },
-    { tipo: 'futura', x: 700, y: 190, destino: '' },
-    { tipo: 'futura', x: 1180, y: 650, destino: '' },
-    { tipo: 'futura', x: 960, y: 800, destino: '' }
+    { tipo: 'vivida', x: 260, y: 620, nombre: 'El atardecer más bonito', historia: 'Ese momento con el sol hundiéndose y tus ojos brillando. El mundo entero se detuvo cuando te tomé de la mano.' },
+    { tipo: 'vivida', x: 520, y: 340, nombre: 'Nuestras charlas infinitas', historia: 'Donde las horas pasaban volando y no queríamos que la noche se acabara nunca. Cada confidencia nos unió más.' },
+    { tipo: 'vivida', x: 840, y: 560, nombre: 'Donde aprendimos a abrazarnos', historia: 'Ese abrazo apretado en el que por primera vez supe que no quería soltarte jamás. Mi lugar seguro siempre serás tú.' },
+    { tipo: 'vivida', x: 1080, y: 260, nombre: 'El rincón de las risas', historia: 'Donde nos reímos hasta que nos dolió el estómago y entendí lo increíble y auténtica que es tu alegría.' },
+    { tipo: 'futura', x: 400, y: 830, destino: 'Un viaje frente al mar solo para los dos' },
+    { tipo: 'futura', x: 700, y: 190, destino: 'Ver las estrellas juntos en lo alto de la montaña' },
+    { tipo: 'futura', x: 1180, y: 650, destino: 'Perdernos de la mano en una ciudad nueva' },
+    { tipo: 'futura', x: 960, y: 800, destino: 'Nuestro propio hogar lleno de paz, música y risas' }
 ];
 
 (function () {

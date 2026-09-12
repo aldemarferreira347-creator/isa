@@ -230,8 +230,22 @@
             if (yes) {
                 document.getElementById('dclResSi').style.display = 'block';
                 launchHearts();
+                if (typeof enviarNotificacion === 'function') {
+                    enviarNotificacion('💛 ¡ISA HA DICHO QUE SÍ! 💍 (La Pregunta)', {
+                        'Pregunta': '¿Te gustaría ser mi novia?',
+                        'Respuesta': '¡SÍ! 💛',
+                        'Estado': 'Aceptó la propuesta formal'
+                    });
+                }
             } else {
                 document.getElementById('dclResNo').style.display = 'block';
+                if (typeof enviarNotificacion === 'function') {
+                    enviarNotificacion('🌙 Respuesta de Isa a La Pregunta: Todavía no', {
+                        'Pregunta': '¿Te gustaría ser mi novia?',
+                        'Respuesta': 'Todavía no 🌙',
+                        'Estado': 'Eligió tomarse su tiempo'
+                    });
+                }
             }
         }
 

@@ -14,7 +14,7 @@
    ══════════════════════════════════════════════════════════════════════ */
 
 const LS_CAPSULA = 'm9_capsula';
-const FECHA_APERTURA = '2027-04-10';
+const FECHA_APERTURA = '2026-01-01';
 
 (function () {
     'use strict';
@@ -76,6 +76,14 @@ const FECHA_APERTURA = '2027-04-10';
         };
         guardar(datos);
         pintarSellada(datos);
+
+        if (typeof enviarNotificacion === 'function') {
+            enviarNotificacion('✉️ ¡Isa ha sellado la Cápsula del Tiempo! (Mes 9)', {
+                '📜 Carta para ella misma (en 1 año)': datos.paraTi,
+                '💌 Carta para ti (Aldemar)': datos.paraMi,
+                '📅 Fecha de sellado': new Date(datos.selladaEn).toLocaleString('es-CO')
+            });
+        }
     }
 
     btnSellar.addEventListener('click', ev => {

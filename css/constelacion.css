@@ -317,3 +317,42 @@
         transition-duration: .01ms;
     }
 }
+
+
+/* ── Efecto de letra y revelación final de TE AMO MI NIÑA ── */
+.cst-estrella-visual--proxima {
+    animation: cst-brillo-guia 1.6s ease-in-out infinite alternate !important;
+}
+
+@keyframes cst-brillo-guia {
+    0% {
+        r: 4.2;
+        opacity: 0.8;
+        filter: drop-shadow(0 0 3px var(--p-realce));
+    }
+    100% {
+        r: 6.2;
+        opacity: 1;
+        filter: drop-shadow(0 0 10px #ffd75e);
+    }
+}
+
+.cst-frase-revelada {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: .12em;
+    color: var(--p-realce);
+    text-shadow: 0 0 16px rgba(255, 215, 0, 0.7);
+    margin-bottom: var(--e3);
+    animation: cst-brillo-final 3s ease-in-out infinite alternate;
+}
+
+@keyframes cst-brillo-final {
+    from {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    to {
+        text-shadow: 0 0 25px rgba(255, 215, 0, 0.95), 0 0 40px rgba(255, 95, 147, 0.6);
+    }
+}

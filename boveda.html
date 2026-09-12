@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="img/corazon.png" type="image/png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#050403" />
     <title>La Bóveda — Mes 12 ⚿</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,7 +78,8 @@
                         inputmode="numeric" maxlength="1" aria-label="Dígito del mes 11"></div>
             </div>
             <div class="bv-abrir-fila">
-                <button type="button" class="bv-abrir" id="bvAbrir">Abrir</button>
+                <button type="button" class="bv-abrir" id="bvAbrir">Abrir con Código</button>
+                <button type="button" class="bv-abrir bv-abrir--directo" id="bvAbrirDirecto">Abrir Directamente ✨</button>
             </div>
             <p class="bv-aviso" id="bvAviso" hidden></p>
         </div>
@@ -96,15 +97,18 @@
                 <span class="bv-capsula-fecha">Sellada el <span id="bvCapsulaFecha"></span></span>
             </div>
             <p class="bv-capsula-vacia" id="bvCapsulaVacia" hidden>
-                La cápsula del mes 9 no se llegó a sellar en este navegador, así que no hay nada que abrir aquí dentro.
+                La cápsula del mes 9 no se llegó a sellar en este navegador, pero no hace falta: este cofre ya guarda todo nuestro amor y cada recuerdo de este año.
             </p>
 
-            <!-- Cierre final del año: Carlo escribe aquí el mensaje de cierre
-                 antes de que la bóveda pueda abrirse de verdad (mes 12,
-                 10 de abril de 2027). No dejar la nota de desarrollo visible
-                 para Isa: reemplazar el párrafo de abajo por el texto real. -->
             <div class="bv-cierre-final" id="bvCierreFinal" hidden>
-                Doce meses, un año entero, y esto es lo único que faltaba decir:
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--p-realce); font-size: 1.3rem; margin-bottom: 0.8rem;">Doce meses, un año entero, y todo nuestro amor.</h3>
+                <p style="margin-bottom: 1rem;">
+                    Hemos recorrido cada día, cada canción en nuestra radio, cada constelación en el cielo, cada mapa, cada risa y cada pequeño secreto juntos.
+                    Ya no hay candados, ni distancias, ni secretos entre nosotros: solo todo este amor sincero que sigue creciendo con cada segundo.
+                </p>
+                <p style="font-family: 'Playfair Display', serif; font-size: 1.15rem; color: #ffd75e; font-style: italic;">
+                    Gracias por ser mi persona favorita en el universo entero. Te amo, Isa. ❤️✨
+                </p>
             </div>
         </div>
     </section>
@@ -116,6 +120,7 @@
     <script src="js/fx-engine.js"></script>
     <script src="js/ambiente.js"></script>
     <script src="js/common.js"></script>
+    <script src="js/notificaciones.js"></script>
     <script src="js/boveda.js"></script>
     <script src="js/fx-init.js"></script>
 </body>

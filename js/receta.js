@@ -201,6 +201,12 @@ const LS_OLLA = 'm7_olla';
         valeFecha.addEventListener('change', () => {
             try { localStorage.setItem('m7_vale_fecha', valeFecha.value); }
             catch (e) { /* modo privado */ }
+            if (typeof enviarNotificacion === 'function' && valeFecha.value) {
+                enviarNotificacion('🍳 ¡Isa ha elegido fecha para la cena! (Mes 7)', {
+                    'Plato cocinado': resultadoNombre ? resultadoNombre.textContent : 'Receta especial',
+                    'Fecha elegida': valeFecha.value
+                });
+            }
         });
     }
 
