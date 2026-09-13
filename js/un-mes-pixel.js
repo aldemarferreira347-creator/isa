@@ -546,6 +546,9 @@
     }
 
     function responder(b, p, i) {
+        if (window.notificarRespuesta) {
+            window.notificarRespuesta(p.q, p.op[i], 'Mes 1 - Trivia Pixel');
+        }
         if (p.ok === undefined || i === p.ok) {
             b.classList.add('acierto');
             elAviso.textContent = '¡CORRECTO! +1 CORAZON';
@@ -577,10 +580,18 @@
         b.textContent = 'ABRIR LA CARTA';
         b.addEventListener('click', abrirCarta);
         elMenu.appendChild(b);
-        if (guardar) { try { localStorage.setItem(LLAVE, '1'); } catch (err) { } }
+        if (guardar) {
+            if (window.notificarAccion) {
+                window.notificarAccion('Mes 1', 'Trivia completada', 'Completó las 6 preguntas de la trivia pixel (Dígito de bóveda 5)');
+            }
+            try { localStorage.setItem(LLAVE, '1'); } catch (err) { }
+        }
     }
 
     function abrirCarta() {
+        if (window.notificarAccion) {
+            window.notificarAccion('Mes 1', 'Carta abierta', 'Abrió la carta de Un Mes');
+        }
         elCarta.classList.add('abierta');
         setTimeout(function () {
             elCarta.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' });
@@ -614,6 +625,9 @@
         visor.classList.add('abierto');
         document.body.style.overflow = 'hidden';
         document.getElementById('vCerrar').focus();
+        if (window.notificarAccion) {
+            window.notificarAccion('Mes 1', 'Foto vista', marcos[enV].dataset.alt || ('Foto ' + (enV + 1)));
+        }
     }
 
     function cerrar() {

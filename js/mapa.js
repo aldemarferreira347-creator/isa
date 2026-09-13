@@ -112,12 +112,16 @@ const CHINCHETAS = [
     const visitadas = new Set();
 
     function marcarVisitada(i) {
+        const eraNueva = !visitadas.has(i);
         visitadas.add(i);
         if (visitadas.size === CHINCHETAS.length) {
             // Dígito del mes 8 para La Bóveda: se gana al tocar las ocho,
             // vividas y futuras por igual. Ver js/boveda.js.
             const digito = document.getElementById('mpDigito');
             if (digito) digito.hidden = false;
+            if (eraNueva && window.notificarAccion) {
+                window.notificarAccion('Mes 8 - Mapa', 'Mapa completado', 'Descubrió todos los 8 lugares del mapa (Dígito de bóveda 4)');
+            }
         }
     }
 
@@ -134,6 +138,9 @@ const CHINCHETAS = [
             btn.addEventListener('click', ev => {
                 if (movioLoSuficiente) return;
                 abrirPopup(nombre, ch.historia || 'Todavía no se ha escrito qué pasó aquí.');
+                if (window.notificarAccion) {
+                    window.notificarAccion('Mes 8 - Mapa', 'Lugar vivido explorado', nombre);
+                }
                 marcarVisitada(i);
             });
         } else {
@@ -143,6 +150,9 @@ const CHINCHETAS = [
             btn.addEventListener('click', ev => {
                 if (movioLoSuficiente) return;
                 abrirPopup(destino, 'Todavía no ha pasado. Es una promesa, no un recuerdo — se queda cerrada hasta que lo sea.', true);
+                if (window.notificarAccion) {
+                    window.notificarAccion('Mes 8 - Mapa', 'Promesa de viaje explorada', destino);
+                }
                 marcarVisitada(i);
             });
         }

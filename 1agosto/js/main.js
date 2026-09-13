@@ -64,6 +64,9 @@ const App = (() => {
     Final.preparar();
 
     $("btn-iniciar").addEventListener("click", () => {
+      if (window.notificarAccion) {
+        window.notificarAccion('1 de Agosto', 'Jardín iniciado', 'Pulsó entrar al Jardín de Recuerdos');
+      }
       Sfx.init();           // gesto del usuario → desbloquea el audio
       intentarReproducir();
       irA("pantalla-jardin");

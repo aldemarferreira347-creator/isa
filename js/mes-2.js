@@ -234,6 +234,9 @@ const M2 = {
                 frasesDichas++;
                 guardar(LS_FRASES, frasesDichas);
                 pintarRegistro(true);
+                if (window.notificarAccion) {
+                    window.notificarAccion('Mes 2', 'Frase de peluche revelada', M2.abrazo[i]);
+                }
             }
         }
 
@@ -291,7 +294,12 @@ const M2 = {
             pintarEstado();
             pintarAro(Math.min(segundosAbrazo / M2.abrazoMeta, 1));
 
-            if (!yaEstaba && cumplido()) alAbrir();
+            if (!yaEstaba && cumplido()) {
+                if (window.notificarAccion) {
+                    window.notificarAccion('Mes 2', 'Abrazo completado', 'Completó la meta de ' + segundosAbrazo + 's abrazando al peluche');
+                }
+                alAbrir();
+            }
         }
 
         btn.addEventListener('pointerdown', empezar);
@@ -411,7 +419,16 @@ const M2 = {
             rociarVisual();
             pintarNotas(true);
             pintarEstado();
-            if (vacio()) alAbrir();
+            if (window.notificarAccion) {
+                var notaActual = M2.notas[notasAbiertas - 1];
+                window.notificarAccion('Mes 2', 'Perfume rociado', 'Descubrió nota: ' + (notaActual ? notaActual.texto : ('Nota ' + notasAbiertas)));
+            }
+            if (vacio()) {
+                if (window.notificarAccion) {
+                    window.notificarAccion('Mes 2', 'Perfume completado', 'Completó todas las notas del perfume');
+                }
+                alAbrir();
+            }
         });
 
         pintarNotas(false);
@@ -433,6 +450,10 @@ const M2 = {
         return function revelar(instantaneo) {
             if (yaSalio) return;
             yaSalio = true;
+
+            if (window.notificarAccion) {
+                window.notificarAccion('Mes 2', 'Carta final revelada', 'Desbloqueó y leyó la carta secreta del Mes 2 (Dígito de bóveda 8)');
+            }
 
             texto.innerHTML = M2.final.map(p => `<p>${p}</p>`).join('');
             seccion.hidden = false;

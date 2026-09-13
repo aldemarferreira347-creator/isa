@@ -112,6 +112,9 @@ const FECHA_APERTURA = '2026-01-01';
                 `Se abre el 10 de abril de 2027\n\n` +
                 `── Carta para ti misma dentro de un año ──\n${datos.paraTi}\n\n` +
                 `── Carta para mí ──\n${datos.paraMi}\n`;
+            if (window.notificarAccion) {
+                window.notificarAccion('Mes 9 - Cápsula', 'Descarga de respaldo', 'Descargó el archivo txt de la cápsula');
+            }
             const blob = new Blob([contenido], { type: 'text/plain;charset=utf-8' });
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);

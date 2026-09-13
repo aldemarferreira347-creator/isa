@@ -171,6 +171,9 @@ const Juego = (() => {
     if (terminado) return;
     corriendo = false;
     terminado = true;
+    if (window.notificarAccion) {
+      window.notificarAccion('1 de Agosto', 'Minijuego perdido', 'Se quedó sin vidas en Cosechando el Ramo');
+    }
     $("texto-derrota").textContent = azar(CONFIG.mensajeDerrota);
     $("overlay-derrota").classList.remove("oculto");
   }
@@ -179,6 +182,9 @@ const Juego = (() => {
     if (terminado) return;
     corriendo = false;
     terminado = true;
+    if (window.notificarAccion) {
+      window.notificarAccion('1 de Agosto', 'Minijuego ganado', 'Cosechó el ramo completo de flores');
+    }
     Sfx.fanfarria();
     $("overlay-victoria").classList.remove("oculto");
     setTimeout(() => {
@@ -354,10 +360,16 @@ const Juego = (() => {
 
     $("texto-instrucciones").textContent = CONFIG.juego.instrucciones;
     $("btn-jugar").addEventListener("click", () => {
+      if (window.notificarAccion) {
+        window.notificarAccion('1 de Agosto', 'Minijuego iniciado', 'Empezó a cosechar flores en la cesta');
+      }
       $("overlay-instrucciones").classList.add("oculto");
       empezar();
     });
     $("btn-reintentar").addEventListener("click", () => {
+      if (window.notificarAccion) {
+        window.notificarAccion('1 de Agosto', 'Reintento de minijuego', 'Volvió a intentar el minijuego de cosecha');
+      }
       $("overlay-derrota").classList.add("oculto");
       empezar();
     });

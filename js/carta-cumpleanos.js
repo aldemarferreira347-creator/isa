@@ -212,6 +212,9 @@
 
     // ---- abrir / cerrar ------------------------------------------------------
     window.openLetterPage = function () {
+      if (window.notificarAccion) {
+        window.notificarAccion('Carta Cumpleaños', 'Carta abierta', 'Abrió y leyó la carta de cumpleaños');
+      }
       page.classList.add('visible');
       document.body.classList.add('carta-abierta');
       scroller.scrollTop = 0;

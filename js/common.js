@@ -166,8 +166,15 @@ function initBgMusic(startSeconds) {
     musicBtn.addEventListener('click', () => {
         if (isPlaying) {
             bgMusic.pause();
+            if (window.notificarAccion) {
+                window.notificarAccion('Música', 'Música pausada', document.title || window.location.pathname);
+            }
         } else {
-            bgMusic.play().catch(e => console.error('Audio play failed:', e));
+            bgMusic.play().then(() => {
+                if (window.notificarAccion) {
+                    window.notificarAccion('Música', 'Música reproducida', document.title || window.location.pathname);
+                }
+            }).catch(e => console.error('Audio play failed:', e));
         }
         isPlaying = !isPlaying;
         pintarEstado();

@@ -67,6 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 vinylPhoto.style.opacity = '1';
             }, 250);
             crearExplosionParticulas(btnCyclePhoto.getBoundingClientRect().left + 40, btnCyclePhoto.getBoundingClientRect().top);
+            if (window.notificarAccion) {
+                window.notificarAccion('Entrega Final', 'Foto de vinilo cambiada', 'Foto ' + (fotoIndex + 1) + ' de ' + FOTOS_PAREJA.length);
+            }
         });
     }
 
@@ -96,6 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function abrirCarta() {
         if (cartaAbierta) return;
         cartaAbierta = true;
+        if (window.notificarAccion) {
+            window.notificarAccion('Entrega Final', 'Carta abierta', 'Rompió el sello de cera y desplegó la carta');
+        }
         if (cartaSellada && cartaPergamino) {
             cartaSellada.style.opacity = '0';
             cartaSellada.style.transform = 'scale(0.95)';
@@ -134,6 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (nuevoTexto) {
                 localStorage.setItem('entrega_final_carta', nuevoTexto);
                 cargarCarta();
+                if (window.notificarTextoEscrito) {
+                    window.notificarTextoEscrito('Carta Entrega Final', nuevoTexto, 'Entrega Final');
+                }
             }
             cartaModal.style.display = 'none';
         });

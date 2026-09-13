@@ -182,13 +182,22 @@ const LS_OLLA = 'm7_olla';
         resultado.hidden = false;
         resultado.scrollIntoView({ behavior: REDUCIDO ? 'auto' : 'smooth', block: 'start' });
 
+        if (window.notificarAccion) {
+            window.notificarAccion('Mes 7 - Receta', 'Plato cocinado', `${nombrePlato()} con: ${[...enOlla].join(', ')}`);
+        }
+
         // Dígito del mes 7 para La Bóveda: sólo con el plato secreto. Ver js/boveda.js.
         const digito = document.getElementById('rcDigito');
         if (digito) digito.hidden = !enOlla.has('secreto');
     });
 
     if (btnImprimir) {
-        btnImprimir.addEventListener('click', () => window.print());
+        btnImprimir.addEventListener('click', () => {
+            if (window.notificarAccion) {
+                window.notificarAccion('Mes 7 - Receta', 'Vale de cena', 'Pulsó imprimir/guardar el vale de cena');
+            }
+            window.print();
+        });
     }
 
     /* La fecha del vale es suya: se guarda para que no se pierda si

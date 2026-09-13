@@ -110,6 +110,9 @@ const Trivia = (() => {
       }, 1100);
     } else {
       // puede reintentar la misma pregunta
+      if (window.notificarRespuesta) {
+        window.notificarRespuesta(q.pregunta, q.opciones[i] + ' (Opción incorrecta)', '1 de Agosto - Trivia');
+      }
       boton.classList.add("incorrecta");
       boton.disabled = true;
       Sfx.mal();
@@ -126,6 +129,10 @@ const Trivia = (() => {
     const registro = { pregunta: q.pregunta.replace(/\s*✏️.*$/, "").trim(), respuesta: limpio, tipo };
     if (previa >= 0) respuestas[previa] = registro;
     else respuestas.push(registro);
+
+    if (window.notificarRespuesta) {
+      window.notificarRespuesta(registro.pregunta, registro.respuesta, '1 de Agosto - Trivia (' + tipo + ')');
+    }
   }
 
   function obtenerRespuestas() {

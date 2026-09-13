@@ -39,6 +39,9 @@ const Final = (function () {
 
         el.classList.add('visible');
         el.setAttribute('aria-hidden', 'false');
+        if (window.notificarAccion) {
+            window.notificarAccion('El Camino', 'Carta final alcanzada', 'Llegó al final del juego y leyó la carta final (Dígito de bóveda 0)');
+        }
         if (window.Sfx && Sfx.fanfarria) Sfx.fanfarria();
         GUARDADO.escribir({ capitulo: 0, terminado: true });
     }
@@ -54,6 +57,9 @@ const Final = (function () {
     // el único donde de verdad se ve a los dos caminando de la mano.
     if (elBtnJuntos) {
         elBtnJuntos.addEventListener('click', () => {
+            if (window.notificarAccion) {
+                window.notificarAccion('El Camino', 'Epílogo iniciado', 'Pulsó «Caminar juntos» hacia la casita');
+            }
             el.classList.remove('visible');
             el.setAttribute('aria-hidden', 'true');
             Entrada.reanudar();

@@ -98,8 +98,19 @@ const HORAS = [
 
         // Dígito del mes 10 para La Bóveda: se gana al dar la vuelta
         // completa al reloj, hora por hora. Ver js/boveda.js.
+        const eraNueva = !visitadas.has(hora);
         visitadas.add(hora);
-        if (visitadas.size === HORAS.length && digito) digito.hidden = false;
+
+        if (eraNueva && window.notificarAccion) {
+            window.notificarAccion('Mes 10 - Reloj', 'Hora leída', `${String(hora).padStart(2, '0')}:00 — ${h.texto ? h.texto.slice(0, 60) + '...' : ''}`);
+        }
+
+        if (visitadas.size === HORAS.length && digito) {
+            digito.hidden = false;
+            if (eraNueva && window.notificarAccion) {
+                window.notificarAccion('Mes 10 - Reloj', 'Reloj completado', 'Completó las 24 horas del reloj (Dígito de bóveda 6)');
+            }
+        }
     }
 
     /* ── Girar la rueda arrastrando (además del clic directo en una hora) ── */

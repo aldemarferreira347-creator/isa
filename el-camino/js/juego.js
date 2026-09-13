@@ -534,6 +534,9 @@ const Juego = (function () {
         }
 
         capituloTerminado = true;
+        if (window.notificarAccion) {
+            window.notificarAccion('El Camino', 'Capítulo completado', `Completó el capítulo ${capituloIndice + 1}: ${nivel.titulo || ''}`);
+        }
         if (window.Sfx && Sfx.capitulo) Sfx.capitulo();
         const gc = GUION.capitulos[nivel.guion];
         (gc.final || []).forEach(l => Subtitulos.mostrar(l));
@@ -618,6 +621,9 @@ const Juego = (function () {
         btnCompSi.addEventListener('click', () => {
             const c = (window.GUION && GUION.compromiso) || {};
             if (window.Sfx && Sfx.fanfarria) Sfx.fanfarria();
+            if (window.notificarAccion) {
+                window.notificarAccion('El Camino', 'Compromiso ACEPTADO', '¡Dijo que SÍ a entrar juntos a casa! 🏡❤️');
+            }
             if (elCompSiTitulo) elCompSiTitulo.textContent = c.desenlaceTitulo || 'Entramos juntos';
             if (elCompSiTexto) elCompSiTexto.textContent = c.desenlaceTexto || '';
             if (elCompEtapaPregunta) elCompEtapaPregunta.hidden = true;
@@ -629,6 +635,9 @@ const Juego = (function () {
         btnCompNo.addEventListener('click', () => {
             const c = (window.GUION && GUION.compromiso) || {};
             if (window.Sfx && Sfx.reaparicion) Sfx.reaparicion();
+            if (window.notificarAccion) {
+                window.notificarAccion('El Camino', 'Compromiso Todavía No', 'Eligió "Todavía no" en la puerta de casa');
+            }
             if (elCompNoTitulo) elCompNoTitulo.textContent = c.noTitulo || 'Está bien';
             if (elCompNoTexto) elCompNoTexto.textContent = (c.noTexto || '').replace('{otro}', nombreCompanero());
             if (btnCompReintentar) btnCompReintentar.textContent = c.reintentar || 'Preguntar de nuevo';
@@ -645,6 +654,9 @@ const Juego = (function () {
     if (btnCompFin) {
         btnCompFin.addEventListener('click', () => {
             const c = (window.GUION && GUION.compromiso) || {};
+            if (window.notificarAccion) {
+                window.notificarAccion('El Camino', 'Fin del juego', 'Cerró el juego en la etapa de compromiso');
+            }
             if (elCompFinTitulo) elCompFinTitulo.textContent = c.finTitulo || 'Hasta aquí llega el juego';
             if (elCompFinTexto) elCompFinTexto.textContent = c.finTexto || '';
             if (elCompEtapaNo) elCompEtapaNo.hidden = true;
@@ -701,6 +713,9 @@ const Juego = (function () {
             btn.type = 'button';
             btn.onclick = () => {
                 if (!window.Jefe) return;
+                if (window.notificarRespuesta) {
+                    window.notificarRespuesta(pregunta.pregunta, opcion, 'El Camino - Batalla');
+                }
                 // Se esconde el panel en el mismo gesto de contestar: deja
                 // ver la reacción de Distancia y el subtítulo, y hace
                 // imposible el doble toque en móvil (dos respuestas
@@ -742,6 +757,9 @@ const Juego = (function () {
 
     if (btnBesoSi) {
         btnBesoSi.addEventListener('click', () => {
+            if (window.notificarAccion) {
+                window.notificarAccion('El Camino', 'Peaje del beso', 'Respondió: Sí ❣️ (le dio un beso)');
+            }
             const accion = accionTrasBeso;
             accionTrasBeso = null;
             if (accion) accion();
@@ -749,6 +767,9 @@ const Juego = (function () {
     }
     if (btnBesoNo) {
         btnBesoNo.addEventListener('click', () => {
+            if (window.notificarAccion) {
+                window.notificarAccion('El Camino', 'Peaje del beso', 'Respondió: Todavía no');
+            }
             const b = (window.GUION && GUION.besoConfirmacion) || {};
             if (elBesoNota) {
                 elBesoNota.textContent = b.nota || 'Sin prisa — cuando ya se lo hayas dado, toca «Sí».';

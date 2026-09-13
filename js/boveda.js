@@ -69,6 +69,9 @@ const LS_CAPSULA = 'm9_capsula';
             capsulaMi.querySelector('.bv-carta-texto').textContent = capsula.paraMi || '(la dejó en blanco)';
             capsulaFecha.textContent = new Date(capsula.selladaEn)
                 .toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+            if (window.notificarAccion) {
+                window.notificarAccion('Mes 12 - Bóveda', 'Cartas de cápsula leídas', 'Leyó las cartas selladas del 10 de abril dentro de La Bóveda');
+            }
         } else {
             capsulaTi.hidden = true;
             capsulaMi.hidden = true;
@@ -95,6 +98,9 @@ const LS_CAPSULA = 'm9_capsula';
             pintarInterior();
             notificarAperturaBoveda();
         } else {
+            if (window.notificarAccion) {
+                window.notificarAccion('Mes 12 - Bóveda', 'Intento de combinación incorrecto', 'Código ingresado: ' + intento.join('-'));
+            }
             aviso.textContent = 'Esa combinación no es. Revisa mes por mes — cada uno esconde el suyo.';
             aviso.hidden = false;
             cerradura.classList.remove('bv-cerradura--tiembla');

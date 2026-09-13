@@ -282,7 +282,14 @@ const MODO_PRUEBA = false;
             + (!puerta && !camino ? ' mes--cerrado' : '')
             + (esSiguiente ? ' mes--siguiente' : '')
             + (forzado ? ' mes--prueba' : '');
-        if (puerta) caja.href = m.href;
+        if (puerta) {
+            caja.href = m.href;
+            caja.addEventListener('click', () => {
+                if (window.notificarAccion) {
+                    window.notificarAccion('Menú Principal', 'Mes seleccionado', `Entró al Mes ${m.n} · ${m.titulo || ''} (${m.href})`);
+                }
+            });
+        }
 
         /* Qué se lee en cada estado.
 
@@ -439,6 +446,9 @@ const MODO_PRUEBA = false;
             pintar(nuevo);
             recordar(nuevo);
             if (nuevo) {
+                if (window.notificarAccion) {
+                    window.notificarAccion('Menú Principal', 'Mes a Mes desplegado', 'Abrió el hilo completo de regalos del año');
+                }
                 // Al abrir desde el menú de arriba, dejar la cabecera a la vista.
                 const y = seccion.getBoundingClientRect().top;
                 if (y < 0 || y > window.innerHeight * 0.6) {

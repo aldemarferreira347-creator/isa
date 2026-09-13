@@ -70,6 +70,17 @@ document.addEventListener('DOMContentLoaded', () => {
         revelarMenu();
     }
 
+    // Escuchar selección de tarjetas principales
+    document.querySelectorAll('.main-nav a.nav-card').forEach(card => {
+        card.addEventListener('click', () => {
+            if (card.id === 'navCumple') return; // gestionado por modal de cumpleaños
+            if (window.notificarAccion) {
+                const titulo = card.querySelector('.nav-title')?.textContent?.trim() || card.getAttribute('href');
+                window.notificarAccion('Menú Principal', 'Navegación elegida', `Seleccionó tarjeta: ${titulo}`);
+            }
+        });
+    });
+
     // Red de seguridad: pase lo que pase, ni el menú queda invisible
     // ni la página queda sin poder scrollear.
     setTimeout(() => {
@@ -209,6 +220,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!tarjeta || !modal || !btnCerrar) return;
 
     function abrir() {
+        if (window.notificarAccion) {
+            window.notificarAccion('Menú Principal', 'Modal Cumpleaños abierto', 'Hizo clic en la tarjeta de Cumpleaños');
+        }
         modal.classList.add('abierto');
         modal.setAttribute('aria-hidden', 'false');
     }
@@ -222,6 +236,24 @@ document.addEventListener('DOMContentLoaded', () => {
         ev.preventDefault();
         abrir();
     });
+
+    const opPrincipito = document.getElementById('cumpleOpPrincipito');
+    if (opPrincipito) {
+        opPrincipito.addEventListener('click', () => {
+            if (window.notificarAccion) {
+                window.notificarAccion('Menú Principal', 'Cumpleaños elegido', 'Eligió: El Principito (externo)');
+            }
+        });
+    }
+
+    const opCarta = document.getElementById('cumpleOpCarta');
+    if (opCarta) {
+        opCarta.addEventListener('click', () => {
+            if (window.notificarAccion) {
+                window.notificarAccion('Menú Principal', 'Cumpleaños elegido', 'Eligió: La Carta (momentos-cumpleanos.html)');
+            }
+        });
+    }
 
     btnCerrar.addEventListener('click', cerrar);
 

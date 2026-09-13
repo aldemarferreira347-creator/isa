@@ -1,4 +1,4 @@
-﻿/* ══════════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════════════════════════
    CONSTELACION.JS — Mes 6 · Constelación.
    Las constelaciones en el cielo forman la frase:
    "TE AMO MI NIÑA ❣️"
@@ -293,6 +293,9 @@ const LS_CONST = 'm6_constelaciones_hechas';
 
     function revelar(ci) {
         const fig = CONSTELACIONES[ci];
+        if (window.notificarAccion) {
+            window.notificarAccion('Mes 6 - Constelación', 'Constelación completada', fig.titulo);
+        }
         const li = document.createElement('li');
         li.className = 'cst-recuerdo';
         li.innerHTML = `

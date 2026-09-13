@@ -24,6 +24,10 @@
             if (_cartaAbierta) return;
             _cartaAbierta = true;
 
+            if (window.notificarAccion) {
+                window.notificarAccion('La Pregunta', 'Sobre abierto', 'Abrió la carta de la propuesta formal');
+            }
+
             const modal = document.getElementById('cartaModal');
             if (!modal) return;
 
@@ -55,6 +59,9 @@
 
         // Cierra el modal y revela la tarjeta de la pregunta debajo
         function irAPregunta() {
+            if (window.notificarAccion) {
+                window.notificarAccion('La Pregunta', 'Llegó a la pregunta', 'Pulsó "Hay algo más..." y reveló la pregunta formal');
+            }
             cerrarCartaModal();
             const qWrap = document.getElementById('dclQuestion');
             if (qWrap) {

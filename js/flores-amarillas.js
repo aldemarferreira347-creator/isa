@@ -47,6 +47,9 @@ function giftAnswer(yes) {
     } else {
         document.getElementById('giftNo').style.display = 'block';
     }
+    if (window.notificarAccion) {
+        window.notificarAccion('Flores Amarillas', 'Pregunta de flores respondida', yes ? 'Eligió: Sí' : 'Eligió: No');
+    }
 }
 
 function openFlowerModal() {
@@ -55,6 +58,10 @@ function openFlowerModal() {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     if (typeof window.startSpecialFlower === 'function') window.startSpecialFlower();
+
+    if (window.notificarAccion) {
+        window.notificarAccion('Flores Amarillas', 'Jardín especial abierto', 'Abrió la animación del jardín de flores amarillas');
+    }
 
     if (bgMusic) {
         bgMusic.currentTime = 100;

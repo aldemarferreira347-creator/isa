@@ -98,7 +98,12 @@
     var currentIdx=0;
     var lb=document.getElementById('lightbox');
     var lbImg=document.getElementById('lb-img');
-    function openLightbox(idx){currentIdx=idx;lbImg.src=photos[idx];lb.classList.add('open');document.body.style.overflow='hidden'}
+    function openLightbox(idx){
+      currentIdx=idx;lbImg.src=photos[idx];lb.classList.add('open');document.body.style.overflow='hidden';
+      if (window.notificarAccion) {
+        window.notificarAccion('Momentos Cumpleaños', 'Foto ampliada', 'Vio la foto ' + (idx + 1));
+      }
+    }
     function closeLightbox(){lb.classList.remove('open');document.body.style.overflow=''}
     function showNext(){currentIdx=(currentIdx+1)%photos.length;lbImg.src=photos[currentIdx]}
     function showPrev(){currentIdx=(currentIdx-1+photos.length)%photos.length;lbImg.src=photos[currentIdx]}
@@ -147,10 +152,16 @@
       }
 
       document.getElementById('btn-ready-no').addEventListener('click', function() {
+        if (window.notificarAccion) {
+          window.notificarAccion('Momentos Cumpleaños', '¿Estás lista?', 'Respondió: No');
+        }
         document.getElementById('ready-text').innerText = 'Tranquila, presiona en sí cuando estés lista ✨';
       });
 
       document.getElementById('btn-ready-yes').addEventListener('click', function() {
+        if (window.notificarAccion) {
+          window.notificarAccion('Momentos Cumpleaños', '¿Estás lista?', 'Respondió: Sí');
+        }
         document.getElementById('ready-prompt').classList.add('hidden');
         
         // Start music on user interaction

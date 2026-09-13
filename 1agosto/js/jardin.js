@@ -313,6 +313,9 @@ const Jardin = (() => {
   // ══════════════════ FASE 3 · ESPLENDOR ══════════════════
   function esplendor() {
     fase = "esplendor";
+    if (window.notificarAccion) {
+      window.notificarAccion('1 de Agosto', 'Jardín florecido', 'Completó el riego y deshierbe del jardín');
+    }
     cabecera(CONFIG.jardin.tituloEsplendor, CONFIG.jardin.instruccionEsplendor);
     pintarProgreso();
     Sfx.fanfarria();
@@ -360,6 +363,9 @@ const Jardin = (() => {
   function preparar() {
     $("btn-cosechar").textContent = CONFIG.jardin.botonCosechar;
     $("btn-cosechar").addEventListener("click", () => {
+      if (window.notificarAccion) {
+        window.notificarAccion('1 de Agosto', 'Pasó a Cosechar', 'Avanzó del jardín al minijuego de cosecha');
+      }
       App.irA("pantalla-juego");
       Juego.mostrar();
     });

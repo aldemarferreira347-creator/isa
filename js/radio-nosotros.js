@@ -221,10 +221,13 @@ const LS_ENCONTRADAS = 'm5_estaciones_encontradas';
         contador.textContent = `${encontradas.size}/${ESTACIONES.length} estaciones encontradas`;
         if (encontradas.size === ESTACIONES.length && cierre) {
             cierre.hidden = false;
-            // Dígito del mes 5 para La Bóveda: se gana al encontrar las 18.
+            // Dígito del mes 5 para La Bóveda: se gana al encontrar las 18/19.
             // Ver js/boveda.js — DIGITOS_CORRECTOS.
             const digito = document.getElementById('radioDigito');
             if (digito) digito.hidden = false;
+            if (window.notificarAccion) {
+                window.notificarAccion('Mes 5 - Radio', 'Radio completada', `Encontró las ${ESTACIONES.length} estaciones de radio (Dígito de bóveda 7)`);
+            }
         }
     }
 
@@ -278,6 +281,9 @@ const LS_ENCONTRADAS = 'm5_estaciones_encontradas';
         if (btnNext) btnNext.disabled = false;
         dial.focus();
         actualizarDesdeValor();
+        if (window.notificarAccion) {
+            window.notificarAccion('Mes 5 - Radio', 'Radio encendida', 'Encendió la radio para sintonizar');
+        }
     }
 
     function apagar() {
@@ -360,6 +366,9 @@ const LS_ENCONTRADAS = 'm5_estaciones_encontradas';
             guardar();
             pintarRegla();
             actualizarContador();
+            if (window.notificarAccion) {
+                window.notificarAccion('Mes 5 - Radio', 'Estación sintonizada', `${e.titulo} (${e.freq.toFixed(1)} FM)`);
+            }
         }
 
         // Quitar completamente el ruido de la radio al comenzar la canción
@@ -644,6 +653,10 @@ const LS_ENCONTRADAS = 'm5_estaciones_encontradas';
 
         lightbox.hidden = false;
         document.body.style.overflow = 'hidden';
+
+        if (window.notificarAccion) {
+            window.notificarAccion('Mes 5 - Radio', 'Foto ampliada', `Foto ${fotoActualIndex + 1} de ${fotosActivas.length}: «${(f.cumplido || '').slice(0, 70)}»`);
+        }
     }
 
     function cerrarLightbox() {

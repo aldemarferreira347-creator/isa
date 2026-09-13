@@ -328,6 +328,9 @@ const Final = (() => {
     enlace.download = `cupon-y-respuestas-${(CONFIG.nombre || "amor").toLowerCase()}-1agosto.png`;
     enlace.href = c.toDataURL("image/png");
     enlace.click();
+    if (window.notificarAccion) {
+      window.notificarAccion('1 de Agosto', 'Descargó cupón PNG', 'Descargó la imagen con su cupón y respuestas');
+    }
   }
 
   // ---------- API ----------
@@ -350,6 +353,9 @@ const Final = (() => {
     cargarFoto();
     ajustar();
     Sfx.fanfarria();
+    if (window.notificarAccion) {
+      window.notificarAccion('1 de Agosto', 'Pantalla final abierta', 'Llegó al cupón de regalo y carta final');
+    }
     if (!prefiereQuieto()) {
       particulas = Array.from({ length: 40 }, () => crearParticula(false));
       activo = true;

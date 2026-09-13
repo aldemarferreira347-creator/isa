@@ -62,6 +62,9 @@ const Seleccion = (function () {
         if (!elegido) return;
         panel.hidden = true;
         document.removeEventListener('keydown', alTeclado);
+        if (window.notificarAccion) {
+            window.notificarAccion('El Camino', 'Personaje elegido', 'Eligió caminar con: ' + (elegido === 'carlo' ? 'Carlo' : 'Isabela'));
+        }
         if (alConfirmar) alConfirmar(elegido);
     }
 

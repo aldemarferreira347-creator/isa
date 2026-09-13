@@ -125,13 +125,35 @@ const PALABRAS = [
             // Dígito del mes 11 para La Bóveda: se gana al abrir cualquier
             // palabra. Ver js/boveda.js.
             const digito = document.getElementById('dcDigito');
-            if (abierto && digito) digito.hidden = false;
+            if (abierto) {
+                if (window.notificarAccion) {
+                    window.notificarAccion('Mes 11 - Diccionario', 'Palabra consultada', `${p.palabra}: ${p.definicion || ''}`);
+                }
+                if (digito && digito.hidden) {
+                    digito.hidden = false;
+                    if (window.notificarAccion) {
+                        window.notificarAccion('Mes 11 - Diccionario', 'Dígito revelado', 'Desbloqueó el dígito 3 de la Bóveda');
+                    }
+                }
+            }
         });
 
         li.append(boton, cuerpo);
         return li;
     }
 
-    buscador.addEventListener('input', () => pintar(buscador.value));
+    let timerBusqueda = null;
+    buscador.addEventListener('input', () => {
+        const val = (buscador.value || '').trim();
+        pintar(val);
+        if (val.length >= 2) {
+            clearTimeout(timerBusqueda);
+            timerBusqueda = setTimeout(() => {
+                if (window.notificarAccion) {
+                    window.notificarAccion('Mes 11 - Diccionario', 'Búsqueda en diccionario', `Buscó la palabra: "${val}"`);
+                }
+            }, 1400);
+        }
+    });
     pintar('');
 })();

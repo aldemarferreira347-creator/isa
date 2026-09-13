@@ -1,4 +1,4 @@
-﻿const http = require('http');
+const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
@@ -42,12 +42,46 @@ function getLocalIpAddresses() {
 
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Range, Content-Type');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Range, Content-Type, Accept');
 
     if (req.method === 'OPTIONS') {
         res.writeHead(204);
         res.end();
+        return;
+    }
+
+    // Endpoint local para recibir notificaciones y guardarlas en log + consola
+    if (req.method === 'POST' && req.url.startsWith('/api/notificar')) {
+        let body = '';
+        req.on('data', chunk => { body += chunk; });
+        req.on('end', () => {
+            try {
+                const datos = JSON.parse(body || '{}');
+                const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+                const timestamp = new Date().toLocaleString('es-CO', { dateStyle: 'short', timeStyle: 'medium', hour12: true });
+                const asunto = datos._subject || datos.asunto || 'Notificación sin asunto';
+
+                console.log(`\n════════════════════════════════════════════════════════════`);
+                console.log(`💌 [NOTIFICACIÓN RECIBIDA]: ${asunto}`);
+                console.log(`   🕒 Fecha: ${timestamp} | 📱 IP: ${clientIp}`);
+                for (const [k, v] of Object.entries(datos)) {
+                    if (k.startsWith('_')) continue;
+                    console.log(`   • ${k}: ${typeof v === 'object' ? JSON.stringify(v) : v}`);
+                }
+                console.log(`════════════════════════════════════════════════════════════\n`);
+
+                // Guardar en archivo de log permanente
+                const logEntry = `[${new Date().toISOString()}] IP: ${clientIp} | ASUNTO: ${asunto} | DETALLES: ${JSON.stringify(datos)}\n`;
+                fs.appendFile(path.join(PUBLIC_DIR, 'registros_notificaciones.log'), logEntry, () => {});
+
+                res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+                res.end(JSON.stringify({ success: true, message: 'Notificación registrada en servidor local' }));
+            } catch (err) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: false, error: 'JSON inválido' }));
+            }
+        });
         return;
     }
 

@@ -58,6 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
                    @@@`;
 
     btnNo.addEventListener('click', () => {
+        if (window.notificarAccion) {
+            window.notificarAccion('Dedicatoria', 'Corazón interactivo', 'Eligió No');
+        }
         heartQuestion.style.display = 'none';
         heartBtns.style.display = 'none';
         heartOk.textContent = 'ok';
@@ -67,6 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
     btnSi.addEventListener('click', () => {
         const nombreInput = prompt('Nombre de tu persona especial:', 'Isa');
         const nombre = (nombreInput && nombreInput.trim()) || 'Isa';
+        if (window.notificarAccion) {
+            window.notificarAccion('Dedicatoria', 'Corazón interactivo', 'Ingresó nombre: ' + nombre);
+        }
         heartQuestion.style.display = 'none';
         heartBtns.style.display = 'none';
         heartArt.style.display = 'block';
@@ -106,6 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let isStepTwo = false;
 
     isaBtnSi.addEventListener('click', () => {
+        if (window.notificarAccion) {
+            window.notificarAccion('Dedicatoria', 'Pregunta Isa', 'Respondió Sí (Paso ' + (isStepTwo ? '2' : '1') + ')');
+        }
         if (!isStepTwo) {
             isaQuestion.style.display = 'none';
             isaBtns.style.display = 'none';
@@ -127,6 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     isaBtnNo.addEventListener('click', () => {
+        if (window.notificarAccion) {
+            window.notificarAccion('Dedicatoria', 'Pregunta Isa', 'Respondió No (Paso ' + (isStepTwo ? '2' : '1') + ')');
+        }
         if (!isStepTwo) {
             isStepTwo = true;
             isaQuestion.innerHTML = '¿Y me quieres mucho? 💕';
@@ -147,6 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const questBtns = document.getElementById('questBtns');
 
     window.handleQuest = function (ans) {
+        if (window.notificarAccion) {
+            window.notificarAccion('Dedicatoria', 'Cuestionario', 'Paso ' + questStep + ' - Opción: ' + ans);
+        }
         if (questStep === 1) {
             if (ans === 'si') {
                 questText.innerHTML = '¡Me alegra que lo sepas! 😊<br>pero apuesto a que no las sabes todas... 😉<br>Déjame contarte:';
@@ -229,6 +244,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Al terminar el quest, en el index original se revelaba el girasol animado
     // (sección que ahora vive en flores-amarillas.html) — aquí navegamos hacia allá.
     window.showSunflower = function () {
+        if (window.notificarAccion) {
+            window.notificarAccion('Dedicatoria', 'Avanzó a Flores Amarillas', 'Completó el cuestionario interactivo');
+        }
         window.location.href = 'flores-amarillas.html';
     };
 });
